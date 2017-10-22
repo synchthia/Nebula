@@ -194,5 +194,4 @@ pom.xml.next
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
-src/main/java/net/synchthia/nebula/
 src/test/
