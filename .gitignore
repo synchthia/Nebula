@@ -1,14 +1,14 @@
 # for Debug
-server/
-server1/
-server2/
-bungee/
-server1.bat
-server2.bat
-bungee.bat
+/server/
+/server1/
+/server2/
+/bungee/
+/server1.bat
+/server2.bat
+/bungee.bat
 
-spigot.sh
-bungee.sh
+/spigot.sh
+/bungee.sh
 
 # Created by https://www.gitignore.io
 
