@@ -2,6 +2,7 @@ image: maven:latest
 
 stages:
   - build
+  - deploy
 
 build:
   stage: build
@@ -12,3 +13,8 @@ build:
   script:
   # Run Maven
   - mvn clean package
+  
+deploy:
+  stage: deploy
+  script:
+  - curl --request POST --header "PRIVATE-TOKEN: ${STARTAIL_AGENT_KEY}" "https://gitlab.com/api/v4/projects/startail%2Fmcserver/pipeline?ref=master"
