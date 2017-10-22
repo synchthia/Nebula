@@ -17,4 +17,4 @@ build:
 deploy:
   stage: deploy
   script:
-  - "curl --request POST -H PRIVATE-TOKEN: ${STARTAIL_AGENT_KEY} https://gitlab.com/api/v4/projects/startail%2Fmcserver/pipeline?ref=master"
+  - "curl --request POST -H PRIVATE-TOKEN: ${STARTAIL_AGENT_KEY}" "https://gitlab.com/api/v4/projects/startail%2Fmcserver/pipeline?ref=master"
