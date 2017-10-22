@@ -18,9 +18,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.0.2)",
+    value = "by gRPC proto compiler (version 1.6.1)",
     comments = "Source: nebulapb.proto")
-public class NebulaGrpc {
+public final class NebulaGrpc {
 
   private NebulaGrpc() {}
 
@@ -30,75 +30,75 @@ public class NebulaGrpc {
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<net.synchthia.api.nebula.NebulaProtos.Empty,
       net.synchthia.api.nebula.NebulaProtos.Empty> METHOD_PING =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "nebulapb.Nebula", "Ping"),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.Empty.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.Empty.getDefaultInstance()));
+      io.grpc.MethodDescriptor.<net.synchthia.api.nebula.NebulaProtos.Empty, net.synchthia.api.nebula.NebulaProtos.Empty>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "nebulapb.Nebula", "Ping"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.Empty.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.Empty.getDefaultInstance()))
+          .build();
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<net.synchthia.api.nebula.NebulaProtos.StreamRequest,
       net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse> METHOD_ENTRY_STREAM =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING,
-          generateFullMethodName(
-              "nebulapb.Nebula", "EntryStream"),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.StreamRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse.getDefaultInstance()));
+      io.grpc.MethodDescriptor.<net.synchthia.api.nebula.NebulaProtos.StreamRequest, net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+          .setFullMethodName(generateFullMethodName(
+              "nebulapb.Nebula", "EntryStream"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.StreamRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse.getDefaultInstance()))
+          .build();
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<net.synchthia.api.nebula.NebulaProtos.QuitStreamRequest,
-      net.synchthia.api.nebula.NebulaProtos.Empty> METHOD_QUIT_STREAM =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "nebulapb.Nebula", "QuitStream"),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.QuitStreamRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.Empty.getDefaultInstance()));
+  public static final io.grpc.MethodDescriptor<net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest,
+      net.synchthia.api.nebula.NebulaProtos.Empty> METHOD_QUIT_ENTRY_STREAM =
+      io.grpc.MethodDescriptor.<net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest, net.synchthia.api.nebula.NebulaProtos.Empty>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "nebulapb.Nebula", "QuitEntryStream"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.Empty.getDefaultInstance()))
+          .build();
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<net.synchthia.api.nebula.NebulaProtos.GetServerEntryRequest,
       net.synchthia.api.nebula.NebulaProtos.GetServerEntryResponse> METHOD_GET_SERVER_ENTRY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "nebulapb.Nebula", "GetServerEntry"),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.GetServerEntryRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.GetServerEntryResponse.getDefaultInstance()));
+      io.grpc.MethodDescriptor.<net.synchthia.api.nebula.NebulaProtos.GetServerEntryRequest, net.synchthia.api.nebula.NebulaProtos.GetServerEntryResponse>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "nebulapb.Nebula", "GetServerEntry"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.GetServerEntryRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.GetServerEntryResponse.getDefaultInstance()))
+          .build();
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<net.synchthia.api.nebula.NebulaProtos.AddServerEntryRequest,
       net.synchthia.api.nebula.NebulaProtos.AddServerEntryResponse> METHOD_ADD_SERVER_ENTRY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "nebulapb.Nebula", "AddServerEntry"),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.AddServerEntryRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.AddServerEntryResponse.getDefaultInstance()));
+      io.grpc.MethodDescriptor.<net.synchthia.api.nebula.NebulaProtos.AddServerEntryRequest, net.synchthia.api.nebula.NebulaProtos.AddServerEntryResponse>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "nebulapb.Nebula", "AddServerEntry"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.AddServerEntryRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.AddServerEntryResponse.getDefaultInstance()))
+          .build();
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryRequest,
       net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryResponse> METHOD_REMOVE_SERVER_ENTRY =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "nebulapb.Nebula", "RemoveServerEntry"),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryResponse.getDefaultInstance()));
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<net.synchthia.api.nebula.NebulaProtos.PushStatusRequest,
-      net.synchthia.api.nebula.NebulaProtos.PushStatusResponse> METHOD_PUSH_STATUS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "nebulapb.Nebula", "PushStatus"),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.PushStatusRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.PushStatusResponse.getDefaultInstance()));
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<net.synchthia.api.nebula.NebulaProtos.FetchStatusRequest,
-      net.synchthia.api.nebula.NebulaProtos.FetchStatusResponse> METHOD_FETCH_STATUS =
-      io.grpc.MethodDescriptor.create(
-          io.grpc.MethodDescriptor.MethodType.UNARY,
-          generateFullMethodName(
-              "nebulapb.Nebula", "FetchStatus"),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.FetchStatusRequest.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(net.synchthia.api.nebula.NebulaProtos.FetchStatusResponse.getDefaultInstance()));
+      io.grpc.MethodDescriptor.<net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryRequest, net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryResponse>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "nebulapb.Nebula", "RemoveServerEntry"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryResponse.getDefaultInstance()))
+          .build();
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -116,7 +116,7 @@ public class NebulaGrpc {
   }
 
   /**
-   * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
+   * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static NebulaFutureStub newFutureStub(
       io.grpc.Channel channel) {
@@ -154,9 +154,9 @@ public class NebulaGrpc {
 
     /**
      */
-    public void quitStream(net.synchthia.api.nebula.NebulaProtos.QuitStreamRequest request,
+    public void quitEntryStream(net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest request,
         io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_QUIT_STREAM, responseObserver);
+      asyncUnimplementedUnaryCall(METHOD_QUIT_ENTRY_STREAM, responseObserver);
     }
 
     /**
@@ -192,30 +192,7 @@ public class NebulaGrpc {
       asyncUnimplementedUnaryCall(METHOD_REMOVE_SERVER_ENTRY, responseObserver);
     }
 
-    /**
-     * <pre>
-     *-
-     * ServerStatus
-     *-
-     * Bungee -&gt; API (Server Status)
-     * </pre>
-     */
-    public void pushStatus(net.synchthia.api.nebula.NebulaProtos.PushStatusRequest request,
-        io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.PushStatusResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_PUSH_STATUS, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Spigot &lt;- API (Server Status)
-     * </pre>
-     */
-    public void fetchStatus(net.synchthia.api.nebula.NebulaProtos.FetchStatusRequest request,
-        io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.FetchStatusResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_FETCH_STATUS, responseObserver);
-    }
-
-    @java.lang.Override public io.grpc.ServerServiceDefinition bindService() {
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             METHOD_PING,
@@ -232,12 +209,12 @@ public class NebulaGrpc {
                 net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse>(
                   this, METHODID_ENTRY_STREAM)))
           .addMethod(
-            METHOD_QUIT_STREAM,
+            METHOD_QUIT_ENTRY_STREAM,
             asyncUnaryCall(
               new MethodHandlers<
-                net.synchthia.api.nebula.NebulaProtos.QuitStreamRequest,
+                net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest,
                 net.synchthia.api.nebula.NebulaProtos.Empty>(
-                  this, METHODID_QUIT_STREAM)))
+                  this, METHODID_QUIT_ENTRY_STREAM)))
           .addMethod(
             METHOD_GET_SERVER_ENTRY,
             asyncUnaryCall(
@@ -259,20 +236,6 @@ public class NebulaGrpc {
                 net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryRequest,
                 net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryResponse>(
                   this, METHODID_REMOVE_SERVER_ENTRY)))
-          .addMethod(
-            METHOD_PUSH_STATUS,
-            asyncUnaryCall(
-              new MethodHandlers<
-                net.synchthia.api.nebula.NebulaProtos.PushStatusRequest,
-                net.synchthia.api.nebula.NebulaProtos.PushStatusResponse>(
-                  this, METHODID_PUSH_STATUS)))
-          .addMethod(
-            METHOD_FETCH_STATUS,
-            asyncUnaryCall(
-              new MethodHandlers<
-                net.synchthia.api.nebula.NebulaProtos.FetchStatusRequest,
-                net.synchthia.api.nebula.NebulaProtos.FetchStatusResponse>(
-                  this, METHODID_FETCH_STATUS)))
           .build();
     }
   }
@@ -324,10 +287,10 @@ public class NebulaGrpc {
 
     /**
      */
-    public void quitStream(net.synchthia.api.nebula.NebulaProtos.QuitStreamRequest request,
+    public void quitEntryStream(net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest request,
         io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_QUIT_STREAM, getCallOptions()), request, responseObserver);
+          getChannel().newCall(METHOD_QUIT_ENTRY_STREAM, getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -364,31 +327,6 @@ public class NebulaGrpc {
         io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_REMOVE_SERVER_ENTRY, getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     *-
-     * ServerStatus
-     *-
-     * Bungee -&gt; API (Server Status)
-     * </pre>
-     */
-    public void pushStatus(net.synchthia.api.nebula.NebulaProtos.PushStatusRequest request,
-        io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.PushStatusResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(METHOD_PUSH_STATUS, getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Spigot &lt;- API (Server Status)
-     * </pre>
-     */
-    public void fetchStatus(net.synchthia.api.nebula.NebulaProtos.FetchStatusRequest request,
-        io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.FetchStatusResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(METHOD_FETCH_STATUS, getCallOptions()), request, responseObserver);
     }
   }
 
@@ -438,9 +376,9 @@ public class NebulaGrpc {
 
     /**
      */
-    public net.synchthia.api.nebula.NebulaProtos.Empty quitStream(net.synchthia.api.nebula.NebulaProtos.QuitStreamRequest request) {
+    public net.synchthia.api.nebula.NebulaProtos.Empty quitEntryStream(net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_QUIT_STREAM, getCallOptions(), request);
+          getChannel(), METHOD_QUIT_ENTRY_STREAM, getCallOptions(), request);
     }
 
     /**
@@ -474,29 +412,6 @@ public class NebulaGrpc {
     public net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryResponse removeServerEntry(net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_REMOVE_SERVER_ENTRY, getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     *-
-     * ServerStatus
-     *-
-     * Bungee -&gt; API (Server Status)
-     * </pre>
-     */
-    public net.synchthia.api.nebula.NebulaProtos.PushStatusResponse pushStatus(net.synchthia.api.nebula.NebulaProtos.PushStatusRequest request) {
-      return blockingUnaryCall(
-          getChannel(), METHOD_PUSH_STATUS, getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Spigot &lt;- API (Server Status)
-     * </pre>
-     */
-    public net.synchthia.api.nebula.NebulaProtos.FetchStatusResponse fetchStatus(net.synchthia.api.nebula.NebulaProtos.FetchStatusRequest request) {
-      return blockingUnaryCall(
-          getChannel(), METHOD_FETCH_STATUS, getCallOptions(), request);
     }
   }
 
@@ -533,10 +448,10 @@ public class NebulaGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<net.synchthia.api.nebula.NebulaProtos.Empty> quitStream(
-        net.synchthia.api.nebula.NebulaProtos.QuitStreamRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<net.synchthia.api.nebula.NebulaProtos.Empty> quitEntryStream(
+        net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_QUIT_STREAM, getCallOptions()), request);
+          getChannel().newCall(METHOD_QUIT_ENTRY_STREAM, getCallOptions()), request);
     }
 
     /**
@@ -574,43 +489,16 @@ public class NebulaGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_REMOVE_SERVER_ENTRY, getCallOptions()), request);
     }
-
-    /**
-     * <pre>
-     *-
-     * ServerStatus
-     *-
-     * Bungee -&gt; API (Server Status)
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<net.synchthia.api.nebula.NebulaProtos.PushStatusResponse> pushStatus(
-        net.synchthia.api.nebula.NebulaProtos.PushStatusRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(METHOD_PUSH_STATUS, getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     * Spigot &lt;- API (Server Status)
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<net.synchthia.api.nebula.NebulaProtos.FetchStatusResponse> fetchStatus(
-        net.synchthia.api.nebula.NebulaProtos.FetchStatusRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(METHOD_FETCH_STATUS, getCallOptions()), request);
-    }
   }
 
   private static final int METHODID_PING = 0;
   private static final int METHODID_ENTRY_STREAM = 1;
-  private static final int METHODID_QUIT_STREAM = 2;
+  private static final int METHODID_QUIT_ENTRY_STREAM = 2;
   private static final int METHODID_GET_SERVER_ENTRY = 3;
   private static final int METHODID_ADD_SERVER_ENTRY = 4;
   private static final int METHODID_REMOVE_SERVER_ENTRY = 5;
-  private static final int METHODID_PUSH_STATUS = 6;
-  private static final int METHODID_FETCH_STATUS = 7;
 
-  private static class MethodHandlers<Req, Resp> implements
+  private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
@@ -618,7 +506,7 @@ public class NebulaGrpc {
     private final NebulaImplBase serviceImpl;
     private final int methodId;
 
-    public MethodHandlers(NebulaImplBase serviceImpl, int methodId) {
+    MethodHandlers(NebulaImplBase serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -635,8 +523,8 @@ public class NebulaGrpc {
           serviceImpl.entryStream((net.synchthia.api.nebula.NebulaProtos.StreamRequest) request,
               (io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse>) responseObserver);
           break;
-        case METHODID_QUIT_STREAM:
-          serviceImpl.quitStream((net.synchthia.api.nebula.NebulaProtos.QuitStreamRequest) request,
+        case METHODID_QUIT_ENTRY_STREAM:
+          serviceImpl.quitEntryStream((net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest) request,
               (io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.Empty>) responseObserver);
           break;
         case METHODID_GET_SERVER_ENTRY:
@@ -650,14 +538,6 @@ public class NebulaGrpc {
         case METHODID_REMOVE_SERVER_ENTRY:
           serviceImpl.removeServerEntry((net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryRequest) request,
               (io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryResponse>) responseObserver);
-          break;
-        case METHODID_PUSH_STATUS:
-          serviceImpl.pushStatus((net.synchthia.api.nebula.NebulaProtos.PushStatusRequest) request,
-              (io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.PushStatusResponse>) responseObserver);
-          break;
-        case METHODID_FETCH_STATUS:
-          serviceImpl.fetchStatus((net.synchthia.api.nebula.NebulaProtos.FetchStatusRequest) request,
-              (io.grpc.stub.StreamObserver<net.synchthia.api.nebula.NebulaProtos.FetchStatusResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -675,16 +555,33 @@ public class NebulaGrpc {
     }
   }
 
-  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
-    return new io.grpc.ServiceDescriptor(SERVICE_NAME,
-        METHOD_PING,
-        METHOD_ENTRY_STREAM,
-        METHOD_QUIT_STREAM,
-        METHOD_GET_SERVER_ENTRY,
-        METHOD_ADD_SERVER_ENTRY,
-        METHOD_REMOVE_SERVER_ENTRY,
-        METHOD_PUSH_STATUS,
-        METHOD_FETCH_STATUS);
+  private static final class NebulaDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
+      return net.synchthia.api.nebula.NebulaProtos.getDescriptor();
+    }
   }
 
+  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
+
+  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
+    io.grpc.ServiceDescriptor result = serviceDescriptor;
+    if (result == null) {
+      synchronized (NebulaGrpc.class) {
+        result = serviceDescriptor;
+        if (result == null) {
+          serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
+              .setSchemaDescriptor(new NebulaDescriptorSupplier())
+              .addMethod(METHOD_PING)
+              .addMethod(METHOD_ENTRY_STREAM)
+              .addMethod(METHOD_QUIT_ENTRY_STREAM)
+              .addMethod(METHOD_GET_SERVER_ENTRY)
+              .addMethod(METHOD_ADD_SERVER_ENTRY)
+              .addMethod(METHOD_REMOVE_SERVER_ENTRY)
+              .build();
+        }
+      }
+    }
+    return result;
+  }
 }
