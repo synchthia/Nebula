@@ -35,8 +35,6 @@ public class NebulaPlugin extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         try {
-            saveDefaultConfig();
-
             // Register API
             registerAPI();
             registerStream();
