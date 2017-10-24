@@ -23,8 +23,6 @@ public class ServerAPI {
 
     public static void putServer(NebulaProtos.ServerEntry entry) {
         servers.put(entry.getName(), entry);
-
-        System.out.println(entry);
     }
 
     public static void removeServer(String name) {

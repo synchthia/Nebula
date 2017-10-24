@@ -45,34 +45,13 @@ public class ServerSynchronizer {
                 System.out.println("diff port");
                 info = null;
             }
-            //if (info != null && !info.getMotd().equals(newInfo.getMotd()) && !setMotd(info, newInfo.getMotd())) {
-            //    info = null;
-            //}
-
             if (info == null) {
                 System.out.println(name + " is New or Changed.");
                 info = ProxyServer.getInstance().constructServerInfo(newInfo.getName(), newInfo.getAddress(), newInfo.getMotd(), false);
             }
 
-            //info.getPlayers().add()
-
-            //newServers.put(name, info);
             servers.put(name, info);
         });
-
-        //servers.putAll(newServers);
-
-        //ProxyServer.getInstance().getServers().clear();
-
-
-        /*serverInfo.forEach((name, info) -> {
-            //ServerInfo i = ProxyServer.getInstance().constructServerInfo("server1", new InetSocketAddress("localhost", 25571), "motd", false);
-            if (oldServers.containsKey(name)) {
-                newServers.put(name, info);
-            }
-
-            ProxyServer.getInstance().getServers().putIfAbsent(name, info);
-        });*/
     }
 
     private static boolean setMotd(ServerInfo info, String motd) {
