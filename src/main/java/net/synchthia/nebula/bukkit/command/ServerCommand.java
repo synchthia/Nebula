@@ -19,7 +19,7 @@ public class ServerCommand extends BaseCommand {
     @Description("")
     public void onServer(CommandSender sender, @Optional String server) {
         if (server == null) {
-            sender.sendMessage(ChatColor.AQUA + "You are currently on " + ChatColor.BLUE + Bukkit.getServer().getServerName());
+            sender.sendMessage(StringUtil.coloring("&b&lYou are currently on &9&l" + Bukkit.getServer().getServerName()));
             return;
         }
 
@@ -31,12 +31,12 @@ public class ServerCommand extends BaseCommand {
     public void onServers(CommandSender sender) {
         sender.sendMessage(StringUtil.coloring("&8&m[&b&lServers&8&m]-----------------------------------"));
         ServerAPI.getServers().forEach((k, v) -> {
-            String s1 = String.format("&6[%s]: ", v.getDisplayName());
+            String s1 = String.format("&6l[%s]: ", v.getDisplayName());
             String s2;
             if (v.getStatus().getOnline()) {
                 s2 = String.format("&7%d/%d", v.getStatus().getPlayers().getOnline(), v.getStatus().getPlayers().getMax());
             } else {
-                s2 = "&cOffline";
+                s2 = "&c&lOffline";
             }
             sender.sendMessage(StringUtil.coloring(s1 + s2));
         });
