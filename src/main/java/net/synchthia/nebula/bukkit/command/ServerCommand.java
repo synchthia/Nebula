@@ -31,7 +31,7 @@ public class ServerCommand extends BaseCommand {
     public void onServers(CommandSender sender) {
         sender.sendMessage(StringUtil.coloring("&8&m[&b&lServers&8&m]-----------------------------------"));
         ServerAPI.getServers().forEach((k, v) -> {
-            String s1 = String.format("&6l[%s]: ", v.getDisplayName());
+            String s1 = String.format("&6&l[%s]: ", v.getDisplayName());
             String s2;
             if (v.getStatus().getOnline()) {
                 s2 = String.format("&7%d/%d", v.getStatus().getPlayers().getOnline(), v.getStatus().getPlayers().getMax());
