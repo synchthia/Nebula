@@ -33,15 +33,10 @@ public class ServerAPI {
                 )
         );
 
-        //todo: fix it... -> want sort
         ServerSynchronizer.putToLocalServer(serverInfo);
-        //ProxyServer.getInstance().getServers().put(entry.getName(), serverInfo.get(entry.getName()));
-
-        System.out.println(entry.getName());
     }
 
     public void removeServer(String serverName) {
-        System.out.println("Removing...: " + serverName);
         ProxyServer.getInstance().getServers().remove(serverName);
     }
 

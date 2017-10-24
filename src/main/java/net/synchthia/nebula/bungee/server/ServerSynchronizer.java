@@ -28,10 +28,6 @@ public class ServerSynchronizer {
 
         serverInfo.forEach((name, newInfo) -> {
             ServerInfo info = oldServers.get(newInfo.getName());
-            /*servers.get(name).ping((r, ex) -> {
-                System.out.println(name+"//");
-            });*/
-
 
             if (info != null && !info.getName().equals(newInfo.getName())) {
                 System.out.println("diff name");
