@@ -105,8 +105,6 @@ public class APIClient {
                         break;
 
                     case SYNC:
-                        NebulaPlugin.getPlugin().getLogger().log(Level.INFO, "Sync...");
-                        //NebulaPlugin.plugin.serverAPI.getServers();
                         ServerAPI.putServer(value.getEntry());
                         NebulaPlugin.getPlugin().getServerSignManager().updateSigns();
                         break;
