@@ -27,6 +27,10 @@ public class ServerSignManager {
         this.plugin = plugin;
         File signFile = new File(plugin.getDataFolder(), "signs.json");
 
+        if (!plugin.getDataFolder().exists()) {
+            plugin.getDataFolder().mkdir();
+        }
+
         if (signFile.isFile()) {
             try {
                 signManager.load(signFile);
