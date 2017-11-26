@@ -3,6 +3,7 @@ package net.synchthia.nebula.bungee;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.synchthia.nebula.bungee.event.PingListener;
 import net.synchthia.nebula.bungee.server.ServerAPI;
 
 import java.util.concurrent.TimeUnit;
@@ -33,6 +34,7 @@ public class NebulaPlugin extends Plugin {
             registerAPI();
             registerStream();
 
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener());
             getLogger().log(Level.INFO, "Enabled Nebula");
         } catch (Exception e) {
             getLogger().log(Level.SEVERE, "An internal exception occurred at Enabling", e);
