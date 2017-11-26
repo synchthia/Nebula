@@ -14,8 +14,12 @@ build:
   # Run Maven
   - mvn clean package
   
-deploy:
+deploy-mcserver:
   stage: deploy
   script:
   - "curl -X POST -H \"PRIVATE-TOKEN: ${STARTAIL_AGENT_KEY}\" 'https://gitlab.com/api/v4/projects/startail%2Fmcserver/pipeline?ref=master'"
+
+deploy-mcproxy:
+  stage: deploy
+  script:
   - "curl -X POST -H \"PRIVATE-TOKEN: ${STARTAIL_AGENT_KEY}\" 'https://gitlab.com/api/v4/projects/startail%2Fmcproxy/pipeline?ref=master'"
