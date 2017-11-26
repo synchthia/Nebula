@@ -66,7 +66,7 @@ public class NebulaPlugin extends Plugin {
     }
 
     public void registerStream() {
-        apiClient.entryStream(ProxyServer.getInstance().getName());
+        apiClient.entryStream();
     }
 
     @Override

@@ -13,6 +13,7 @@ import net.synchthia.api.nebula.NebulaGrpc;
 import net.synchthia.api.nebula.NebulaProtos;
 
 import java.io.IOException;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -23,6 +24,7 @@ import static net.synchthia.api.nebula.NebulaProtos.*;
  * @author Laica-Lunasys
  */
 public class APIClient {
+    private static final String apiID = "bungee-" + UUID.randomUUID().toString();
     private final ManagedChannel channel;
     private final NebulaGrpc.NebulaStub stub;
     private final NebulaGrpc.NebulaBlockingStub blockingStub;
@@ -34,7 +36,7 @@ public class APIClient {
     }
 
     public void shutdown() throws InterruptedException {
-        quitStream(ProxyServer.getInstance().getName());
+        quitStream();
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
 
@@ -84,10 +86,10 @@ public class APIClient {
         });
     }
 
-    public void entryStream(@NonNull String name) {
+    public void entryStream() {
         StreamRequest request = StreamRequest.newBuilder()
                 .setType(StreamType.CONNECT)
-                .setName(name)
+                .setName(apiID)
                 .build();
 
         stub.entryStream(request, new StreamObserver<EntryStreamResponse>() {
@@ -123,9 +125,9 @@ public class APIClient {
         });
     }
 
-    public void quitStream(@NonNull String name) {
+    public void quitStream() {
         QuitEntryStreamRequest request = QuitEntryStreamRequest.newBuilder()
-                .setName(name)
+                .setName(apiID)
                 .build();
 
         blockingStub.quitEntryStream(request);
