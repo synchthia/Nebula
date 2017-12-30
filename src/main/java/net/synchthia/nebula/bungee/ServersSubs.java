@@ -9,7 +9,7 @@ import java.util.logging.Level;
 /**
  * @author Laica-Lunasys
  */
-public class ServersSyncSubs extends JedisPubSub {
+public class ServersSubs extends JedisPubSub {
     private static final NebulaPlugin plugin = NebulaPlugin.getPlugin();
 
     @Override

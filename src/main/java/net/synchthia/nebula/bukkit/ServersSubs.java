@@ -16,6 +16,7 @@ public class ServersSubs extends JedisPubSub {
     @Override
     public void onPMessage(String pattern, String channel, String message) {
         NebulaProtos.ServerEntryStream serverStream = APIClient.entryStreamFromJson(message);
+        assert serverStream != null;
         switch (serverStream.getType()) {
             case SYNC:
                 System.out.println(">>> " + serverStream);

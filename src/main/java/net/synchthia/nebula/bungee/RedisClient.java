@@ -5,7 +5,6 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.scheduler.ScheduledTask;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import java.util.logging.Level;
 
@@ -43,7 +42,7 @@ public class RedisClient {
                     jedis.connect();
 
                     // Subscribe
-                    jedis.psubscribe(new ServersSyncSubs(), "nebula.servers.global");
+                    jedis.psubscribe(new ServersSubs(), "nebula.servers.global");
                     } catch (Exception ex) {
                     if (wantClose) {
                         plugin.getLogger().log(Level.INFO, "Disconnecting from Redis...");
