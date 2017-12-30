@@ -3,19 +3,15 @@ package net.synchthia.nebula.bukkit.server;
 import net.synchthia.api.nebula.NebulaProtos;
 import net.synchthia.nebula.bukkit.NebulaPlugin;
 
-import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.logging.Level;
 
 /**
  * @author Laica-Lunasys
  */
 public class ServerAPI {
-    private final NebulaPlugin plugin;
-
     private static Map<String, NebulaProtos.ServerEntry> servers = new HashMap<>();
+    private final NebulaPlugin plugin;
 
     public ServerAPI(NebulaPlugin plugin) {
         this.plugin = plugin;

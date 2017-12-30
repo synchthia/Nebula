@@ -5,7 +5,9 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.synchthia.nebula.bungee.event.PingListener;
 import net.synchthia.nebula.bungee.server.ServerAPI;
+import net.synchthia.nebula.client.APIClient;
 
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
@@ -16,11 +18,12 @@ public class NebulaPlugin extends Plugin {
     @Getter
     public static NebulaPlugin plugin;
 
+    private static RedisClient redisClient;
+
     @Getter
     public APIClient apiClient;
     @Getter
     public ServerAPI serverAPI;
-    private String apiServerAddress;
 
     @Override
     public void onEnable() {
@@ -30,9 +33,11 @@ public class NebulaPlugin extends Plugin {
             // Clear All Servers
             ProxyServer.getInstance().getServers().clear();
 
+            // Register Redis
+            registerRedis();
+
             // Register API
             registerAPI();
-            registerStream();
 
             ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener());
             getLogger().log(Level.INFO, "Enabled Nebula");
@@ -42,37 +47,50 @@ public class NebulaPlugin extends Plugin {
         }
     }
 
-    private void registerAPI() {
-        String addressEnv = System.getenv("NEBULA_API_ADDRESS");
-        if (addressEnv == null) {
-            apiServerAddress = "localhost:17200";
-        } else {
-            apiServerAddress = addressEnv;
+    public void registerRedis() {
+        String hostname = "localhost";
+        Integer port = 6379;
+
+        String redisAddress = System.getenv("NEBULA_REDIS_ADDRESS");
+        if (redisAddress != null) {
+            if (redisAddress.contains(":")) {
+                String[] splited = redisAddress.split(":");
+                hostname = splited[0];
+                port = Integer.valueOf(splited[1]);
+            }
         }
-        getLogger().log(Level.INFO, "API Address: " + apiServerAddress);
+
+        getLogger().log(Level.INFO, "Redis Address: " + hostname + ":" + port);
+        redisClient = new RedisClient("bungee-" + UUID.randomUUID().toString(), hostname, port);
+
+    }
+
+    private void registerAPI() {
+        String apiAddress = System.getenv("NEBULA_API_ADDRESS");
+        if (apiAddress == null) {
+            apiAddress = "localhost:17200";
+        }
+        getLogger().log(Level.INFO, "API Address: " + apiAddress);
 
         // New API Client
-        apiClient = new APIClient(apiServerAddress);
+        apiClient = new APIClient(apiAddress);
 
         // Activate API
         serverAPI = new ServerAPI(this);
 
         // Get Servers
         try {
-            serverAPI.getServers().get(5, TimeUnit.SECONDS);
+            serverAPI.getServersFromAPI().get(5, TimeUnit.SECONDS);
         } catch (Exception ex) {
-            getLogger().log(Level.WARNING, "Failed getServers", ex);
+            getLogger().log(Level.WARNING, "Failed getServersFromAPI", ex);
         }
-    }
-
-    public void registerStream() {
-        apiClient.entryStream();
     }
 
     @Override
     public void onDisable() {
         try {
             apiClient.shutdown();
+            redisClient.disconnect();
         } catch (InterruptedException ex) {
             getLogger().log(Level.SEVERE, "Failed Shutdown Nebula-API", ex);
         }

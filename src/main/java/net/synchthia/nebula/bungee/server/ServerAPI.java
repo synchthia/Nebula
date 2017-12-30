@@ -1,5 +1,7 @@
 package net.synchthia.nebula.bungee.server;
 
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.util.JsonFormat;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.synchthia.api.nebula.NebulaProtos;
@@ -49,7 +51,7 @@ public class ServerAPI {
     }
 
     // older
-    public CompletableFuture<NebulaProtos.GetServerEntryResponse> getServers() {
+    public CompletableFuture<NebulaProtos.GetServerEntryResponse> getServersFromAPI() {
         return plugin.apiClient.getServerEntry().whenComplete((servers, throwable) -> {
             if (throwable != null) {
                 plugin.getLogger().log(Level.WARNING, "Failed GetServers: Exception threw", throwable);

@@ -14,1172 +14,49 @@ public final class NebulaProtos {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  /**
-   * Protobuf enum {@code nebulapb.StreamType}
-   */
-  public enum StreamType
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>QUIT = 0;</code>
-     */
-    QUIT(0),
-    /**
-     * <code>CONNECT = 1;</code>
-     */
-    CONNECT(1),
-    /**
-     * <code>RESTORED = 2;</code>
-     */
-    RESTORED(2),
-    /**
-     * <code>DISPATCH = 3;</code>
-     */
-    DISPATCH(3),
-    /**
-     * <code>SYNC = 4;</code>
-     */
-    SYNC(4),
-    /**
-     * <code>REMOVE = 5;</code>
-     */
-    REMOVE(5),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <code>QUIT = 0;</code>
-     */
-    public static final int QUIT_VALUE = 0;
-    /**
-     * <code>CONNECT = 1;</code>
-     */
-    public static final int CONNECT_VALUE = 1;
-    /**
-     * <code>RESTORED = 2;</code>
-     */
-    public static final int RESTORED_VALUE = 2;
-    /**
-     * <code>DISPATCH = 3;</code>
-     */
-    public static final int DISPATCH_VALUE = 3;
-    /**
-     * <code>SYNC = 4;</code>
-     */
-    public static final int SYNC_VALUE = 4;
-    /**
-     * <code>REMOVE = 5;</code>
-     */
-    public static final int REMOVE_VALUE = 5;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
-
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static StreamType valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static StreamType forNumber(int value) {
-      switch (value) {
-        case 0: return QUIT;
-        case 1: return CONNECT;
-        case 2: return RESTORED;
-        case 3: return DISPATCH;
-        case 4: return SYNC;
-        case 5: return REMOVE;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<StreamType>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        StreamType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<StreamType>() {
-            public StreamType findValueByNumber(int number) {
-              return StreamType.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return net.synchthia.api.nebula.NebulaProtos.getDescriptor().getEnumTypes().get(0);
-    }
-
-    private static final StreamType[] VALUES = values();
-
-    public static StreamType valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    StreamType(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:nebulapb.StreamType)
-  }
-
-  public interface EmptyOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:nebulapb.Empty)
-      com.google.protobuf.MessageOrBuilder {
-  }
-  /**
-   * Protobuf type {@code nebulapb.Empty}
-   */
-  public  static final class Empty extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:nebulapb.Empty)
-      EmptyOrBuilder {
-    // Use Empty.newBuilder() to construct.
-    private Empty(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Empty() {
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private Empty(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_Empty_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_Empty_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              net.synchthia.api.nebula.NebulaProtos.Empty.class, net.synchthia.api.nebula.NebulaProtos.Empty.Builder.class);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof net.synchthia.api.nebula.NebulaProtos.Empty)) {
-        return super.equals(obj);
-      }
-      net.synchthia.api.nebula.NebulaProtos.Empty other = (net.synchthia.api.nebula.NebulaProtos.Empty) obj;
-
-      boolean result = true;
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.Empty parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(net.synchthia.api.nebula.NebulaProtos.Empty prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code nebulapb.Empty}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:nebulapb.Empty)
-        net.synchthia.api.nebula.NebulaProtos.EmptyOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_Empty_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_Empty_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                net.synchthia.api.nebula.NebulaProtos.Empty.class, net.synchthia.api.nebula.NebulaProtos.Empty.Builder.class);
-      }
-
-      // Construct using net.synchthia.api.nebula.NebulaProtos.Empty.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_Empty_descriptor;
-      }
-
-      public net.synchthia.api.nebula.NebulaProtos.Empty getDefaultInstanceForType() {
-        return net.synchthia.api.nebula.NebulaProtos.Empty.getDefaultInstance();
-      }
-
-      public net.synchthia.api.nebula.NebulaProtos.Empty build() {
-        net.synchthia.api.nebula.NebulaProtos.Empty result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public net.synchthia.api.nebula.NebulaProtos.Empty buildPartial() {
-        net.synchthia.api.nebula.NebulaProtos.Empty result = new net.synchthia.api.nebula.NebulaProtos.Empty(this);
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof net.synchthia.api.nebula.NebulaProtos.Empty) {
-          return mergeFrom((net.synchthia.api.nebula.NebulaProtos.Empty)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(net.synchthia.api.nebula.NebulaProtos.Empty other) {
-        if (other == net.synchthia.api.nebula.NebulaProtos.Empty.getDefaultInstance()) return this;
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        net.synchthia.api.nebula.NebulaProtos.Empty parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (net.synchthia.api.nebula.NebulaProtos.Empty) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:nebulapb.Empty)
-    }
-
-    // @@protoc_insertion_point(class_scope:nebulapb.Empty)
-    private static final net.synchthia.api.nebula.NebulaProtos.Empty DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new net.synchthia.api.nebula.NebulaProtos.Empty();
-    }
-
-    public static net.synchthia.api.nebula.NebulaProtos.Empty getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Empty>
-        PARSER = new com.google.protobuf.AbstractParser<Empty>() {
-      public Empty parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Empty(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Empty> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Empty> getParserForType() {
-      return PARSER;
-    }
-
-    public net.synchthia.api.nebula.NebulaProtos.Empty getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface StreamRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:nebulapb.StreamRequest)
+  public interface ServerEntryStreamOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:nebulapb.ServerEntryStream)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string name = 1;</code>
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>.nebulapb.StreamType type = 2;</code>
+     * <code>.nebulapb.ServerEntryStream.Type type = 1;</code>
      */
     int getTypeValue();
     /**
-     * <code>.nebulapb.StreamType type = 2;</code>
+     * <code>.nebulapb.ServerEntryStream.Type type = 1;</code>
      */
-    net.synchthia.api.nebula.NebulaProtos.StreamType getType();
-  }
-  /**
-   * Protobuf type {@code nebulapb.StreamRequest}
-   */
-  public  static final class StreamRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:nebulapb.StreamRequest)
-      StreamRequestOrBuilder {
-    // Use StreamRequest.newBuilder() to construct.
-    private StreamRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private StreamRequest() {
-      name_ = "";
-      type_ = 0;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private StreamRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 16: {
-              int rawValue = input.readEnum();
-
-              type_ = rawValue;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_StreamRequest_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_StreamRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              net.synchthia.api.nebula.NebulaProtos.StreamRequest.class, net.synchthia.api.nebula.NebulaProtos.StreamRequest.Builder.class);
-    }
-
-    public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 1;</code>
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int TYPE_FIELD_NUMBER = 2;
-    private int type_;
-    /**
-     * <code>.nebulapb.StreamType type = 2;</code>
-     */
-    public int getTypeValue() {
-      return type_;
-    }
-    /**
-     * <code>.nebulapb.StreamType type = 2;</code>
-     */
-    public net.synchthia.api.nebula.NebulaProtos.StreamType getType() {
-      net.synchthia.api.nebula.NebulaProtos.StreamType result = net.synchthia.api.nebula.NebulaProtos.StreamType.valueOf(type_);
-      return result == null ? net.synchthia.api.nebula.NebulaProtos.StreamType.UNRECOGNIZED : result;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-      }
-      if (type_ != net.synchthia.api.nebula.NebulaProtos.StreamType.QUIT.getNumber()) {
-        output.writeEnum(2, type_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-      }
-      if (type_ != net.synchthia.api.nebula.NebulaProtos.StreamType.QUIT.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, type_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof net.synchthia.api.nebula.NebulaProtos.StreamRequest)) {
-        return super.equals(obj);
-      }
-      net.synchthia.api.nebula.NebulaProtos.StreamRequest other = (net.synchthia.api.nebula.NebulaProtos.StreamRequest) obj;
-
-      boolean result = true;
-      result = result && getName()
-          .equals(other.getName());
-      result = result && type_ == other.type_;
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-      hash = (37 * hash) + TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + type_;
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(net.synchthia.api.nebula.NebulaProtos.StreamRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code nebulapb.StreamRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:nebulapb.StreamRequest)
-        net.synchthia.api.nebula.NebulaProtos.StreamRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_StreamRequest_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_StreamRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                net.synchthia.api.nebula.NebulaProtos.StreamRequest.class, net.synchthia.api.nebula.NebulaProtos.StreamRequest.Builder.class);
-      }
-
-      // Construct using net.synchthia.api.nebula.NebulaProtos.StreamRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        name_ = "";
-
-        type_ = 0;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_StreamRequest_descriptor;
-      }
-
-      public net.synchthia.api.nebula.NebulaProtos.StreamRequest getDefaultInstanceForType() {
-        return net.synchthia.api.nebula.NebulaProtos.StreamRequest.getDefaultInstance();
-      }
-
-      public net.synchthia.api.nebula.NebulaProtos.StreamRequest build() {
-        net.synchthia.api.nebula.NebulaProtos.StreamRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public net.synchthia.api.nebula.NebulaProtos.StreamRequest buildPartial() {
-        net.synchthia.api.nebula.NebulaProtos.StreamRequest result = new net.synchthia.api.nebula.NebulaProtos.StreamRequest(this);
-        result.name_ = name_;
-        result.type_ = type_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof net.synchthia.api.nebula.NebulaProtos.StreamRequest) {
-          return mergeFrom((net.synchthia.api.nebula.NebulaProtos.StreamRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(net.synchthia.api.nebula.NebulaProtos.StreamRequest other) {
-        if (other == net.synchthia.api.nebula.NebulaProtos.StreamRequest.getDefaultInstance()) return this;
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
-        if (other.type_ != 0) {
-          setTypeValue(other.getTypeValue());
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        net.synchthia.api.nebula.NebulaProtos.StreamRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (net.synchthia.api.nebula.NebulaProtos.StreamRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 1;</code>
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int type_ = 0;
-      /**
-       * <code>.nebulapb.StreamType type = 2;</code>
-       */
-      public int getTypeValue() {
-        return type_;
-      }
-      /**
-       * <code>.nebulapb.StreamType type = 2;</code>
-       */
-      public Builder setTypeValue(int value) {
-        type_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.nebulapb.StreamType type = 2;</code>
-       */
-      public net.synchthia.api.nebula.NebulaProtos.StreamType getType() {
-        net.synchthia.api.nebula.NebulaProtos.StreamType result = net.synchthia.api.nebula.NebulaProtos.StreamType.valueOf(type_);
-        return result == null ? net.synchthia.api.nebula.NebulaProtos.StreamType.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>.nebulapb.StreamType type = 2;</code>
-       */
-      public Builder setType(net.synchthia.api.nebula.NebulaProtos.StreamType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        type_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.nebulapb.StreamType type = 2;</code>
-       */
-      public Builder clearType() {
-        
-        type_ = 0;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:nebulapb.StreamRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:nebulapb.StreamRequest)
-    private static final net.synchthia.api.nebula.NebulaProtos.StreamRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new net.synchthia.api.nebula.NebulaProtos.StreamRequest();
-    }
-
-    public static net.synchthia.api.nebula.NebulaProtos.StreamRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<StreamRequest>
-        PARSER = new com.google.protobuf.AbstractParser<StreamRequest>() {
-      public StreamRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new StreamRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<StreamRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<StreamRequest> getParserForType() {
-      return PARSER;
-    }
-
-    public net.synchthia.api.nebula.NebulaProtos.StreamRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface EntryStreamResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:nebulapb.EntryStreamResponse)
-      com.google.protobuf.MessageOrBuilder {
+    net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type getType();
 
     /**
-     * <code>.nebulapb.StreamType type = 1;</code>
-     */
-    int getTypeValue();
-    /**
-     * <code>.nebulapb.StreamType type = 1;</code>
-     */
-    net.synchthia.api.nebula.NebulaProtos.StreamType getType();
-
-    /**
-     * <code>string target = 2;</code>
-     */
-    java.lang.String getTarget();
-    /**
-     * <code>string target = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getTargetBytes();
-
-    /**
-     * <code>.nebulapb.ServerEntry entry = 3;</code>
+     * <code>.nebulapb.ServerEntry entry = 2;</code>
      */
     boolean hasEntry();
     /**
-     * <code>.nebulapb.ServerEntry entry = 3;</code>
+     * <code>.nebulapb.ServerEntry entry = 2;</code>
      */
     net.synchthia.api.nebula.NebulaProtos.ServerEntry getEntry();
     /**
-     * <code>.nebulapb.ServerEntry entry = 3;</code>
+     * <code>.nebulapb.ServerEntry entry = 2;</code>
      */
     net.synchthia.api.nebula.NebulaProtos.ServerEntryOrBuilder getEntryOrBuilder();
   }
   /**
-   * Protobuf type {@code nebulapb.EntryStreamResponse}
+   * <pre>
+   * ServerEntryStream (type: sync, remove)
+   * </pre>
+   *
+   * Protobuf type {@code nebulapb.ServerEntryStream}
    */
-  public  static final class EntryStreamResponse extends
+  public  static final class ServerEntryStream extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:nebulapb.EntryStreamResponse)
-      EntryStreamResponseOrBuilder {
-    // Use EntryStreamResponse.newBuilder() to construct.
-    private EntryStreamResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:nebulapb.ServerEntryStream)
+      ServerEntryStreamOrBuilder {
+    // Use ServerEntryStream.newBuilder() to construct.
+    private ServerEntryStream(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private EntryStreamResponse() {
+    private ServerEntryStream() {
       type_ = 0;
-      target_ = "";
     }
 
     @java.lang.Override
@@ -1187,7 +64,7 @@ public final class NebulaProtos {
     getUnknownFields() {
       return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
-    private EntryStreamResponse(
+    private ServerEntryStream(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1214,12 +91,6 @@ public final class NebulaProtos {
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              target_ = s;
-              break;
-            }
-            case 26: {
               net.synchthia.api.nebula.NebulaProtos.ServerEntry.Builder subBuilder = null;
               if (entry_ != null) {
                 subBuilder = entry_.toBuilder();
@@ -1245,82 +116,146 @@ public final class NebulaProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_EntryStreamResponse_descriptor;
+      return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_ServerEntryStream_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_EntryStreamResponse_fieldAccessorTable
+      return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_ServerEntryStream_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse.class, net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse.Builder.class);
+              net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.class, net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code nebulapb.ServerEntryStream.Type}
+     */
+    public enum Type
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>SYNC = 0;</code>
+       */
+      SYNC(0),
+      /**
+       * <code>REMOVE = 1;</code>
+       */
+      REMOVE(1),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>SYNC = 0;</code>
+       */
+      public static final int SYNC_VALUE = 0;
+      /**
+       * <code>REMOVE = 1;</code>
+       */
+      public static final int REMOVE_VALUE = 1;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Type valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static Type forNumber(int value) {
+        switch (value) {
+          case 0: return SYNC;
+          case 1: return REMOVE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Type>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Type> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+              public Type findValueByNumber(int number) {
+                return Type.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Type[] VALUES = values();
+
+      public static Type valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Type(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:nebulapb.ServerEntryStream.Type)
     }
 
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
-     * <code>.nebulapb.StreamType type = 1;</code>
+     * <code>.nebulapb.ServerEntryStream.Type type = 1;</code>
      */
     public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>.nebulapb.StreamType type = 1;</code>
+     * <code>.nebulapb.ServerEntryStream.Type type = 1;</code>
      */
-    public net.synchthia.api.nebula.NebulaProtos.StreamType getType() {
-      net.synchthia.api.nebula.NebulaProtos.StreamType result = net.synchthia.api.nebula.NebulaProtos.StreamType.valueOf(type_);
-      return result == null ? net.synchthia.api.nebula.NebulaProtos.StreamType.UNRECOGNIZED : result;
+    public net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type getType() {
+      net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type result = net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type.valueOf(type_);
+      return result == null ? net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type.UNRECOGNIZED : result;
     }
 
-    public static final int TARGET_FIELD_NUMBER = 2;
-    private volatile java.lang.Object target_;
-    /**
-     * <code>string target = 2;</code>
-     */
-    public java.lang.String getTarget() {
-      java.lang.Object ref = target_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        target_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string target = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getTargetBytes() {
-      java.lang.Object ref = target_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        target_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int ENTRY_FIELD_NUMBER = 3;
+    public static final int ENTRY_FIELD_NUMBER = 2;
     private net.synchthia.api.nebula.NebulaProtos.ServerEntry entry_;
     /**
-     * <code>.nebulapb.ServerEntry entry = 3;</code>
+     * <code>.nebulapb.ServerEntry entry = 2;</code>
      */
     public boolean hasEntry() {
       return entry_ != null;
     }
     /**
-     * <code>.nebulapb.ServerEntry entry = 3;</code>
+     * <code>.nebulapb.ServerEntry entry = 2;</code>
      */
     public net.synchthia.api.nebula.NebulaProtos.ServerEntry getEntry() {
       return entry_ == null ? net.synchthia.api.nebula.NebulaProtos.ServerEntry.getDefaultInstance() : entry_;
     }
     /**
-     * <code>.nebulapb.ServerEntry entry = 3;</code>
+     * <code>.nebulapb.ServerEntry entry = 2;</code>
      */
     public net.synchthia.api.nebula.NebulaProtos.ServerEntryOrBuilder getEntryOrBuilder() {
       return getEntry();
@@ -1338,14 +273,11 @@ public final class NebulaProtos {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (type_ != net.synchthia.api.nebula.NebulaProtos.StreamType.QUIT.getNumber()) {
+      if (type_ != net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type.SYNC.getNumber()) {
         output.writeEnum(1, type_);
       }
-      if (!getTargetBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, target_);
-      }
       if (entry_ != null) {
-        output.writeMessage(3, getEntry());
+        output.writeMessage(2, getEntry());
       }
     }
 
@@ -1354,16 +286,13 @@ public final class NebulaProtos {
       if (size != -1) return size;
 
       size = 0;
-      if (type_ != net.synchthia.api.nebula.NebulaProtos.StreamType.QUIT.getNumber()) {
+      if (type_ != net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type.SYNC.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, type_);
       }
-      if (!getTargetBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, target_);
-      }
       if (entry_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getEntry());
+          .computeMessageSize(2, getEntry());
       }
       memoizedSize = size;
       return size;
@@ -1375,15 +304,13 @@ public final class NebulaProtos {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse)) {
+      if (!(obj instanceof net.synchthia.api.nebula.NebulaProtos.ServerEntryStream)) {
         return super.equals(obj);
       }
-      net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse other = (net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse) obj;
+      net.synchthia.api.nebula.NebulaProtos.ServerEntryStream other = (net.synchthia.api.nebula.NebulaProtos.ServerEntryStream) obj;
 
       boolean result = true;
       result = result && type_ == other.type_;
-      result = result && getTarget()
-          .equals(other.getTarget());
       result = result && (hasEntry() == other.hasEntry());
       if (hasEntry()) {
         result = result && getEntry()
@@ -1401,8 +328,6 @@ public final class NebulaProtos {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + type_;
-      hash = (37 * hash) + TARGET_FIELD_NUMBER;
-      hash = (53 * hash) + getTarget().hashCode();
       if (hasEntry()) {
         hash = (37 * hash) + ENTRY_FIELD_NUMBER;
         hash = (53 * hash) + getEntry().hashCode();
@@ -1412,69 +337,69 @@ public final class NebulaProtos {
       return hash;
     }
 
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseFrom(
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseFrom(
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseFrom(
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseFrom(
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseFrom(byte[] data)
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseFrom(
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseFrom(java.io.InputStream input)
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseFrom(
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseDelimitedFrom(java.io.InputStream input)
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseDelimitedFrom(
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseFrom(
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parseFrom(
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1486,7 +411,7 @@ public final class NebulaProtos {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse prototype) {
+    public static Builder newBuilder(net.synchthia.api.nebula.NebulaProtos.ServerEntryStream prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -1501,25 +426,29 @@ public final class NebulaProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code nebulapb.EntryStreamResponse}
+     * <pre>
+     * ServerEntryStream (type: sync, remove)
+     * </pre>
+     *
+     * Protobuf type {@code nebulapb.ServerEntryStream}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:nebulapb.EntryStreamResponse)
-        net.synchthia.api.nebula.NebulaProtos.EntryStreamResponseOrBuilder {
+        // @@protoc_insertion_point(builder_implements:nebulapb.ServerEntryStream)
+        net.synchthia.api.nebula.NebulaProtos.ServerEntryStreamOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_EntryStreamResponse_descriptor;
+        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_ServerEntryStream_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_EntryStreamResponse_fieldAccessorTable
+        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_ServerEntryStream_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse.class, net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse.Builder.class);
+                net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.class, net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Builder.class);
       }
 
-      // Construct using net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse.newBuilder()
+      // Construct using net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1538,8 +467,6 @@ public final class NebulaProtos {
         super.clear();
         type_ = 0;
 
-        target_ = "";
-
         if (entryBuilder_ == null) {
           entry_ = null;
         } else {
@@ -1551,25 +478,24 @@ public final class NebulaProtos {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_EntryStreamResponse_descriptor;
+        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_ServerEntryStream_descriptor;
       }
 
-      public net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse getDefaultInstanceForType() {
-        return net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse.getDefaultInstance();
+      public net.synchthia.api.nebula.NebulaProtos.ServerEntryStream getDefaultInstanceForType() {
+        return net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.getDefaultInstance();
       }
 
-      public net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse build() {
-        net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse result = buildPartial();
+      public net.synchthia.api.nebula.NebulaProtos.ServerEntryStream build() {
+        net.synchthia.api.nebula.NebulaProtos.ServerEntryStream result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse buildPartial() {
-        net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse result = new net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse(this);
+      public net.synchthia.api.nebula.NebulaProtos.ServerEntryStream buildPartial() {
+        net.synchthia.api.nebula.NebulaProtos.ServerEntryStream result = new net.synchthia.api.nebula.NebulaProtos.ServerEntryStream(this);
         result.type_ = type_;
-        result.target_ = target_;
         if (entryBuilder_ == null) {
           result.entry_ = entry_;
         } else {
@@ -1580,48 +506,44 @@ public final class NebulaProtos {
       }
 
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse) {
-          return mergeFrom((net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse)other);
+        if (other instanceof net.synchthia.api.nebula.NebulaProtos.ServerEntryStream) {
+          return mergeFrom((net.synchthia.api.nebula.NebulaProtos.ServerEntryStream)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse other) {
-        if (other == net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse.getDefaultInstance()) return this;
+      public Builder mergeFrom(net.synchthia.api.nebula.NebulaProtos.ServerEntryStream other) {
+        if (other == net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.getDefaultInstance()) return this;
         if (other.type_ != 0) {
           setTypeValue(other.getTypeValue());
-        }
-        if (!other.getTarget().isEmpty()) {
-          target_ = other.target_;
-          onChanged();
         }
         if (other.hasEntry()) {
           mergeEntry(other.getEntry());
@@ -1638,11 +560,11 @@ public final class NebulaProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse parsedMessage = null;
+        net.synchthia.api.nebula.NebulaProtos.ServerEntryStream parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse) e.getUnfinishedMessage();
+          parsedMessage = (net.synchthia.api.nebula.NebulaProtos.ServerEntryStream) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1654,13 +576,13 @@ public final class NebulaProtos {
 
       private int type_ = 0;
       /**
-       * <code>.nebulapb.StreamType type = 1;</code>
+       * <code>.nebulapb.ServerEntryStream.Type type = 1;</code>
        */
       public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>.nebulapb.StreamType type = 1;</code>
+       * <code>.nebulapb.ServerEntryStream.Type type = 1;</code>
        */
       public Builder setTypeValue(int value) {
         type_ = value;
@@ -1668,16 +590,16 @@ public final class NebulaProtos {
         return this;
       }
       /**
-       * <code>.nebulapb.StreamType type = 1;</code>
+       * <code>.nebulapb.ServerEntryStream.Type type = 1;</code>
        */
-      public net.synchthia.api.nebula.NebulaProtos.StreamType getType() {
-        net.synchthia.api.nebula.NebulaProtos.StreamType result = net.synchthia.api.nebula.NebulaProtos.StreamType.valueOf(type_);
-        return result == null ? net.synchthia.api.nebula.NebulaProtos.StreamType.UNRECOGNIZED : result;
+      public net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type getType() {
+        net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type result = net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type.valueOf(type_);
+        return result == null ? net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type.UNRECOGNIZED : result;
       }
       /**
-       * <code>.nebulapb.StreamType type = 1;</code>
+       * <code>.nebulapb.ServerEntryStream.Type type = 1;</code>
        */
-      public Builder setType(net.synchthia.api.nebula.NebulaProtos.StreamType value) {
+      public Builder setType(net.synchthia.api.nebula.NebulaProtos.ServerEntryStream.Type value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1687,7 +609,7 @@ public final class NebulaProtos {
         return this;
       }
       /**
-       * <code>.nebulapb.StreamType type = 1;</code>
+       * <code>.nebulapb.ServerEntryStream.Type type = 1;</code>
        */
       public Builder clearType() {
         
@@ -1696,86 +618,17 @@ public final class NebulaProtos {
         return this;
       }
 
-      private java.lang.Object target_ = "";
-      /**
-       * <code>string target = 2;</code>
-       */
-      public java.lang.String getTarget() {
-        java.lang.Object ref = target_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          target_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string target = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTargetBytes() {
-        java.lang.Object ref = target_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          target_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string target = 2;</code>
-       */
-      public Builder setTarget(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        target_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string target = 2;</code>
-       */
-      public Builder clearTarget() {
-        
-        target_ = getDefaultInstance().getTarget();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string target = 2;</code>
-       */
-      public Builder setTargetBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        target_ = value;
-        onChanged();
-        return this;
-      }
-
       private net.synchthia.api.nebula.NebulaProtos.ServerEntry entry_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           net.synchthia.api.nebula.NebulaProtos.ServerEntry, net.synchthia.api.nebula.NebulaProtos.ServerEntry.Builder, net.synchthia.api.nebula.NebulaProtos.ServerEntryOrBuilder> entryBuilder_;
       /**
-       * <code>.nebulapb.ServerEntry entry = 3;</code>
+       * <code>.nebulapb.ServerEntry entry = 2;</code>
        */
       public boolean hasEntry() {
         return entryBuilder_ != null || entry_ != null;
       }
       /**
-       * <code>.nebulapb.ServerEntry entry = 3;</code>
+       * <code>.nebulapb.ServerEntry entry = 2;</code>
        */
       public net.synchthia.api.nebula.NebulaProtos.ServerEntry getEntry() {
         if (entryBuilder_ == null) {
@@ -1785,7 +638,7 @@ public final class NebulaProtos {
         }
       }
       /**
-       * <code>.nebulapb.ServerEntry entry = 3;</code>
+       * <code>.nebulapb.ServerEntry entry = 2;</code>
        */
       public Builder setEntry(net.synchthia.api.nebula.NebulaProtos.ServerEntry value) {
         if (entryBuilder_ == null) {
@@ -1801,7 +654,7 @@ public final class NebulaProtos {
         return this;
       }
       /**
-       * <code>.nebulapb.ServerEntry entry = 3;</code>
+       * <code>.nebulapb.ServerEntry entry = 2;</code>
        */
       public Builder setEntry(
           net.synchthia.api.nebula.NebulaProtos.ServerEntry.Builder builderForValue) {
@@ -1815,7 +668,7 @@ public final class NebulaProtos {
         return this;
       }
       /**
-       * <code>.nebulapb.ServerEntry entry = 3;</code>
+       * <code>.nebulapb.ServerEntry entry = 2;</code>
        */
       public Builder mergeEntry(net.synchthia.api.nebula.NebulaProtos.ServerEntry value) {
         if (entryBuilder_ == null) {
@@ -1833,7 +686,7 @@ public final class NebulaProtos {
         return this;
       }
       /**
-       * <code>.nebulapb.ServerEntry entry = 3;</code>
+       * <code>.nebulapb.ServerEntry entry = 2;</code>
        */
       public Builder clearEntry() {
         if (entryBuilder_ == null) {
@@ -1847,7 +700,7 @@ public final class NebulaProtos {
         return this;
       }
       /**
-       * <code>.nebulapb.ServerEntry entry = 3;</code>
+       * <code>.nebulapb.ServerEntry entry = 2;</code>
        */
       public net.synchthia.api.nebula.NebulaProtos.ServerEntry.Builder getEntryBuilder() {
         
@@ -1855,7 +708,7 @@ public final class NebulaProtos {
         return getEntryFieldBuilder().getBuilder();
       }
       /**
-       * <code>.nebulapb.ServerEntry entry = 3;</code>
+       * <code>.nebulapb.ServerEntry entry = 2;</code>
        */
       public net.synchthia.api.nebula.NebulaProtos.ServerEntryOrBuilder getEntryOrBuilder() {
         if (entryBuilder_ != null) {
@@ -1866,7 +719,7 @@ public final class NebulaProtos {
         }
       }
       /**
-       * <code>.nebulapb.ServerEntry entry = 3;</code>
+       * <code>.nebulapb.ServerEntry entry = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           net.synchthia.api.nebula.NebulaProtos.ServerEntry, net.synchthia.api.nebula.NebulaProtos.ServerEntry.Builder, net.synchthia.api.nebula.NebulaProtos.ServerEntryOrBuilder> 
@@ -1892,553 +745,39 @@ public final class NebulaProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:nebulapb.EntryStreamResponse)
+      // @@protoc_insertion_point(builder_scope:nebulapb.ServerEntryStream)
     }
 
-    // @@protoc_insertion_point(class_scope:nebulapb.EntryStreamResponse)
-    private static final net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:nebulapb.ServerEntryStream)
+    private static final net.synchthia.api.nebula.NebulaProtos.ServerEntryStream DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse();
+      DEFAULT_INSTANCE = new net.synchthia.api.nebula.NebulaProtos.ServerEntryStream();
     }
 
-    public static net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse getDefaultInstance() {
+    public static net.synchthia.api.nebula.NebulaProtos.ServerEntryStream getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<EntryStreamResponse>
-        PARSER = new com.google.protobuf.AbstractParser<EntryStreamResponse>() {
-      public EntryStreamResponse parsePartialFrom(
+    private static final com.google.protobuf.Parser<ServerEntryStream>
+        PARSER = new com.google.protobuf.AbstractParser<ServerEntryStream>() {
+      public ServerEntryStream parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new EntryStreamResponse(input, extensionRegistry);
+          return new ServerEntryStream(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<EntryStreamResponse> parser() {
+    public static com.google.protobuf.Parser<ServerEntryStream> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<EntryStreamResponse> getParserForType() {
+    public com.google.protobuf.Parser<ServerEntryStream> getParserForType() {
       return PARSER;
     }
 
-    public net.synchthia.api.nebula.NebulaProtos.EntryStreamResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface QuitEntryStreamRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:nebulapb.QuitEntryStreamRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string name = 1;</code>
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-  }
-  /**
-   * Protobuf type {@code nebulapb.QuitEntryStreamRequest}
-   */
-  public  static final class QuitEntryStreamRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:nebulapb.QuitEntryStreamRequest)
-      QuitEntryStreamRequestOrBuilder {
-    // Use QuitEntryStreamRequest.newBuilder() to construct.
-    private QuitEntryStreamRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private QuitEntryStreamRequest() {
-      name_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private QuitEntryStreamRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_QuitEntryStreamRequest_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_QuitEntryStreamRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest.class, net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest.Builder.class);
-    }
-
-    public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 1;</code>
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest)) {
-        return super.equals(obj);
-      }
-      net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest other = (net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest) obj;
-
-      boolean result = true;
-      result = result && getName()
-          .equals(other.getName());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code nebulapb.QuitEntryStreamRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:nebulapb.QuitEntryStreamRequest)
-        net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_QuitEntryStreamRequest_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_QuitEntryStreamRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest.class, net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest.Builder.class);
-      }
-
-      // Construct using net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        name_ = "";
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return net.synchthia.api.nebula.NebulaProtos.internal_static_nebulapb_QuitEntryStreamRequest_descriptor;
-      }
-
-      public net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest getDefaultInstanceForType() {
-        return net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest.getDefaultInstance();
-      }
-
-      public net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest build() {
-        net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest buildPartial() {
-        net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest result = new net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest(this);
-        result.name_ = name_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest) {
-          return mergeFrom((net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest other) {
-        if (other == net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest.getDefaultInstance()) return this;
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 1;</code>
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:nebulapb.QuitEntryStreamRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:nebulapb.QuitEntryStreamRequest)
-    private static final net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest();
-    }
-
-    public static net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<QuitEntryStreamRequest>
-        PARSER = new com.google.protobuf.AbstractParser<QuitEntryStreamRequest>() {
-      public QuitEntryStreamRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new QuitEntryStreamRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<QuitEntryStreamRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<QuitEntryStreamRequest> getParserForType() {
-      return PARSER;
-    }
-
-    public net.synchthia.api.nebula.NebulaProtos.QuitEntryStreamRequest getDefaultInstanceForType() {
+    public net.synchthia.api.nebula.NebulaProtos.ServerEntryStream getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2507,12 +846,6 @@ public final class NebulaProtos {
     net.synchthia.api.nebula.NebulaProtos.ServerStatusOrBuilder getStatusOrBuilder();
   }
   /**
-   * <pre>
-   *--
-   * Server Entry
-   *--
-   * </pre>
-   *
    * Protobuf type {@code nebulapb.ServerEntry}
    */
   public  static final class ServerEntry extends
@@ -2993,12 +1326,6 @@ public final class NebulaProtos {
       return builder;
     }
     /**
-     * <pre>
-     *--
-     * Server Entry
-     *--
-     * </pre>
-     *
      * Protobuf type {@code nebulapb.ServerEntry}
      */
     public static final class Builder extends
@@ -3087,30 +1414,30 @@ public final class NebulaProtos {
       }
 
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.synchthia.api.nebula.NebulaProtos.ServerEntry) {
@@ -4174,30 +2501,30 @@ public final class NebulaProtos {
         }
 
         public Builder clone() {
-          return super.clone();
+          return (Builder) super.clone();
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             Object value) {
-          return super.setField(field, value);
+          return (Builder) super.setField(field, value);
         }
         public Builder clearField(
             com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
+          return (Builder) super.clearField(field);
         }
         public Builder clearOneof(
             com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
+          return (Builder) super.clearOneof(oneof);
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             int index, Object value) {
-          return super.setRepeatedField(field, index, value);
+          return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             Object value) {
-          return super.addRepeatedField(field, value);
+          return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof net.synchthia.api.nebula.NebulaProtos.ServerStatus.Version) {
@@ -4729,30 +3056,30 @@ public final class NebulaProtos {
         }
 
         public Builder clone() {
-          return super.clone();
+          return (Builder) super.clone();
         }
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             Object value) {
-          return super.setField(field, value);
+          return (Builder) super.setField(field, value);
         }
         public Builder clearField(
             com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
+          return (Builder) super.clearField(field);
         }
         public Builder clearOneof(
             com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
+          return (Builder) super.clearOneof(oneof);
         }
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             int index, Object value) {
-          return super.setRepeatedField(field, index, value);
+          return (Builder) super.setRepeatedField(field, index, value);
         }
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             Object value) {
-          return super.addRepeatedField(field, value);
+          return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof net.synchthia.api.nebula.NebulaProtos.ServerStatus.Players) {
@@ -5332,30 +3659,30 @@ public final class NebulaProtos {
       }
 
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.synchthia.api.nebula.NebulaProtos.ServerStatus) {
@@ -6155,30 +4482,30 @@ public final class NebulaProtos {
       }
 
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.synchthia.api.nebula.NebulaProtos.GetServerEntryRequest) {
@@ -6634,30 +4961,30 @@ public final class NebulaProtos {
       }
 
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.synchthia.api.nebula.NebulaProtos.GetServerEntryResponse) {
@@ -7352,30 +5679,30 @@ public final class NebulaProtos {
       }
 
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.synchthia.api.nebula.NebulaProtos.AddServerEntryRequest) {
@@ -7848,30 +6175,30 @@ public final class NebulaProtos {
       }
 
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.synchthia.api.nebula.NebulaProtos.AddServerEntryResponse) {
@@ -8289,30 +6616,30 @@ public final class NebulaProtos {
       }
 
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryRequest) {
@@ -8738,30 +7065,30 @@ public final class NebulaProtos {
       }
 
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.synchthia.api.nebula.NebulaProtos.RemoveServerEntryResponse) {
@@ -8849,25 +7176,10 @@ public final class NebulaProtos {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_nebulapb_Empty_descriptor;
+    internal_static_nebulapb_ServerEntryStream_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_nebulapb_Empty_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_nebulapb_StreamRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_nebulapb_StreamRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_nebulapb_EntryStreamResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_nebulapb_EntryStreamResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_nebulapb_QuitEntryStreamRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_nebulapb_QuitEntryStreamRequest_fieldAccessorTable;
+      internal_static_nebulapb_ServerEntryStream_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_nebulapb_ServerEntry_descriptor;
   private static final 
@@ -8927,44 +7239,35 @@ public final class NebulaProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016nebulapb.proto\022\010nebulapb\"\007\n\005Empty\"A\n\rS" +
-      "treamRequest\022\014\n\004name\030\001 \001(\t\022\"\n\004type\030\002 \001(\016" +
-      "2\024.nebulapb.StreamType\"o\n\023EntryStreamRes" +
-      "ponse\022\"\n\004type\030\001 \001(\0162\024.nebulapb.StreamTyp" +
-      "e\022\016\n\006target\030\002 \001(\t\022$\n\005entry\030\003 \001(\0132\025.nebul" +
-      "apb.ServerEntry\"&\n\026QuitEntryStreamReques" +
-      "t\022\014\n\004name\030\001 \001(\t\"\205\001\n\013ServerEntry\022\014\n\004name\030" +
-      "\001 \001(\t\022\023\n\013displayName\030\002 \001(\t\022\017\n\007address\030\003 " +
-      "\001(\t\022\014\n\004port\030\004 \001(\005\022\014\n\004motd\030\005 \001(\t\022&\n\006statu" +
-      "s\030\006 \001(\0132\026.nebulapb.ServerStatus\"\371\001\n\014Serv",
-      "erStatus\022\016\n\006online\030\001 \001(\010\022/\n\007version\030\002 \001(" +
-      "\0132\036.nebulapb.ServerStatus.Version\022/\n\007pla" +
-      "yers\030\003 \001(\0132\036.nebulapb.ServerStatus.Playe" +
-      "rs\022\023\n\013description\030\004 \001(\t\022\017\n\007favicon\030\005 \001(\t" +
-      "\032)\n\007Version\022\014\n\004name\030\001 \001(\t\022\020\n\010protocol\030\002 " +
-      "\001(\005\032&\n\007Players\022\013\n\003max\030\001 \001(\005\022\016\n\006online\030\002 " +
-      "\001(\005\"\027\n\025GetServerEntryRequest\">\n\026GetServe" +
-      "rEntryResponse\022$\n\005entry\030\001 \003(\0132\025.nebulapb" +
-      ".ServerEntry\"=\n\025AddServerEntryRequest\022$\n" +
-      "\005entry\030\001 \001(\0132\025.nebulapb.ServerEntry\"\030\n\026A",
-      "ddServerEntryResponse\"(\n\030RemoveServerEnt" +
-      "ryRequest\022\014\n\004name\030\001 \001(\t\"\033\n\031RemoveServerE" +
-      "ntryResponse*U\n\nStreamType\022\010\n\004QUIT\020\000\022\013\n\007" +
-      "CONNECT\020\001\022\014\n\010RESTORED\020\002\022\014\n\010DISPATCH\020\003\022\010\n" +
-      "\004SYNC\020\004\022\n\n\006REMOVE\020\0052\325\003\n\006Nebula\022*\n\004Ping\022\017" +
-      ".nebulapb.Empty\032\017.nebulapb.Empty\"\000\022I\n\013En" +
-      "tryStream\022\027.nebulapb.StreamRequest\032\035.neb" +
-      "ulapb.EntryStreamResponse\"\0000\001\022F\n\017QuitEnt" +
-      "ryStream\022 .nebulapb.QuitEntryStreamReque" +
-      "st\032\017.nebulapb.Empty\"\000\022U\n\016GetServerEntry\022",
-      "\037.nebulapb.GetServerEntryRequest\032 .nebul" +
-      "apb.GetServerEntryResponse\"\000\022U\n\016AddServe" +
-      "rEntry\022\037.nebulapb.AddServerEntryRequest\032" +
-      " .nebulapb.AddServerEntryResponse\"\000\022^\n\021R" +
-      "emoveServerEntry\022\".nebulapb.RemoveServer" +
-      "EntryRequest\032#.nebulapb.RemoveServerEntr" +
-      "yResponse\"\000B(\n\030net.synchthia.api.nebulaB" +
-      "\014NebulaProtosb\006proto3"
+      "\n\016nebulapb.proto\022\010nebulapb\"\207\001\n\021ServerEnt" +
+      "ryStream\022.\n\004type\030\001 \001(\0162 .nebulapb.Server" +
+      "EntryStream.Type\022$\n\005entry\030\002 \001(\0132\025.nebula" +
+      "pb.ServerEntry\"\034\n\004Type\022\010\n\004SYNC\020\000\022\n\n\006REMO" +
+      "VE\020\001\"\205\001\n\013ServerEntry\022\014\n\004name\030\001 \001(\t\022\023\n\013di" +
+      "splayName\030\002 \001(\t\022\017\n\007address\030\003 \001(\t\022\014\n\004port" +
+      "\030\004 \001(\005\022\014\n\004motd\030\005 \001(\t\022&\n\006status\030\006 \001(\0132\026.n" +
+      "ebulapb.ServerStatus\"\371\001\n\014ServerStatus\022\016\n" +
+      "\006online\030\001 \001(\010\022/\n\007version\030\002 \001(\0132\036.nebulap" +
+      "b.ServerStatus.Version\022/\n\007players\030\003 \001(\0132",
+      "\036.nebulapb.ServerStatus.Players\022\023\n\013descr" +
+      "iption\030\004 \001(\t\022\017\n\007favicon\030\005 \001(\t\032)\n\007Version" +
+      "\022\014\n\004name\030\001 \001(\t\022\020\n\010protocol\030\002 \001(\005\032&\n\007Play" +
+      "ers\022\013\n\003max\030\001 \001(\005\022\016\n\006online\030\002 \001(\005\"\027\n\025GetS" +
+      "erverEntryRequest\">\n\026GetServerEntryRespo" +
+      "nse\022$\n\005entry\030\001 \003(\0132\025.nebulapb.ServerEntr" +
+      "y\"=\n\025AddServerEntryRequest\022$\n\005entry\030\001 \001(" +
+      "\0132\025.nebulapb.ServerEntry\"\030\n\026AddServerEnt" +
+      "ryResponse\"(\n\030RemoveServerEntryRequest\022\014" +
+      "\n\004name\030\001 \001(\t\"\033\n\031RemoveServerEntryRespons",
+      "e2\226\002\n\006Nebula\022U\n\016GetServerEntry\022\037.nebulap" +
+      "b.GetServerEntryRequest\032 .nebulapb.GetSe" +
+      "rverEntryResponse\"\000\022U\n\016AddServerEntry\022\037." +
+      "nebulapb.AddServerEntryRequest\032 .nebulap" +
+      "b.AddServerEntryResponse\"\000\022^\n\021RemoveServ" +
+      "erEntry\022\".nebulapb.RemoveServerEntryRequ" +
+      "est\032#.nebulapb.RemoveServerEntryResponse" +
+      "\"\000B(\n\030net.synchthia.api.nebulaB\014NebulaPr" +
+      "otosb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8978,38 +7281,20 @@ public final class NebulaProtos {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_nebulapb_Empty_descriptor =
+    internal_static_nebulapb_ServerEntryStream_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_nebulapb_Empty_fieldAccessorTable = new
+    internal_static_nebulapb_ServerEntryStream_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_nebulapb_Empty_descriptor,
-        new java.lang.String[] { });
-    internal_static_nebulapb_StreamRequest_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_nebulapb_StreamRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_nebulapb_StreamRequest_descriptor,
-        new java.lang.String[] { "Name", "Type", });
-    internal_static_nebulapb_EntryStreamResponse_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_nebulapb_EntryStreamResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_nebulapb_EntryStreamResponse_descriptor,
-        new java.lang.String[] { "Type", "Target", "Entry", });
-    internal_static_nebulapb_QuitEntryStreamRequest_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_nebulapb_QuitEntryStreamRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_nebulapb_QuitEntryStreamRequest_descriptor,
-        new java.lang.String[] { "Name", });
+        internal_static_nebulapb_ServerEntryStream_descriptor,
+        new java.lang.String[] { "Type", "Entry", });
     internal_static_nebulapb_ServerEntry_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_nebulapb_ServerEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nebulapb_ServerEntry_descriptor,
         new java.lang.String[] { "Name", "DisplayName", "Address", "Port", "Motd", "Status", });
     internal_static_nebulapb_ServerStatus_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_nebulapb_ServerStatus_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nebulapb_ServerStatus_descriptor,
@@ -9027,37 +7312,37 @@ public final class NebulaProtos {
         internal_static_nebulapb_ServerStatus_Players_descriptor,
         new java.lang.String[] { "Max", "Online", });
     internal_static_nebulapb_GetServerEntryRequest_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_nebulapb_GetServerEntryRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nebulapb_GetServerEntryRequest_descriptor,
         new java.lang.String[] { });
     internal_static_nebulapb_GetServerEntryResponse_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_nebulapb_GetServerEntryResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nebulapb_GetServerEntryResponse_descriptor,
         new java.lang.String[] { "Entry", });
     internal_static_nebulapb_AddServerEntryRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_nebulapb_AddServerEntryRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nebulapb_AddServerEntryRequest_descriptor,
         new java.lang.String[] { "Entry", });
     internal_static_nebulapb_AddServerEntryResponse_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_nebulapb_AddServerEntryResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nebulapb_AddServerEntryResponse_descriptor,
         new java.lang.String[] { });
     internal_static_nebulapb_RemoveServerEntryRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_nebulapb_RemoveServerEntryRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nebulapb_RemoveServerEntryRequest_descriptor,
         new java.lang.String[] { "Name", });
     internal_static_nebulapb_RemoveServerEntryResponse_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_nebulapb_RemoveServerEntryResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nebulapb_RemoveServerEntryResponse_descriptor,
