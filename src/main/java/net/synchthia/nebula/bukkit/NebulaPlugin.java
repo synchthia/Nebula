@@ -83,6 +83,8 @@ public class NebulaPlugin extends JavaPlugin {
                 String[] splited = redisAddress.split(":");
                 hostname = splited[0];
                 port = Integer.valueOf(splited[1]);
+            } else {
+                hostname = redisAddress;
             }
         }
 
