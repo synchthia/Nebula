@@ -2,7 +2,6 @@ package net.synchthia.nebula.bungee;
 
 import lombok.SneakyThrows;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.scheduler.ScheduledTask;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -12,16 +11,14 @@ import java.util.logging.Level;
  * @author Laica-Lunasys
  */
 public class RedisClient {
+    private static JedisPool pool;
     private NebulaPlugin plugin = NebulaPlugin.getPlugin();
-
-    private static ScheduledTask task;
-    private static Boolean wantClose = false;
     private String name;
     private String hostname;
     private Integer port;
-    private JedisPool pool;
     private Jedis jedis;
 
+    private ServersSubs serversSubs;
 
     public RedisClient(String name, String hostname, Integer port) {
         this.name = name;
@@ -31,30 +28,24 @@ public class RedisClient {
     }
 
     private void runTask() {
-        task = ProxyServer.getInstance().getScheduler().runAsync(plugin, new Runnable() {
+        ProxyServer.getInstance().getScheduler().runAsync(plugin, new Runnable() {
             @Override
             @SneakyThrows
             public void run() {
                 try {
+                    serversSubs = new ServersSubs();
+
                     plugin.getLogger().log(Level.INFO, "Connecting to Redis: " + hostname + ":" + port);
                     pool = new JedisPool(hostname, port);
                     jedis = pool.getResource();
                     jedis.connect();
 
                     // Subscribe
-                    jedis.psubscribe(new ServersSubs(), "nebula.servers.global");
-                    } catch (Exception ex) {
-                    if (wantClose) {
-                        plugin.getLogger().log(Level.INFO, "Disconnecting from Redis...");
-                        jedis.unwatch();
-                        jedis.disconnect();
-                    } else {
-                        ex.printStackTrace();
-
-                        plugin.getLogger().log(Level.WARNING, "Connection Error! Try Reconnecting every 3 seconds...");
-                        Thread.sleep(3000L);
-                        runTask();
-                    }
+                    jedis.psubscribe(serversSubs, "nebula.servers.global");
+                } catch (Exception ex) {
+                    plugin.getLogger().log(Level.WARNING, "Connection Error! Try Reconnecting every 3 seconds... : ", ex);
+                    Thread.sleep(3000L);
+                    runTask();
                 }
             }
         });
@@ -62,10 +53,11 @@ public class RedisClient {
     }
 
     public void disconnect() {
-        wantClose = true;
-        jedis.disconnect();
-        pool.destroy();
+        if (serversSubs != null) {
+            serversSubs.punsubscribe();
+        }
 
-        task.cancel();
+        pool.close();
+        pool.destroy();
     }
 }

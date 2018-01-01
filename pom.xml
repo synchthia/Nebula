@@ -147,14 +147,18 @@
                         <relocation>
                             <pattern>co.aikar.commands</pattern>
                             <shadedPattern>net.synchthia.nebula.bukkit.libs.acf</shadedPattern>
-                        </relocation>
-                        <relocation>
+
+                            <pattern>redis.clients.jedis</pattern>
+                            <shadedPattern>net.synchthia.systera.libs.redis.clients.jedis</shadedPattern>
+
+                            <pattern>org.apache.commons</pattern>
+                            <shadedPattern>net.synchthia.systera.libs.org.apache.commons</shadedPattern>
+
                             <pattern>io.netty</pattern>
-                            <shadedPattern>net.synchthia.nebula.bungee.libs.netty</shadedPattern>
-                        </relocation>
-                        <relocation>
+                            <shadedPattern>net.synchthia.systera.libs.netty</shadedPattern>
+
                             <pattern>com.google.common</pattern>
-                            <shadedPattern>net.synchthia.nebula.bungee.libs.guava</shadedPattern>
+                            <shadedPattern>net.synchthia.systera.libs.guava</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
