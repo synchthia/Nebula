@@ -28,7 +28,7 @@ public class RedisClient {
     }
 
     private void runTask() {
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, new Runnable() {
+        plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable() {
             @Override
             @SneakyThrows
             public void run() {
