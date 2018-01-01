@@ -149,16 +149,16 @@
                             <shadedPattern>net.synchthia.nebula.bukkit.libs.acf</shadedPattern>
 
                             <pattern>redis.clients.jedis</pattern>
-                            <shadedPattern>net.synchthia.systera.libs.redis.clients.jedis</shadedPattern>
+                            <shadedPattern>net.synchthia.nebula.libs.redis.clients.jedis</shadedPattern>
 
                             <pattern>org.apache.commons</pattern>
-                            <shadedPattern>net.synchthia.systera.libs.org.apache.commons</shadedPattern>
+                            <shadedPattern>net.synchthia.nebula.libs.org.apache.commons</shadedPattern>
 
                             <pattern>io.netty</pattern>
-                            <shadedPattern>net.synchthia.systera.libs.netty</shadedPattern>
+                            <shadedPattern>net.synchthia.nebula.libs.netty</shadedPattern>
 
                             <pattern>com.google.common</pattern>
-                            <shadedPattern>net.synchthia.systera.libs.guava</shadedPattern>
+                            <shadedPattern>net.synchthia.nebula.libs.guava</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -168,20 +168,6 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <!--
-                        <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>org.apache.commons:*</include>
-                                    <include>commons-configuration:commons-configuration</include>
-                                    <include>commons-logging:commons-logging</include>
-                                    <include>io.netty:*</include>
-                                    <include>com.google.*:*</include>
-                                    <include>io.grpc:*</include>
-                                </includes>
-                            </artifactSet>
-                        </configuration>
-                        -->
                     </execution>
                 </executions>
             </plugin>
