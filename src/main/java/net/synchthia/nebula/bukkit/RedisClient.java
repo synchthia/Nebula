@@ -28,6 +28,8 @@ public class RedisClient {
     }
 
     private void runTask() {
+        pool = new JedisPool(hostname, port);
+
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable() {
             @Override
             @SneakyThrows
@@ -36,7 +38,6 @@ public class RedisClient {
                     serversSubs = new ServersSubs();
 
                     plugin.getLogger().log(Level.INFO, "Connecting to Redis: " + hostname + ":" + port);
-                    pool = new JedisPool(hostname, port);
                     jedis = pool.getResource();
                     jedis.connect();
 
