@@ -16,7 +16,6 @@ public class RedisClient {
     private String name;
     private String hostname;
     private Integer port;
-    private Jedis jedis;
 
     private ServersSubs serversSubs;
 
@@ -24,12 +23,12 @@ public class RedisClient {
         this.name = name;
         this.hostname = hostname;
         this.port = port;
+        this.pool = new JedisPool(hostname, port);
+
         runTask();
     }
 
     private void runTask() {
-        pool = new JedisPool(hostname, port);
-
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable() {
             @Override
             @SneakyThrows
@@ -38,8 +37,7 @@ public class RedisClient {
                     serversSubs = new ServersSubs();
 
                     plugin.getLogger().log(Level.INFO, "Connecting to Redis: " + hostname + ":" + port);
-                    jedis = pool.getResource();
-                    jedis.connect();
+                    Jedis jedis = pool.getResource();
 
                     // Subscribe
                     jedis.psubscribe(serversSubs, "nebula.servers.global");
