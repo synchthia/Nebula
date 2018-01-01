@@ -25,11 +25,6 @@
             <id>aikar</id>
             <url>https://repo.aikar.co/nexus/content/groups/aikar/</url>
         </repository>
-
-        <!--<repository>
-            <id>extension.ws-repo</id>
-            <url>https://repo.extension.ws/content/repositories/public/</url>
-        </repository>-->
     </repositories>
 
     <dependencies>
@@ -145,20 +140,22 @@
                 <configuration>
                     <relocations>
                         <relocation>
-                            <pattern>co.aikar.commands</pattern>
-                            <shadedPattern>net.synchthia.nebula.bukkit.libs.acf</shadedPattern>
-
                             <pattern>redis.clients.jedis</pattern>
                             <shadedPattern>net.synchthia.nebula.libs.redis.clients.jedis</shadedPattern>
-
-                            <pattern>org.apache.commons</pattern>
-                            <shadedPattern>net.synchthia.nebula.libs.org.apache.commons</shadedPattern>
-
+                        </relocation>
+                        <relocation>
                             <pattern>io.netty</pattern>
                             <shadedPattern>net.synchthia.nebula.libs.netty</shadedPattern>
-
+                        </relocation>
+                        <relocation>
                             <pattern>com.google.common</pattern>
                             <shadedPattern>net.synchthia.nebula.libs.guava</shadedPattern>
+                        </relocation>
+
+                        <!-- Bukkit -->
+                        <relocation>
+                            <pattern>co.aikar.commands</pattern>
+                            <shadedPattern>net.synchthia.nebula.bukkit.libs.acf</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
