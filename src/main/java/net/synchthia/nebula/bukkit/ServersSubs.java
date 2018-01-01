@@ -19,7 +19,6 @@ public class ServersSubs extends JedisPubSub {
         assert serverStream != null;
         switch (serverStream.getType()) {
             case SYNC:
-                System.out.println(">>> " + serverStream);
                 NebulaProtos.ServerEntry entry = serverStream.getEntry();
                 ServerAPI.putServer(entry);
                 plugin.getServerSignManager().updateSigns();

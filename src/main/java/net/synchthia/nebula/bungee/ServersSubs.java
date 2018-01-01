@@ -17,7 +17,6 @@ public class ServersSubs extends JedisPubSub {
         NebulaProtos.ServerEntryStream serverStream = APIClient.entryStreamFromJson(message);
         switch (serverStream.getType()) {
             case SYNC:
-                System.out.println(">>> " + serverStream);
                 plugin.serverAPI.putServer(serverStream.getEntry());
                 break;
             case REMOVE:
