@@ -62,7 +62,7 @@ public class ServerSignListener implements Listener {
         }
 
         manager.getSignManager().findSign(event.getBlock()).ifPresent(signData -> {
-            NebulaProtos.ServerEntry server = ServerAPI.getServers().get(signData.getKey());
+            NebulaProtos.ServerEntry server = ServerAPI.getServerEntry().get(signData.getKey());
             manager.getSignManager().removeSign(event.getBlock());
 
             if (server != null) {

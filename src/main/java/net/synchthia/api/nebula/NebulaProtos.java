@@ -833,15 +833,20 @@ public final class NebulaProtos {
         getMotdBytes();
 
     /**
-     * <code>.nebulapb.ServerStatus status = 6;</code>
+     * <code>bool fallback = 6;</code>
+     */
+    boolean getFallback();
+
+    /**
+     * <code>.nebulapb.ServerStatus status = 7;</code>
      */
     boolean hasStatus();
     /**
-     * <code>.nebulapb.ServerStatus status = 6;</code>
+     * <code>.nebulapb.ServerStatus status = 7;</code>
      */
     net.synchthia.api.nebula.NebulaProtos.ServerStatus getStatus();
     /**
-     * <code>.nebulapb.ServerStatus status = 6;</code>
+     * <code>.nebulapb.ServerStatus status = 7;</code>
      */
     net.synchthia.api.nebula.NebulaProtos.ServerStatusOrBuilder getStatusOrBuilder();
   }
@@ -862,6 +867,7 @@ public final class NebulaProtos {
       address_ = "";
       port_ = 0;
       motd_ = "";
+      fallback_ = false;
     }
 
     @java.lang.Override
@@ -918,7 +924,12 @@ public final class NebulaProtos {
               motd_ = s;
               break;
             }
-            case 50: {
+            case 48: {
+
+              fallback_ = input.readBool();
+              break;
+            }
+            case 58: {
               net.synchthia.api.nebula.NebulaProtos.ServerStatus.Builder subBuilder = null;
               if (status_ != null) {
                 subBuilder = status_.toBuilder();
@@ -1099,22 +1110,31 @@ public final class NebulaProtos {
       }
     }
 
-    public static final int STATUS_FIELD_NUMBER = 6;
+    public static final int FALLBACK_FIELD_NUMBER = 6;
+    private boolean fallback_;
+    /**
+     * <code>bool fallback = 6;</code>
+     */
+    public boolean getFallback() {
+      return fallback_;
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 7;
     private net.synchthia.api.nebula.NebulaProtos.ServerStatus status_;
     /**
-     * <code>.nebulapb.ServerStatus status = 6;</code>
+     * <code>.nebulapb.ServerStatus status = 7;</code>
      */
     public boolean hasStatus() {
       return status_ != null;
     }
     /**
-     * <code>.nebulapb.ServerStatus status = 6;</code>
+     * <code>.nebulapb.ServerStatus status = 7;</code>
      */
     public net.synchthia.api.nebula.NebulaProtos.ServerStatus getStatus() {
       return status_ == null ? net.synchthia.api.nebula.NebulaProtos.ServerStatus.getDefaultInstance() : status_;
     }
     /**
-     * <code>.nebulapb.ServerStatus status = 6;</code>
+     * <code>.nebulapb.ServerStatus status = 7;</code>
      */
     public net.synchthia.api.nebula.NebulaProtos.ServerStatusOrBuilder getStatusOrBuilder() {
       return getStatus();
@@ -1147,8 +1167,11 @@ public final class NebulaProtos {
       if (!getMotdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, motd_);
       }
+      if (fallback_ != false) {
+        output.writeBool(6, fallback_);
+      }
       if (status_ != null) {
-        output.writeMessage(6, getStatus());
+        output.writeMessage(7, getStatus());
       }
     }
 
@@ -1173,9 +1196,13 @@ public final class NebulaProtos {
       if (!getMotdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, motd_);
       }
+      if (fallback_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, fallback_);
+      }
       if (status_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getStatus());
+          .computeMessageSize(7, getStatus());
       }
       memoizedSize = size;
       return size;
@@ -1203,6 +1230,8 @@ public final class NebulaProtos {
           == other.getPort());
       result = result && getMotd()
           .equals(other.getMotd());
+      result = result && (getFallback()
+          == other.getFallback());
       result = result && (hasStatus() == other.hasStatus());
       if (hasStatus()) {
         result = result && getStatus()
@@ -1228,6 +1257,9 @@ public final class NebulaProtos {
       hash = (53 * hash) + getPort();
       hash = (37 * hash) + MOTD_FIELD_NUMBER;
       hash = (53 * hash) + getMotd().hashCode();
+      hash = (37 * hash) + FALLBACK_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getFallback());
       if (hasStatus()) {
         hash = (37 * hash) + STATUS_FIELD_NUMBER;
         hash = (53 * hash) + getStatus().hashCode();
@@ -1371,6 +1403,8 @@ public final class NebulaProtos {
 
         motd_ = "";
 
+        fallback_ = false;
+
         if (statusBuilder_ == null) {
           status_ = null;
         } else {
@@ -1404,6 +1438,7 @@ public final class NebulaProtos {
         result.address_ = address_;
         result.port_ = port_;
         result.motd_ = motd_;
+        result.fallback_ = fallback_;
         if (statusBuilder_ == null) {
           result.status_ = status_;
         } else {
@@ -1468,6 +1503,9 @@ public final class NebulaProtos {
         if (!other.getMotd().isEmpty()) {
           motd_ = other.motd_;
           onChanged();
+        }
+        if (other.getFallback() != false) {
+          setFallback(other.getFallback());
         }
         if (other.hasStatus()) {
           mergeStatus(other.getStatus());
@@ -1800,17 +1838,43 @@ public final class NebulaProtos {
         return this;
       }
 
+      private boolean fallback_ ;
+      /**
+       * <code>bool fallback = 6;</code>
+       */
+      public boolean getFallback() {
+        return fallback_;
+      }
+      /**
+       * <code>bool fallback = 6;</code>
+       */
+      public Builder setFallback(boolean value) {
+        
+        fallback_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool fallback = 6;</code>
+       */
+      public Builder clearFallback() {
+        
+        fallback_ = false;
+        onChanged();
+        return this;
+      }
+
       private net.synchthia.api.nebula.NebulaProtos.ServerStatus status_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           net.synchthia.api.nebula.NebulaProtos.ServerStatus, net.synchthia.api.nebula.NebulaProtos.ServerStatus.Builder, net.synchthia.api.nebula.NebulaProtos.ServerStatusOrBuilder> statusBuilder_;
       /**
-       * <code>.nebulapb.ServerStatus status = 6;</code>
+       * <code>.nebulapb.ServerStatus status = 7;</code>
        */
       public boolean hasStatus() {
         return statusBuilder_ != null || status_ != null;
       }
       /**
-       * <code>.nebulapb.ServerStatus status = 6;</code>
+       * <code>.nebulapb.ServerStatus status = 7;</code>
        */
       public net.synchthia.api.nebula.NebulaProtos.ServerStatus getStatus() {
         if (statusBuilder_ == null) {
@@ -1820,7 +1884,7 @@ public final class NebulaProtos {
         }
       }
       /**
-       * <code>.nebulapb.ServerStatus status = 6;</code>
+       * <code>.nebulapb.ServerStatus status = 7;</code>
        */
       public Builder setStatus(net.synchthia.api.nebula.NebulaProtos.ServerStatus value) {
         if (statusBuilder_ == null) {
@@ -1836,7 +1900,7 @@ public final class NebulaProtos {
         return this;
       }
       /**
-       * <code>.nebulapb.ServerStatus status = 6;</code>
+       * <code>.nebulapb.ServerStatus status = 7;</code>
        */
       public Builder setStatus(
           net.synchthia.api.nebula.NebulaProtos.ServerStatus.Builder builderForValue) {
@@ -1850,7 +1914,7 @@ public final class NebulaProtos {
         return this;
       }
       /**
-       * <code>.nebulapb.ServerStatus status = 6;</code>
+       * <code>.nebulapb.ServerStatus status = 7;</code>
        */
       public Builder mergeStatus(net.synchthia.api.nebula.NebulaProtos.ServerStatus value) {
         if (statusBuilder_ == null) {
@@ -1868,7 +1932,7 @@ public final class NebulaProtos {
         return this;
       }
       /**
-       * <code>.nebulapb.ServerStatus status = 6;</code>
+       * <code>.nebulapb.ServerStatus status = 7;</code>
        */
       public Builder clearStatus() {
         if (statusBuilder_ == null) {
@@ -1882,7 +1946,7 @@ public final class NebulaProtos {
         return this;
       }
       /**
-       * <code>.nebulapb.ServerStatus status = 6;</code>
+       * <code>.nebulapb.ServerStatus status = 7;</code>
        */
       public net.synchthia.api.nebula.NebulaProtos.ServerStatus.Builder getStatusBuilder() {
         
@@ -1890,7 +1954,7 @@ public final class NebulaProtos {
         return getStatusFieldBuilder().getBuilder();
       }
       /**
-       * <code>.nebulapb.ServerStatus status = 6;</code>
+       * <code>.nebulapb.ServerStatus status = 7;</code>
        */
       public net.synchthia.api.nebula.NebulaProtos.ServerStatusOrBuilder getStatusOrBuilder() {
         if (statusBuilder_ != null) {
@@ -1901,7 +1965,7 @@ public final class NebulaProtos {
         }
       }
       /**
-       * <code>.nebulapb.ServerStatus status = 6;</code>
+       * <code>.nebulapb.ServerStatus status = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           net.synchthia.api.nebula.NebulaProtos.ServerStatus, net.synchthia.api.nebula.NebulaProtos.ServerStatus.Builder, net.synchthia.api.nebula.NebulaProtos.ServerStatusOrBuilder> 
@@ -7243,31 +7307,31 @@ public final class NebulaProtos {
       "ryStream\022.\n\004type\030\001 \001(\0162 .nebulapb.Server" +
       "EntryStream.Type\022$\n\005entry\030\002 \001(\0132\025.nebula" +
       "pb.ServerEntry\"\034\n\004Type\022\010\n\004SYNC\020\000\022\n\n\006REMO" +
-      "VE\020\001\"\205\001\n\013ServerEntry\022\014\n\004name\030\001 \001(\t\022\023\n\013di" +
+      "VE\020\001\"\227\001\n\013ServerEntry\022\014\n\004name\030\001 \001(\t\022\023\n\013di" +
       "splayName\030\002 \001(\t\022\017\n\007address\030\003 \001(\t\022\014\n\004port" +
-      "\030\004 \001(\005\022\014\n\004motd\030\005 \001(\t\022&\n\006status\030\006 \001(\0132\026.n" +
-      "ebulapb.ServerStatus\"\371\001\n\014ServerStatus\022\016\n" +
-      "\006online\030\001 \001(\010\022/\n\007version\030\002 \001(\0132\036.nebulap" +
-      "b.ServerStatus.Version\022/\n\007players\030\003 \001(\0132",
-      "\036.nebulapb.ServerStatus.Players\022\023\n\013descr" +
-      "iption\030\004 \001(\t\022\017\n\007favicon\030\005 \001(\t\032)\n\007Version" +
-      "\022\014\n\004name\030\001 \001(\t\022\020\n\010protocol\030\002 \001(\005\032&\n\007Play" +
-      "ers\022\013\n\003max\030\001 \001(\005\022\016\n\006online\030\002 \001(\005\"\027\n\025GetS" +
-      "erverEntryRequest\">\n\026GetServerEntryRespo" +
-      "nse\022$\n\005entry\030\001 \003(\0132\025.nebulapb.ServerEntr" +
-      "y\"=\n\025AddServerEntryRequest\022$\n\005entry\030\001 \001(" +
-      "\0132\025.nebulapb.ServerEntry\"\030\n\026AddServerEnt" +
-      "ryResponse\"(\n\030RemoveServerEntryRequest\022\014" +
-      "\n\004name\030\001 \001(\t\"\033\n\031RemoveServerEntryRespons",
-      "e2\226\002\n\006Nebula\022U\n\016GetServerEntry\022\037.nebulap" +
-      "b.GetServerEntryRequest\032 .nebulapb.GetSe" +
-      "rverEntryResponse\"\000\022U\n\016AddServerEntry\022\037." +
-      "nebulapb.AddServerEntryRequest\032 .nebulap" +
-      "b.AddServerEntryResponse\"\000\022^\n\021RemoveServ" +
-      "erEntry\022\".nebulapb.RemoveServerEntryRequ" +
-      "est\032#.nebulapb.RemoveServerEntryResponse" +
-      "\"\000B(\n\030net.synchthia.api.nebulaB\014NebulaPr" +
-      "otosb\006proto3"
+      "\030\004 \001(\005\022\014\n\004motd\030\005 \001(\t\022\020\n\010fallback\030\006 \001(\010\022&" +
+      "\n\006status\030\007 \001(\0132\026.nebulapb.ServerStatus\"\371" +
+      "\001\n\014ServerStatus\022\016\n\006online\030\001 \001(\010\022/\n\007versi" +
+      "on\030\002 \001(\0132\036.nebulapb.ServerStatus.Version",
+      "\022/\n\007players\030\003 \001(\0132\036.nebulapb.ServerStatu" +
+      "s.Players\022\023\n\013description\030\004 \001(\t\022\017\n\007favico" +
+      "n\030\005 \001(\t\032)\n\007Version\022\014\n\004name\030\001 \001(\t\022\020\n\010prot" +
+      "ocol\030\002 \001(\005\032&\n\007Players\022\013\n\003max\030\001 \001(\005\022\016\n\006on" +
+      "line\030\002 \001(\005\"\027\n\025GetServerEntryRequest\">\n\026G" +
+      "etServerEntryResponse\022$\n\005entry\030\001 \003(\0132\025.n" +
+      "ebulapb.ServerEntry\"=\n\025AddServerEntryReq" +
+      "uest\022$\n\005entry\030\001 \001(\0132\025.nebulapb.ServerEnt" +
+      "ry\"\030\n\026AddServerEntryResponse\"(\n\030RemoveSe" +
+      "rverEntryRequest\022\014\n\004name\030\001 \001(\t\"\033\n\031Remove",
+      "ServerEntryResponse2\226\002\n\006Nebula\022U\n\016GetSer" +
+      "verEntry\022\037.nebulapb.GetServerEntryReques" +
+      "t\032 .nebulapb.GetServerEntryResponse\"\000\022U\n" +
+      "\016AddServerEntry\022\037.nebulapb.AddServerEntr" +
+      "yRequest\032 .nebulapb.AddServerEntryRespon" +
+      "se\"\000\022^\n\021RemoveServerEntry\022\".nebulapb.Rem" +
+      "oveServerEntryRequest\032#.nebulapb.RemoveS" +
+      "erverEntryResponse\"\000B(\n\030net.synchthia.ap" +
+      "i.nebulaB\014NebulaProtosb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7292,7 +7356,7 @@ public final class NebulaProtos {
     internal_static_nebulapb_ServerEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nebulapb_ServerEntry_descriptor,
-        new java.lang.String[] { "Name", "DisplayName", "Address", "Port", "Motd", "Status", });
+        new java.lang.String[] { "Name", "DisplayName", "Address", "Port", "Motd", "Fallback", "Status", });
     internal_static_nebulapb_ServerStatus_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_nebulapb_ServerStatus_fieldAccessorTable = new

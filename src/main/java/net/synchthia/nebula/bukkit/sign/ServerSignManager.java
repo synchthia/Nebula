@@ -64,7 +64,7 @@ public class ServerSignManager {
 
     public HashMap<Integer, String> getFormat(String key) {
         HashMap<Integer, String> format = new HashMap<>();
-        NebulaProtos.ServerEntry server = ServerAPI.getServers().get(key);
+        NebulaProtos.ServerEntry server = ServerAPI.getServerEntry().get(key);
 
         if (server != null) {
             if (server.getStatus().getOnline()) {

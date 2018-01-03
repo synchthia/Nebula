@@ -1,17 +1,14 @@
 package net.synchthia.nebula.bungee.server;
 
-import net.md_5.bungee.api.Callback;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.config.ServerInfo;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Laica-Lunasys
+ * @author Laica-Lunasys, misterT2525
  */
 public class ServerSynchronizer {
 

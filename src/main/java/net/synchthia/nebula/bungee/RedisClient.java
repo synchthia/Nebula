@@ -11,12 +11,11 @@ import java.util.logging.Level;
  * @author Laica-Lunasys
  */
 public class RedisClient {
-    private static JedisPool pool;
+    private JedisPool pool;
     private NebulaPlugin plugin = NebulaPlugin.getPlugin();
     private String name;
     private String hostname;
     private Integer port;
-    private Jedis jedis;
 
     private ServersSubs serversSubs;
 
@@ -24,6 +23,7 @@ public class RedisClient {
         this.name = name;
         this.hostname = hostname;
         this.port = port;
+        this.pool = new JedisPool(hostname, port);
         runTask();
     }
 
@@ -36,9 +36,7 @@ public class RedisClient {
                     serversSubs = new ServersSubs();
 
                     plugin.getLogger().log(Level.INFO, "Connecting to Redis: " + hostname + ":" + port);
-                    pool = new JedisPool(hostname, port);
-                    jedis = pool.getResource();
-                    jedis.connect();
+                    Jedis jedis = pool.getResource();
 
                     // Subscribe
                     jedis.psubscribe(serversSubs, "nebula.servers.global");

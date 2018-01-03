@@ -2,6 +2,7 @@ package net.synchthia.nebula.bukkit.server;
 
 import net.synchthia.api.nebula.NebulaProtos;
 import net.synchthia.nebula.bukkit.util.BungeeUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -10,10 +11,15 @@ import org.bukkit.entity.Player;
  */
 public class ServerAction {
     public static void connect(Player player, String serverName) {
-        NebulaProtos.ServerEntry server = ServerAPI.getServers().get(serverName);
+        NebulaProtos.ServerEntry server = ServerAPI.getServerEntry().get(serverName);
 
         if (server == null) {
             player.sendMessage(ChatColor.RED + serverName + " is not found!");
+            return;
+        }
+
+        if (server.getName().equals(Bukkit.getServerName())) {
+            player.sendMessage(ChatColor.RED + "Already Connected to this Server!");
             return;
         }
 

@@ -1,34 +1,33 @@
 package net.synchthia.nebula.bungee.server;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.util.JsonFormat;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.synchthia.api.nebula.NebulaProtos;
 import net.synchthia.nebula.bungee.NebulaPlugin;
 
 import java.net.InetSocketAddress;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 /**
  * @author Laica-Lunasys
  */
 public class ServerAPI {
+    private static Map<String, NebulaProtos.ServerEntry> serverEntry = new HashMap<>();
+    //private static HashSet<NebulaProtos.ServerEntry> serverEntry = new HashSet<>();
     private final NebulaPlugin plugin;
-    private static Map<String, NebulaProtos.ServerStatus> serverStatus = new HashMap<>();
+    //private static Map<String, NebulaProtos.ServerStatus> serverStatus = new HashMap<>();
 
     public ServerAPI(NebulaPlugin plugin) {
         this.plugin = plugin;
     }
 
     public void putServer(NebulaProtos.ServerEntry entry) {
-        serverStatus.put(entry.getName(), entry.getStatus());
+        serverEntry.put(entry.getName(), entry);
 
-        Map<String, ServerInfo> serverInfo = new HashMap<>();
-        serverInfo.putAll(ProxyServer.getInstance().getServers());
+        Map<String, ServerInfo> serverInfo = new HashMap<>(ProxyServer.getInstance().getServers());
         serverInfo.put(entry.getName(),
                 ProxyServer.getInstance().constructServerInfo(
                         entry.getName(),
@@ -42,12 +41,28 @@ public class ServerAPI {
     }
 
     public void removeServer(String serverName) {
-        serverStatus.remove(serverName);
+        serverEntry.remove(serverName);
         ProxyServer.getInstance().getServers().remove(serverName);
     }
 
-    public final Map<String, NebulaProtos.ServerStatus> getServerStatus() {
-        return serverStatus;
+    public final ServerInfo determinateLobby() {
+        List<Map.Entry<String, NebulaProtos.ServerEntry>> s = serverEntry.entrySet().stream()
+                .filter(e -> e.getValue().getFallback())
+                .filter(e -> e.getValue().getStatus().getOnline())
+                .sorted(Comparator.comparingInt(e -> e.getValue().getStatus().getPlayers().getOnline()))
+                .collect(Collectors.toList());
+
+        if (s.size() == 0) {
+            return null;
+        } else {
+            return ProxyServer.getInstance().getServerInfo(s.get(0).getValue().getName());
+        }
+    }
+
+    public Integer getGlobalOnline() {
+        return serverEntry.entrySet().stream()
+                .mapToInt(e -> e.getValue().getStatus().getPlayers().getOnline())
+                .sum();
     }
 
     // older

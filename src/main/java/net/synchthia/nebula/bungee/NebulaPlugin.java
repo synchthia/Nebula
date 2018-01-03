@@ -3,7 +3,9 @@ package net.synchthia.nebula.bungee;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.synchthia.nebula.bungee.command.QuitCommand;
 import net.synchthia.nebula.bungee.event.PingListener;
+import net.synchthia.nebula.bungee.event.PlayerListener;
 import net.synchthia.nebula.bungee.server.ServerAPI;
 import net.synchthia.nebula.client.APIClient;
 
@@ -39,7 +41,13 @@ public class NebulaPlugin extends Plugin {
             // Register API
             registerAPI();
 
+            // Register Listener
             ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener());
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerListener());
+
+            // Register Command
+            ProxyServer.getInstance().getPluginManager().registerCommand(this, new QuitCommand());
+
             getLogger().log(Level.INFO, "Enabled Nebula");
         } catch (Exception e) {
             getLogger().log(Level.SEVERE, "An internal exception occurred at Enabling", e);

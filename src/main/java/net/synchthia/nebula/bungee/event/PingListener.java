@@ -15,11 +15,8 @@ public class PingListener implements Listener {
     @EventHandler
     public void onProxyPing(ProxyPingEvent event) {
         ServerPing ping = event.getResponse();
-        Integer globalOnline = 0;
+        Integer globalOnline = NebulaPlugin.plugin.serverAPI.getGlobalOnline();
         Integer maxOnline = ping.getPlayers().getMax();
-        for (NebulaProtos.ServerStatus status : NebulaPlugin.plugin.serverAPI.getServerStatus().values()) {
-            globalOnline = globalOnline + status.getPlayers().getOnline();
-        }
 
         event.setResponse(new ServerPing(ping.getVersion(), new ServerPing.Players(maxOnline, globalOnline, null), ping.getDescriptionComponent(), ping.getFaviconObject()));
     }

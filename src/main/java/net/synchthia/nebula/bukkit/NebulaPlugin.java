@@ -4,6 +4,7 @@ import co.aikar.commands.BukkitCommandManager;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.bukkit.command.LobbyCommand;
 import net.synchthia.nebula.bukkit.command.ServerCommand;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
 import net.synchthia.nebula.bukkit.sign.ServerSignManager;
@@ -119,8 +120,9 @@ public class NebulaPlugin extends JavaPlugin {
         BukkitCommandManager manager = new BukkitCommandManager(this);
 
         manager.getCommandCompletions().registerCompletion("servers", c -> (
-                Lists.newArrayList(ServerAPI.getServers().keySet())
+                Lists.newArrayList(ServerAPI.getServerEntry().keySet())
         ));
         manager.registerCommand(new ServerCommand());
+        manager.registerCommand(new LobbyCommand());
     }
 }

@@ -6,7 +6,6 @@ import net.synchthia.nebula.bukkit.server.ServerAPI;
 import net.synchthia.nebula.bukkit.server.ServerAction;
 import net.synchthia.nebula.bukkit.util.StringUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -30,7 +29,7 @@ public class ServerCommand extends BaseCommand {
     @CommandPermission("nebula.command.servers")
     public void onServers(CommandSender sender) {
         sender.sendMessage(StringUtil.coloring("&8&m[&b&lServers&8&m]-----------------------------------"));
-        ServerAPI.getServers().forEach((k, v) -> {
+        ServerAPI.getServerEntry().forEach((k, v) -> {
             String s1 = String.format("&6&l[%s]: ", v.getDisplayName());
             String s2;
             if (v.getStatus().getOnline()) {
