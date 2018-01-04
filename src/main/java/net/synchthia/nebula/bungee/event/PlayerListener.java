@@ -46,12 +46,15 @@ public class PlayerListener implements Listener {
         TextComponent kicked_prefix = new TextComponent(ChatColor.translateAlternateColorCodes('&', "&c&l" + kickedFrom.getName() + "&7≫&r "));
         TextComponent reason = new TextComponent(event.getKickReasonComponent());
 
+        // Determinate & Get Lobby Server or Disconnect
         ServerInfo lobby = NebulaPlugin.getPlugin().serverAPI.determinateLobby();
         if (lobby != null) {
             event.setCancelServer(lobby);
+        } else {
+            event.getPlayer().getPendingConnection().disconnect(disconnect_prefix, reason);
         }
 
-        // When couldn't connect to lobby server
+        // When couldn't connect to or kicked from lobby server
         if (event.getPlayer().getServer() == null) {
             event.getPlayer().getPendingConnection().disconnect(disconnect_prefix, reason);
             return;
@@ -60,14 +63,15 @@ public class PlayerListener implements Listener {
         // Player in Kicked Server (Should be Move Server)
         if (event.getPlayer().getServer().getInfo() == kickedFrom) {
             event.getPlayer().sendMessage(kicked_prefix, reason);
-            event.setCancelled(true);
-            return;
-        }
 
-        // Player in Fallback Server (Should be Kick Network)
-        if (event.getPlayer().getServer().getInfo() == event.getCancelServer()) {
-            event.getPlayer().getPendingConnection().disconnect(disconnect_prefix, reason);
-            return;
+            // Player in Fallback Server (Should be Kick Network)
+            if (event.getPlayer().getServer().getInfo() == event.getCancelServer()) {
+                // Kick Server
+                event.getPlayer().getPendingConnection().disconnect(disconnect_prefix, reason);
+            } else {
+                // Move Server
+                event.setCancelled(true);
+            }
         }
 
         logger.info("[" + event.getPlayer().getName() + "] " + "Kicked from " + kickedFrom.getName() + ": " + reason.toPlainText());
