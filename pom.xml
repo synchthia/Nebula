@@ -140,8 +140,12 @@
                 <configuration>
                     <relocations>
                         <relocation>
-                            <pattern>redis.clients.jedis</pattern>
-                            <shadedPattern>net.synchthia.nebula.libs.redis.clients.jedis</shadedPattern>
+                            <pattern>redis.clients</pattern>
+                            <shadedPattern>net.synchthia.nebula.libs.redis.clients</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>org.apache.commons</pattern>
+                            <shadedPattern>net.synchthia.nebula.libs.apache.commons</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>io.netty</pattern>
