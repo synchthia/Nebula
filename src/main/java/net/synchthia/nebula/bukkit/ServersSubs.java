@@ -20,12 +20,16 @@ public class ServersSubs extends JedisPubSub {
         switch (serverStream.getType()) {
             case SYNC:
                 NebulaProtos.ServerEntry entry = serverStream.getEntry();
-                ServerAPI.putServer(entry);
-                plugin.getServerSignManager().updateSigns();
+                plugin.getServer().getScheduler().runTask(plugin, () -> {
+                    ServerAPI.putServer(entry);
+                    plugin.getServerSignManager().updateSigns();
+                });
                 break;
             case REMOVE:
-                ServerAPI.removeServer(serverStream.getEntry().getName());
-                plugin.getServerSignManager().updateSigns();
+                plugin.getServer().getScheduler().runTask(plugin, () -> {
+                    ServerAPI.removeServer(serverStream.getEntry().getName());
+                    plugin.getServerSignManager().updateSigns();
+                });
                 break;
         }
     }
@@ -40,4 +44,3 @@ public class ServersSubs extends JedisPubSub {
         plugin.getLogger().log(Level.INFO, "P UN Subscribed : " + pattern);
     }
 }
-
