@@ -1,19 +1,18 @@
 package net.synchthia.nebula.client;
 
 import com.google.protobuf.util.JsonFormat;
-import io.grpc.ManagedChannel;
-import io.grpc.internal.DnsNameResolverProvider;
-import io.grpc.netty.NettyChannelBuilder;
-import io.grpc.stub.StreamObserver;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.synchthia.api.nebula.NebulaGrpc;
-import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.api.nebula.libs.grpc.ManagedChannel;
+import net.synchthia.api.nebula.libs.grpc.internal.DnsNameResolverProvider;
+import net.synchthia.api.nebula.libs.grpc.netty.NettyChannelBuilder;
+import net.synchthia.api.nebula.libs.grpc.stub.StreamObserver;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-import static net.synchthia.api.nebula.NebulaProtos.GetServerEntryRequest;
+import static net.synchthia.api.nebula.NebulaProtos.*;
 
 /**
  * @author Laica-Lunasys
@@ -23,14 +22,14 @@ public class APIClient {
     private final NebulaGrpc.NebulaStub stub;
 
     public APIClient(@NonNull String target) {
-        channel = NettyChannelBuilder.forTarget(target).usePlaintext(true).nameResolverFactory(new DnsNameResolverProvider()).build();
+        channel = NettyChannelBuilder.forTarget(target).usePlaintext().nameResolverFactory(new DnsNameResolverProvider()).build();
         stub = NebulaGrpc.newStub(channel);
     }
 
     // Utility Method
-    public static NebulaProtos.ServerEntryStream entryStreamFromJson(String jsonText) {
+    public static ServerEntryStream entryStreamFromJson(String jsonText) {
         try {
-            NebulaProtos.ServerEntryStream.Builder builder = NebulaProtos.ServerEntryStream.newBuilder();
+            ServerEntryStream.Builder builder = ServerEntryStream.newBuilder();
             JsonFormat.parser().ignoringUnknownFields().merge(jsonText, builder);
 
             return builder.build();
@@ -39,9 +38,9 @@ public class APIClient {
         }
     }
 
-    public static NebulaProtos.ServerEntry entryFromJson(String jsonText) {
+    public static ServerEntry entryFromJson(String jsonText) {
         try {
-            NebulaProtos.ServerEntry.Builder builder = NebulaProtos.ServerEntry.newBuilder();
+            ServerEntry.Builder builder = ServerEntry.newBuilder();
             JsonFormat.parser().ignoringUnknownFields().merge(jsonText, builder);
 
             return builder.build();
@@ -54,11 +53,11 @@ public class APIClient {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
 
-    public CompletableFuture<NebulaProtos.GetServerEntryResponse> getServerEntry() {
+    public CompletableFuture<GetServerEntryResponse> getServerEntry() {
         GetServerEntryRequest request = GetServerEntryRequest.newBuilder()
                 .build();
 
-        CompletableFuture<NebulaProtos.GetServerEntryResponse> future = new CompletableFuture<>();
+        CompletableFuture<GetServerEntryResponse> future = new CompletableFuture<>();
         stub.getServerEntry(request, new CompletableFutureObserver<>(future));
         return future;
     }

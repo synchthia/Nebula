@@ -17,8 +17,8 @@
 
     <repositories>
         <repository>
-            <id>sonatype-oss-repo</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
+            <id>synchthia-repo</id>
+            <url>https://repo.synchthia.net/repository/startail/</url>
         </repository>
 
         <repository>
@@ -26,6 +26,17 @@
             <url>https://repo.aikar.co/nexus/content/groups/aikar/</url>
         </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>synchthia-repo</id>
+            <url>https://repo.synchthia.net/repository/startail-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>synchthia-repo</id>
+            <url>https://repo.synchthia.net/repository/startail-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencies>
         <!-- Redis -->
@@ -39,19 +50,10 @@
 
         <!-- gRPC -->
         <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-netty</artifactId>
-            <version>1.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-protobuf</artifactId>
-            <version>1.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-stub</artifactId>
-            <version>1.4.0</version>
+            <groupId>net.synchthia.api</groupId>
+            <artifactId>nebula</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -146,10 +148,6 @@
                         <relocation>
                             <pattern>org.apache.commons</pattern>
                             <shadedPattern>net.synchthia.nebula.libs.apache.commons</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>io.netty</pattern>
-                            <shadedPattern>net.synchthia.nebula.libs.netty</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>com.google.common</pattern>
