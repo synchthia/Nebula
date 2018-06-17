@@ -53,7 +53,6 @@
             <groupId>net.synchthia.api</groupId>
             <artifactId>nebula</artifactId>
             <version>1.0</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -144,14 +143,6 @@
                         <relocation>
                             <pattern>redis.clients</pattern>
                             <shadedPattern>net.synchthia.nebula.libs.redis.clients</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>org.apache.commons</pattern>
-                            <shadedPattern>net.synchthia.nebula.libs.apache.commons</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>com.google.common</pattern>
-                            <shadedPattern>net.synchthia.nebula.libs.guava</shadedPattern>
                         </relocation>
 
                         <!-- Bukkit -->

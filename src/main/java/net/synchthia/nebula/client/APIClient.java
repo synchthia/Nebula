@@ -4,10 +4,10 @@ import com.google.protobuf.util.JsonFormat;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.synchthia.api.nebula.NebulaGrpc;
-import net.synchthia.api.nebula.libs.grpc.ManagedChannel;
-import net.synchthia.api.nebula.libs.grpc.internal.DnsNameResolverProvider;
-import net.synchthia.api.nebula.libs.grpc.netty.NettyChannelBuilder;
-import net.synchthia.api.nebula.libs.grpc.stub.StreamObserver;
+import io.grpc.ManagedChannel;
+import io.grpc.internal.DnsNameResolverProvider;
+import io.grpc.netty.NettyChannelBuilder;
+import io.grpc.stub.StreamObserver;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
