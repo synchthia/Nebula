@@ -141,6 +141,10 @@
                 <configuration>
                     <relocations>
                         <relocation>
+                            <pattern>net.synchthia.api.nebula</pattern>
+                            <shadedPattern>net.synchthia.nebula.api</shadedPattern>
+                        </relocation>
+                        <relocation>
                             <pattern>redis.clients</pattern>
                             <shadedPattern>net.synchthia.nebula.libs.redis.clients</shadedPattern>
                         </relocation>
