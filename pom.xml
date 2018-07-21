@@ -147,7 +147,11 @@
                     <relocations>
                         <relocation>
                             <pattern>redis.clients</pattern>
-                             <shadedPattern>net.synchthia.nebula.libs.redis.clients</shadedPattern>
+                            <shadedPattern>net.synchthia.nebula.libs.redis.clients</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>org.apache.commons</pattern>
+                            <shadedPattern>net.synchthia.nebula.libs.apache.commons</shadedPattern>
                         </relocation>
 
                         <!-- Bukkit -->
