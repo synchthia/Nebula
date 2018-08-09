@@ -1,10 +1,11 @@
-package net.synchthia.nebula.bukkit;
+package net.synchthia.nebula.bungee.stream;
 
 import net.synchthia.api.nebula.NebulaProtos;
-import net.synchthia.nebula.bukkit.server.ServerAPI;
+import net.synchthia.nebula.bungee.NebulaPlugin;
 import net.synchthia.nebula.client.APIClient;
 import redis.clients.jedis.JedisPubSub;
 
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 /**
@@ -16,20 +17,12 @@ public class ServersSubs extends JedisPubSub {
     @Override
     public void onPMessage(String pattern, String channel, String message) {
         NebulaProtos.ServerEntryStream serverStream = APIClient.serverEntryStreamFromJson(message);
-        assert serverStream != null;
         switch (serverStream.getType()) {
             case SYNC:
-                NebulaProtos.ServerEntry entry = serverStream.getEntry();
-                plugin.getServer().getScheduler().runTask(plugin, () -> {
-                    ServerAPI.putServer(entry);
-                    plugin.getServerSignManager().updateSigns();
-                });
+                plugin.serverAPI.putServer(serverStream.getEntry());
                 break;
             case REMOVE:
-                plugin.getServer().getScheduler().runTask(plugin, () -> {
-                    ServerAPI.removeServer(serverStream.getEntry().getName());
-                    plugin.getServerSignManager().updateSigns();
-                });
+                plugin.serverAPI.removeServer(serverStream.getEntry().getName());
                 break;
         }
     }

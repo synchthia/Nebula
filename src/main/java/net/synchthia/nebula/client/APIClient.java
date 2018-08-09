@@ -27,9 +27,20 @@ public class APIClient {
     }
 
     // Utility Method
-    public static ServerEntryStream entryStreamFromJson(String jsonText) {
+    public static ServerEntryStream serverEntryStreamFromJson(String jsonText) {
         try {
             ServerEntryStream.Builder builder = ServerEntryStream.newBuilder();
+            JsonFormat.parser().ignoringUnknownFields().merge(jsonText, builder);
+
+            return builder.build();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static BungeeEntryStream bungeeEntryStreamFromJson(String jsonText) {
+        try {
+            BungeeEntryStream.Builder builder = BungeeEntryStream.newBuilder();
             JsonFormat.parser().ignoringUnknownFields().merge(jsonText, builder);
 
             return builder.build();
@@ -59,6 +70,15 @@ public class APIClient {
 
         CompletableFuture<GetServerEntryResponse> future = new CompletableFuture<>();
         stub.getServerEntry(request, new CompletableFutureObserver<>(future));
+        return future;
+    }
+
+    public CompletableFuture<GetBungeeEntryResponse> getBungeeEntry() {
+        GetBungeeEntryRequest request = GetBungeeEntryRequest.newBuilder()
+                .build();
+
+        CompletableFuture<GetBungeeEntryResponse> future = new CompletableFuture<>();
+        stub.getBungeeEntry(request, new CompletableFutureObserver<>(future));
         return future;
     }
 

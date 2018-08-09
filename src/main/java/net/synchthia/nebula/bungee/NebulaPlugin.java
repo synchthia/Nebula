@@ -6,7 +6,9 @@ import net.md_5.bungee.api.plugin.Plugin;
 import net.synchthia.nebula.bungee.command.QuitCommand;
 import net.synchthia.nebula.bungee.event.PingListener;
 import net.synchthia.nebula.bungee.event.PlayerListener;
+import net.synchthia.nebula.bungee.server.ProxyAPI;
 import net.synchthia.nebula.bungee.server.ServerAPI;
+import net.synchthia.nebula.bungee.stream.RedisClient;
 import net.synchthia.nebula.client.APIClient;
 
 import java.util.UUID;
@@ -26,6 +28,8 @@ public class NebulaPlugin extends Plugin {
     public APIClient apiClient;
     @Getter
     public ServerAPI serverAPI;
+    @Getter
+    public ProxyAPI proxyAPI;
 
     @Override
     public void onEnable() {
@@ -35,11 +39,11 @@ public class NebulaPlugin extends Plugin {
             // Clear All Servers
             ProxyServer.getInstance().getServers().clear();
 
-            // Register Redis
-            registerRedis();
-
             // Register API
             registerAPI();
+
+            // Register Redis
+            registerRedis();
 
             // Register Listener
             ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener());
@@ -87,6 +91,7 @@ public class NebulaPlugin extends Plugin {
 
         // Activate API
         serverAPI = new ServerAPI(this);
+        proxyAPI = new ProxyAPI(this);
 
         // Get Servers
         try {

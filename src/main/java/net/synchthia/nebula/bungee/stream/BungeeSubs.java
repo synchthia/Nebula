@@ -1,6 +1,7 @@
-package net.synchthia.nebula.bungee;
+package net.synchthia.nebula.bungee.stream;
 
 import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.bungee.NebulaPlugin;
 import net.synchthia.nebula.client.APIClient;
 import redis.clients.jedis.JedisPubSub;
 
@@ -9,18 +10,15 @@ import java.util.logging.Level;
 /**
  * @author Laica-Lunasys
  */
-public class ServersSubs extends JedisPubSub {
+public class BungeeSubs extends JedisPubSub {
     private static final NebulaPlugin plugin = NebulaPlugin.getPlugin();
 
     @Override
     public void onPMessage(String pattern, String channel, String message) {
-        NebulaProtos.ServerEntryStream serverStream = APIClient.entryStreamFromJson(message);
-        switch (serverStream.getType()) {
+        NebulaProtos.BungeeEntryStream stream = APIClient.bungeeEntryStreamFromJson(message);
+        switch (stream.getType()) {
             case SYNC:
-                plugin.serverAPI.putServer(serverStream.getEntry());
-                break;
-            case REMOVE:
-                plugin.serverAPI.removeServer(serverStream.getEntry().getName());
+                plugin.proxyAPI.setBungeeEntry(stream.getEntry());
                 break;
         }
     }
@@ -28,6 +26,9 @@ public class ServersSubs extends JedisPubSub {
     @Override
     public void onPSubscribe(String pattern, int subscribedChannels) {
         plugin.getLogger().log(Level.INFO, "P Subscribed : " + pattern);
+        if (pattern.equals("nebula.bungee.global")) {
+            plugin.proxyAPI.fetchBungeeEntry();
+        }
     }
 
     @Override
