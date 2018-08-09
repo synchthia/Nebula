@@ -5,6 +5,7 @@ import net.synchthia.nebula.bungee.NebulaPlugin;
 import net.synchthia.nebula.client.APIClient;
 import redis.clients.jedis.JedisPubSub;
 
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 /**
@@ -27,7 +28,11 @@ public class BungeeSubs extends JedisPubSub {
     public void onPSubscribe(String pattern, int subscribedChannels) {
         plugin.getLogger().log(Level.INFO, "P Subscribed : " + pattern);
         if (pattern.equals("nebula.bungee.global")) {
-            plugin.proxyAPI.fetchBungeeEntry();
+            try {
+                plugin.proxyAPI.fetchBungeeEntry().get(5, TimeUnit.SECONDS);
+            } catch (Exception ex) {
+                plugin.getLogger().log(Level.WARNING, "Failed Fetch Bungee Entry", ex);
+            }
         }
     }
 
