@@ -18,7 +18,7 @@ public class ServerAction {
             return;
         }
 
-        if (server.getName().equals(Bukkit.getServerName())) {
+        if (server.getName().equals(Bukkit.getServerId())) {
             player.sendMessage(ChatColor.RED + "Already Connected to this Server!");
             return;
         }
