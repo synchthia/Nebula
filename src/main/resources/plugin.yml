@@ -1,3 +1,8 @@
-name: Nebula
-version: ${project.version}
-main: net.synchthia.nebula.bukkit.NebulaPlugin
+name: ${bukkit.plugin.name}
+version: ${project.version}-${git.branch}-${git.commit.id.abbrev}
+api-version: ${bukkit.plugin.api-version}
+author: ${bukkit.plugin.authors}
+description: ${project.description}
+
+main: ${bukkit.plugin.main}
+website: ${project.url}

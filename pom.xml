@@ -10,8 +10,15 @@
     <packaging>jar</packaging>
 
     <name>Nebula</name>
+    <url>https://www.synchthia.net/</url>
+    <description>Server Synchronize System</description>
 
     <properties>
+        <bukkit.plugin.name>Nebula</bukkit.plugin.name>
+        <bukkit.plugin.main>net.synchthia.nebula.bukkit.NebulaPlugin</bukkit.plugin.main>
+        <bukkit.plugin.api-version>1.13</bukkit.plugin.api-version>
+        <bukkit.plugin.authors>Synchthia Crew</bukkit.plugin.authors>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -70,7 +77,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <version>1.13.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -166,6 +173,18 @@
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>revision</goal>
                         </goals>
                     </execution>
                 </executions>
