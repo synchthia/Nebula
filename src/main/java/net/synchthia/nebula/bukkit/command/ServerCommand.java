@@ -33,7 +33,11 @@ public class ServerCommand extends BaseCommand {
             String s1 = String.format("&6&l[%s]: ", v.getDisplayName());
             String s2;
             if (v.getStatus().getOnline()) {
-                s2 = String.format("&7%d/%d", v.getStatus().getPlayers().getOnline(), v.getStatus().getPlayers().getMax());
+                if (v.getStatus().getPlayers().getMax() == 0) {
+                    s2 = "&7&lStarting";
+                } else {
+                    s2 = String.format("&7%d/%d", v.getStatus().getPlayers().getOnline(), v.getStatus().getPlayers().getMax());
+                }
             } else {
                 s2 = "&c&lOffline";
             }

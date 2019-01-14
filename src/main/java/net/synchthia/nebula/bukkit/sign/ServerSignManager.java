@@ -68,10 +68,17 @@ public class ServerSignManager {
 
         if (server != null) {
             if (server.getStatus().getOnline()) {
-                format.put(0, "§1§l[" + server.getDisplayName() + "]");
-                format.put(1, "§8§l" + Integer.toString(server.getStatus().getPlayers().getOnline()) + "/" + Integer.toString(server.getStatus().getPlayers().getMax()));
-                format.put(2, "");
-                format.put(3, "§1§l● ONLINE ●");
+                if (server.getStatus().getPlayers().getMax() == 0) {
+                    format.put(0, "");
+                    format.put(1, "§1§l[" + server.getDisplayName() + "]");
+                    format.put(2, "§8§l● STARTING ●");
+                    format.put(3, "");
+                } else {
+                    format.put(0, "§1§l[" + server.getDisplayName() + "]");
+                    format.put(1, "§8§l" + server.getStatus().getPlayers().getOnline() + "/" + server.getStatus().getPlayers().getMax());
+                    format.put(2, "");
+                    format.put(3, "§1§l● ONLINE ●");
+                }
             } else {
                 format.put(0, "");
                 format.put(1, "§1§l[" + server.getDisplayName() + "]");
