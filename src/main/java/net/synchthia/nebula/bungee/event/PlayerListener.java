@@ -26,8 +26,12 @@ public class PlayerListener implements Listener {
     public void onLogin(LoginEvent event) {
         ServerInfo lobby = NebulaPlugin.getPlugin().serverAPI.determinateLobby();
         if (lobby == null) {
-            TextComponent msg = new TextComponent(ChatColor.RED + "Login Failed: LoginEvent -> Couldn't find available Lobby");
-            event.getConnection().disconnect(msg);
+            TextComponent disconnect_prefix = new TextComponent(ChatColor.translateAlternateColorCodes('&', "&f- &b&lSTARTAIL&f -\n\n&f"));
+            TextComponent msgEn = new TextComponent(ChatColor.RED + "Login Failed: Couldn't find available Lobby.\n");
+            TextComponent msgJa = new TextComponent(ChatColor.RED + "ログインに失敗しました: 接続可能なロビーがありません。\n");
+            TextComponent error = new TextComponent(ChatColor.DARK_GRAY + "\n[ERR_LOGIN_EVENT]");
+
+            event.getConnection().disconnect(disconnect_prefix, msgEn, msgJa, error);
 
             ProxyServer.getInstance().getLogger().log(Level.SEVERE, "Couldn't pass event: LoginEvent (api server is down?)");
         } else {
