@@ -1,7 +1,6 @@
 package net.synchthia.nebula.bungee.event;
 
 import net.md_5.bungee.api.Favicon;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
