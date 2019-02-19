@@ -1,6 +1,5 @@
 package net.synchthia.nebula.bungee.server;
 
-import net.md_5.bungee.api.Favicon;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.synchthia.api.nebula.NebulaProtos;
@@ -46,7 +45,7 @@ public class ServerAPI {
         ProxyServer.getInstance().getServers().remove(serverName);
     }
 
-    public final ServerInfo determinateLobby() {
+    public NebulaProtos.ServerEntry determinateLobby() {
         List<Map.Entry<String, NebulaProtos.ServerEntry>> s = serverEntry.entrySet().stream()
                 .filter(e -> e.getValue().getFallback())
                 .filter(e -> e.getValue().getStatus().getOnline())
@@ -56,7 +55,7 @@ public class ServerAPI {
         if (s.size() == 0) {
             return null;
         } else {
-            return ProxyServer.getInstance().getServerInfo(s.get(0).getValue().getName());
+            return s.get(0).getValue();
         }
     }
 

@@ -12,6 +12,7 @@ import net.md_5.bungee.api.event.ServerKickEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
+import net.synchthia.api.nebula.NebulaProtos;
 import net.synchthia.nebula.bungee.NebulaPlugin;
 
 import java.util.logging.Level;
@@ -24,7 +25,9 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onLogin(LoginEvent event) {
-        ServerInfo lobby = NebulaPlugin.getPlugin().serverAPI.determinateLobby();
+        NebulaProtos.ServerEntry lobbyEntry = NebulaPlugin.getPlugin().serverAPI.determinateLobby();
+        ServerInfo lobby = ProxyServer.getInstance().getServerInfo(lobbyEntry.getName());
+
         if (lobby == null) {
             TextComponent disconnect_prefix = new TextComponent(ChatColor.translateAlternateColorCodes('&', "&f- &b&lSTARTAIL&f -\n\n&f"));
             TextComponent msgEn = new TextComponent(ChatColor.RED + "Login Failed: Couldn't find available Lobby.\n");
@@ -60,7 +63,9 @@ public class PlayerListener implements Listener {
         TextComponent reason = new TextComponent(event.getKickReasonComponent());
 
         // Determinate & Get Lobby Server or Disconnect
-        ServerInfo lobby = NebulaPlugin.getPlugin().serverAPI.determinateLobby();
+        NebulaProtos.ServerEntry lobbyEntry = NebulaPlugin.getPlugin().serverAPI.determinateLobby();
+        ServerInfo lobby = ProxyServer.getInstance().getServerInfo(lobbyEntry.getName());
+
         if (lobby != null) {
             event.setCancelServer(lobby);
         } else {

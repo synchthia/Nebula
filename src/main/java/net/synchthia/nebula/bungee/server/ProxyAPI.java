@@ -3,9 +3,7 @@ package net.synchthia.nebula.bungee.server;
 import lombok.Getter;
 import net.md_5.bungee.api.Favicon;
 import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.chat.ComponentSerializer;
 import net.synchthia.api.nebula.NebulaProtos;
 import net.synchthia.nebula.bungee.NebulaPlugin;
 
