@@ -1,8 +1,8 @@
 package net.synchthia.nebula.bukkit.server;
 
 import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.bukkit.NebulaPlugin;
 import net.synchthia.nebula.bukkit.util.BungeeUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -18,7 +18,7 @@ public class ServerAction {
             return;
         }
 
-        if (server.getName().equals(Bukkit.getServerId())) {
+        if (server.getName().equals(NebulaPlugin.getServerId())) {
             player.sendMessage(ChatColor.RED + "Already Connected to this Server!");
             return;
         }

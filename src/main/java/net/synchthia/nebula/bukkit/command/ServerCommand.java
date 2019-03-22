@@ -2,6 +2,7 @@ package net.synchthia.nebula.bukkit.command;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
+import net.synchthia.nebula.bukkit.NebulaPlugin;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
 import net.synchthia.nebula.bukkit.server.ServerAction;
 import net.synchthia.nebula.bukkit.util.StringUtil;
@@ -18,7 +19,7 @@ public class ServerCommand extends BaseCommand {
     @Description("")
     public void onServer(CommandSender sender, @Optional String server) {
         if (server == null) {
-            sender.sendMessage(StringUtil.coloring("&b&lYou are currently on &9&l" + Bukkit.getServer().getServerName()));
+            sender.sendMessage(StringUtil.coloring("&b&lYou are currently on &9&l" + NebulaPlugin.getServerName()));
             return;
         }
 

@@ -32,6 +32,14 @@ public class NebulaPlugin extends JavaPlugin {
     @Getter
     private ServerSignManager serverSignManager;
 
+    // Server Settings ==================
+    @Getter
+    private final static String serverId = System.getenv("SERVER_ID") != null ? System.getenv("SERVER_ID") : "unknown";
+
+    @Getter
+    private final static String serverName = System.getenv("SERVER_NAME") != null ? System.getenv("SERVER_NAME") : "Unknown";
+    // ==================================
+
     @Override
     public void onEnable() {
         try {
@@ -90,7 +98,7 @@ public class NebulaPlugin extends JavaPlugin {
         }
 
         getLogger().log(Level.INFO, "Redis Address: " + redisAddress);
-        redisClient = new RedisClient(Bukkit.getServer().getServerName(), hostname, port);
+        redisClient = new RedisClient(NebulaPlugin.getServerName(), hostname, port);
     }
 
 
