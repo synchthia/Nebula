@@ -1,0 +1,8 @@
+box: maven:3.6.0-jdk-8-slim
+build:
+  steps:
+    - script:
+      code: |-
+        if [ ! -e "$HOME/.m2/" ]; then mkdir -p $HOME/.m2/; fi
+        echo -e ${CI_MVN_SETTINGS} > $HOME/.m2/settings.xml
+        mvn clean package deploy
