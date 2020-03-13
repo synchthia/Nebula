@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  maven:
+    name: deploy-maven
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Pull maven
+        uses: docker://maven:3.6.0-jdk-8-slim
+        with:
+          entrypoint: /bin/bash
+      - name: Build and Deploy
+        env:
+          CI_MVN_SETTINGS: ${{ secrets.CI_MVN_SETTINGS }}
+        run: |
+          mkdir -p $HOME/.m2
+          echo -e "$(echo $CI_MVN_SETTINGS)" > "$HOME/.m2/settings.xml"
+          mvn clean package deploy
