@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import net.synchthia.api.nebula.NebulaProtos;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
+import net.synchthia.nebula.bukkit.util.StringUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Sign;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -70,19 +71,19 @@ public class ServerSignManager {
             if (server.getStatus().getOnline()) {
                 if (server.getStatus().getPlayers().getMax() == 0) {
                     format.put(0, "");
-                    format.put(1, "§1§l[" + server.getDisplayName() + "]");
-                    format.put(2, "§8§l● STARTING ●");
+                    format.put(1, StringUtil.coloring("&1&l[" + server.getDisplayName() + "]"));
+                    format.put(2, StringUtil.coloring("&8&l● STARTING ●"));
                     format.put(3, "");
                 } else {
-                    format.put(0, "§1§l[" + server.getDisplayName() + "]");
-                    format.put(1, "§8§l" + server.getStatus().getPlayers().getOnline() + "/" + server.getStatus().getPlayers().getMax());
+                    format.put(0, StringUtil.coloring("&1&l[" + server.getDisplayName() + "]"));
+                    format.put(1, StringUtil.coloring("&8&l" + server.getStatus().getPlayers().getOnline() + "/" + server.getStatus().getPlayers().getMax()));
                     format.put(2, "");
-                    format.put(3, "§1§l● ONLINE ●");
+                    format.put(3, StringUtil.coloring("&1&l● ONLINE ●"));
                 }
             } else {
                 format.put(0, "");
-                format.put(1, "§1§l[" + server.getDisplayName() + "]");
-                format.put(2, "§4§l■ OFFLINE ■");
+                format.put(1, StringUtil.coloring("&1&l[" + server.getDisplayName() + "]"));
+                format.put(2, StringUtil.coloring("&4&l■ OFFLINE ■"));
                 format.put(3, "");
             }
         } else {
