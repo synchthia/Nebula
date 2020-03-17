@@ -2,6 +2,7 @@ package net.synchthia.nebula.bukkit;
 
 import net.synchthia.api.nebula.NebulaProtos;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
+import net.synchthia.nebula.bukkit.util.StringUtil;
 import net.synchthia.nebula.client.APIClient;
 import redis.clients.jedis.JedisPubSub;
 
@@ -22,6 +23,13 @@ public class ServersSubs extends JedisPubSub {
                 NebulaProtos.ServerEntry entry = serverStream.getEntry();
                 plugin.getServer().getScheduler().runTask(plugin, () -> {
                     ServerAPI.putServer(entry);
+                    if (entry.getName().equals(NebulaPlugin.getServerId()) && entry.getLockdown().getEnabled()) {
+                        plugin.getServer().getOnlinePlayers().forEach(player -> {
+                            if (!player.hasPermission("nebula.server." + entry.getName())) {
+                                player.kickPlayer(StringUtil.coloring(entry.getLockdown().getDescription()));
+                            }
+                        });
+                    }
                     plugin.getServerSignManager().updateSigns();
                 });
                 break;

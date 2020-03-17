@@ -6,7 +6,9 @@ import lombok.Getter;
 import net.synchthia.api.nebula.NebulaProtos;
 import net.synchthia.nebula.bukkit.command.LobbyCommand;
 import net.synchthia.nebula.bukkit.command.ServerCommand;
+import net.synchthia.nebula.bukkit.player.PlayerListener;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
+import net.synchthia.nebula.bukkit.sign.ServerSignListener;
 import net.synchthia.nebula.bukkit.sign.ServerSignManager;
 import net.synchthia.nebula.client.APIClient;
 import org.bukkit.Bukkit;
@@ -57,6 +59,8 @@ public class NebulaPlugin extends JavaPlugin {
             serverSignManager.updateSigns();
 
             this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
+            Bukkit.getPluginManager().registerEvents(new PlayerListener(this), plugin);
 
             getLogger().log(Level.INFO, "Enabled " + this.getName());
         } catch (Exception e) {
