@@ -75,9 +75,14 @@ public class ServerSignManager {
                     format.put(2, StringUtil.coloring("&8&l● STARTING ●"));
                     format.put(3, "");
                 } else {
+                    String motd = server.getStatus().getDescription();
+                    if (motd.length() >= 15) {
+                        motd = motd.substring(0, 14);
+                    }
+
                     format.put(0, StringUtil.coloring("&1&l[" + server.getDisplayName() + "]"));
-                    format.put(1, StringUtil.coloring("&8&l" + server.getStatus().getPlayers().getOnline() + "/" + server.getStatus().getPlayers().getMax()));
-                    format.put(2, "");
+                    format.put(1, StringUtil.coloring(motd));
+                    format.put(2, StringUtil.coloring("&8&l" + server.getStatus().getPlayers().getOnline() + "/" + server.getStatus().getPlayers().getMax()));
                     format.put(3, StringUtil.coloring("&1&l● ONLINE ●"));
                 }
             } else {
