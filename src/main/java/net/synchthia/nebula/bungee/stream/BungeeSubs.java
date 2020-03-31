@@ -27,13 +27,6 @@ public class BungeeSubs extends JedisPubSub {
     @Override
     public void onPSubscribe(String pattern, int subscribedChannels) {
         plugin.getLogger().log(Level.INFO, "P Subscribed : " + pattern);
-        if (pattern.equals("nebula.bungee.global")) {
-            try {
-                plugin.proxyAPI.fetchBungeeEntry().get(5, TimeUnit.SECONDS);
-            } catch (Exception ex) {
-                plugin.getLogger().log(Level.WARNING, "Failed Fetch Bungee Entry", ex);
-            }
-        }
     }
 
     @Override

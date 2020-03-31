@@ -39,11 +39,11 @@ public class NebulaPlugin extends Plugin {
             // Clear All Servers
             ProxyServer.getInstance().getServers().clear();
 
-            // Register API
-            registerAPI();
-
             // Register Redis
             registerRedis();
+
+            // Register API
+            registerAPI();
 
             // Register Listener
             ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener());
@@ -92,6 +92,13 @@ public class NebulaPlugin extends Plugin {
         // Activate API
         serverAPI = new ServerAPI(this);
         proxyAPI = new ProxyAPI(this);
+
+        // Get Bungee Information
+        try {
+            proxyAPI.fetchBungeeEntry().get(5, TimeUnit.SECONDS);
+        } catch (Exception ex) {
+            plugin.getLogger().log(Level.WARNING, "Failed Fetch Bungee Entry", ex);
+        }
 
         // Get Servers
         try {

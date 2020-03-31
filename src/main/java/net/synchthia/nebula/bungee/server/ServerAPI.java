@@ -70,10 +70,11 @@ public class ServerAPI {
         return plugin.apiClient.getServerEntry().whenComplete((servers, throwable) -> {
             if (throwable != null) {
                 plugin.getLogger().log(Level.WARNING, "Failed GetServers: Exception threw", throwable);
+                return;
             }
 
             // forEach: entry -> putServer(entry)
-            servers.getEntryList().forEach((this::putServer));
+            servers.getEntryList().forEach(this::putServer);
         });
     }
 }

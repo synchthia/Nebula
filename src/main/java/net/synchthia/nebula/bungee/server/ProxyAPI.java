@@ -1,5 +1,6 @@
 package net.synchthia.nebula.bungee.server;
 
+import io.grpc.Status;
 import lombok.Getter;
 import net.md_5.bungee.api.Favicon;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -12,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 
@@ -31,7 +33,14 @@ public class ProxyAPI {
     public CompletableFuture<NebulaProtos.GetBungeeEntryResponse> fetchBungeeEntry() {
         return plugin.apiClient.getBungeeEntry().whenComplete((response, throwable) -> {
             if (throwable != null) {
-                plugin.getLogger().log(Level.WARNING, "Failed fetch Bungee Entry", throwable);
+                if (Objects.equals(Status.fromThrowable(throwable).getDescription(), "context deadline exceeded")) {
+                    plugin.getLogger().log(Level.WARNING, "Failed fetch Bungee Entry, retrying...");
+                    fetchBungeeEntry().join();
+                } else {
+                    plugin.getLogger().log(Level.WARNING, "Failed fetch Bungee Entry", throwable);
+                }
+
+                return;
             }
             setBungeeEntry(response.getEntry());
         });
