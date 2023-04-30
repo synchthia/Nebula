@@ -1,6 +1,6 @@
 package net.synchthia.nebula.bukkit;
 
-import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
 import net.synchthia.nebula.bukkit.util.StringUtil;
 import net.synchthia.nebula.client.APIClient;

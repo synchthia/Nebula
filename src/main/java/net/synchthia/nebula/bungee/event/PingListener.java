@@ -6,7 +6,7 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
-import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bungee.NebulaPlugin;
 
 /**

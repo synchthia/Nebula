@@ -2,7 +2,7 @@ package net.synchthia.nebula.bungee.server;
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
-import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bungee.NebulaPlugin;
 
 import java.net.InetSocketAddress;

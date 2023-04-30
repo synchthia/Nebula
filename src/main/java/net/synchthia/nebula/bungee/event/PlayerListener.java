@@ -12,7 +12,7 @@ import net.md_5.bungee.api.event.ServerKickEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
-import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bungee.NebulaPlugin;
 
 import java.util.logging.Level;
@@ -26,16 +26,26 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onLogin(LoginEvent event) {
         NebulaProtos.ServerEntry lobbyEntry = NebulaPlugin.getPlugin().serverAPI.determinateLobby();
+        if (lobbyEntry == null) {
+            TextComponent disconnect_prefix = new TextComponent(ChatColor.translateAlternateColorCodes('&', "&f- &c&lERROR&f -\n\n&f"));
+            TextComponent msgEn = new TextComponent(ChatColor.RED + "Login Failed: Couldn't find available Lobby.\n");
+            TextComponent msgJa = new TextComponent(ChatColor.RED + "ログインに失敗しました: 接続可能なロビーがありません。\n");
+            TextComponent error = new TextComponent(ChatColor.DARK_GRAY + "\n[ERR_DETERMINATE_LOBBY]");
+
+            event.getConnection().disconnect(disconnect_prefix, msgEn, msgJa, error);
+            ProxyServer.getInstance().getLogger().log(Level.SEVERE, "Couldn't pass event: LoginEvent (failed determinate lobby)");
+            return;
+        }
+
         ServerInfo lobby = ProxyServer.getInstance().getServerInfo(lobbyEntry.getName());
 
         if (lobby == null) {
-            TextComponent disconnect_prefix = new TextComponent(ChatColor.translateAlternateColorCodes('&', "&f- &b&lSTARTAIL&f -\n\n&f"));
+            TextComponent disconnect_prefix = new TextComponent(ChatColor.translateAlternateColorCodes('&', "&f- &c&lERROR&f -\n\n&f"));
             TextComponent msgEn = new TextComponent(ChatColor.RED + "Login Failed: Couldn't find available Lobby.\n");
             TextComponent msgJa = new TextComponent(ChatColor.RED + "ログインに失敗しました: 接続可能なロビーがありません。\n");
             TextComponent error = new TextComponent(ChatColor.DARK_GRAY + "\n[ERR_LOGIN_EVENT]");
 
             event.getConnection().disconnect(disconnect_prefix, msgEn, msgJa, error);
-
             ProxyServer.getInstance().getLogger().log(Level.SEVERE, "Couldn't pass event: LoginEvent (api server is down?)");
         } else {
             event.getConnection().getListener().getServerPriority().clear();
@@ -58,7 +68,7 @@ public class PlayerListener implements Listener {
         Logger logger = NebulaPlugin.plugin.getLogger();
         ServerInfo kickedFrom = event.getKickedFrom();
 
-        TextComponent disconnect_prefix = new TextComponent(ChatColor.translateAlternateColorCodes('&', "&f- &b&lSTARTAIL&f -\n\n&f"));
+        TextComponent disconnect_prefix = new TextComponent(ChatColor.translateAlternateColorCodes('&', "&f- &b&lINFORMATION&f -\n\n&f"));
         TextComponent kicked_prefix = new TextComponent(ChatColor.translateAlternateColorCodes('&', "&c&l" + kickedFrom.getName() + "&7≫&r "));
         TextComponent reason = new TextComponent(event.getKickReasonComponent());
 

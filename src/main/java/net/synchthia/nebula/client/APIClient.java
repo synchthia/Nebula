@@ -3,7 +3,7 @@ package net.synchthia.nebula.client;
 import com.google.protobuf.util.JsonFormat;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import net.synchthia.api.nebula.NebulaGrpc;
+import net.synchthia.nebula.api.NebulaGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.internal.DnsNameResolverProvider;
 import io.grpc.netty.NettyChannelBuilder;
@@ -12,7 +12,7 @@ import io.grpc.stub.StreamObserver;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-import static net.synchthia.api.nebula.NebulaProtos.*;
+import static net.synchthia.nebula.api.NebulaProtos.*;
 
 /**
  * @author Laica-Lunasys

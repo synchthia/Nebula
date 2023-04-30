@@ -1,6 +1,6 @@
 package net.synchthia.nebula.bungee.stream;
 
-import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bungee.NebulaPlugin;
 import net.synchthia.nebula.client.APIClient;
 import redis.clients.jedis.JedisPubSub;

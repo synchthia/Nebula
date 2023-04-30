@@ -2,7 +2,7 @@ package net.synchthia.nebula.bukkit.sign;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
 import net.synchthia.nebula.bukkit.server.ServerAction;
 import org.bukkit.ChatColor;

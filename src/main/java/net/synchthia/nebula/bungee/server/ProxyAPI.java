@@ -5,7 +5,7 @@ import lombok.Getter;
 import net.md_5.bungee.api.Favicon;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
-import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bungee.NebulaPlugin;
 
 import javax.imageio.ImageIO;
@@ -48,7 +48,10 @@ public class ProxyAPI {
 
     public void setBungeeEntry(NebulaProtos.BungeeEntry entry) {
         setMotd(entry.getMotd());
-        setFavicon(entry.getFavicon());
+
+        if (!entry.getFavicon().equals("")) {
+            setFavicon(entry.getFavicon());
+        }
     }
 
     private void setMotd(String motd) {

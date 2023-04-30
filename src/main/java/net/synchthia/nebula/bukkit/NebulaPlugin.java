@@ -3,7 +3,7 @@ package net.synchthia.nebula.bukkit;
 import co.aikar.commands.BukkitCommandManager;
 import com.google.common.collect.Lists;
 import lombok.Getter;
-import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.command.LobbyCommand;
 import net.synchthia.nebula.bukkit.command.ServerCommand;
 import net.synchthia.nebula.bukkit.player.PlayerListener;

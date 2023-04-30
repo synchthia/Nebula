@@ -16,7 +16,7 @@ public class ServerCommand extends BaseCommand {
 
     @CommandAlias("server|sv")
     @CommandCompletion("@servers")
-    @Description("")
+    @Description("Switch server")
     public void onServer(CommandSender sender, @Optional String server) {
         if (server == null) {
             sender.sendMessage(StringUtil.coloring("&b&lYou are currently on &9&l" + NebulaPlugin.getServerName()));
@@ -28,6 +28,7 @@ public class ServerCommand extends BaseCommand {
 
     @CommandAlias("servers|glist|listserver|listservers")
     @CommandPermission("nebula.command.servers")
+    @Description("Show all servers")
     public void onServers(CommandSender sender) {
         sender.sendMessage(StringUtil.coloring("&8&m[&b&lServers&8&m]-----------------------------------"));
         ServerAPI.getServerEntry().forEach((k, v) -> {

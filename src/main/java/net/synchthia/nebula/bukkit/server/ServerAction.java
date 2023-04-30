@@ -1,6 +1,6 @@
 package net.synchthia.nebula.bukkit.server;
 
-import net.synchthia.api.nebula.NebulaProtos;
+import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.NebulaPlugin;
 import net.synchthia.nebula.bukkit.util.BungeeUtil;
 import org.bukkit.ChatColor;
