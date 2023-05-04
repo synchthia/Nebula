@@ -25,6 +25,10 @@ public class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPreLogin(AsyncPlayerPreLoginEvent event) {
+        if (!NebulaPlugin.getIsIPFilterEnable()) {
+            return;
+        }
+
         try {
             NebulaProtos.IPLookupResponse response = plugin.getPlayerAPI().lookupIP(event.getAddress().getHostAddress()).get(5, TimeUnit.SECONDS);
             NebulaProtos.IPLookupResult result = response.getResult();

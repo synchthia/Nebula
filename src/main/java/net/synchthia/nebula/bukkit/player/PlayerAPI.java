@@ -16,15 +16,15 @@ public class PlayerAPI {
     }
 
     public CompletableFuture<NebulaProtos.IPLookupResponse> lookupIP(String playerIP) {
-            return plugin.apiClient.getIPLookup(playerIP).whenComplete((ipLookupResponse, throwable) -> {
-                if (throwable != null) {
-                    if (Objects.equals(Status.fromThrowable(throwable).getDescription(), "context deadline exceeded")) {
-                        plugin.getLogger().log(Level.WARNING, "Failed fetch Bungee Entry, retrying...");
-                        lookupIP(playerIP).join();
-                    } else {
-                        plugin.getLogger().log(Level.WARNING, "Failed lookup ip" + playerIP);
-                    }
+        return plugin.apiClient.getIPLookup(playerIP).whenComplete((ipLookupResponse, throwable) -> {
+            if (throwable != null) {
+                if (Objects.equals(Status.fromThrowable(throwable).getDescription(), "context deadline exceeded")) {
+                    plugin.getLogger().log(Level.WARNING, "Failed fetch Bungee Entry, retrying...");
+                    lookupIP(playerIP).join();
+                } else {
+                    plugin.getLogger().log(Level.WARNING, "Failed lookup ip" + playerIP);
                 }
-            });
+            }
+        });
     }
 }

@@ -43,6 +43,9 @@ public class NebulaPlugin extends JavaPlugin {
 
     @Getter
     private final static String serverName = System.getenv("SERVER_NAME") != null ? System.getenv("SERVER_NAME") : "Unknown";
+
+    @Getter
+    private final static Boolean isIPFilterEnable = System.getenv("ENABLE_IP_FILTER").equals("true");
     // ==================================
 
     @Override
@@ -121,6 +124,7 @@ public class NebulaPlugin extends JavaPlugin {
 
         // Activate API
         serverAPI = new ServerAPI(this);
+        playerAPI = new PlayerAPI(this);
 
         try {
             NebulaProtos.GetServerEntryResponse res = apiClient.getServerEntry().get(5, TimeUnit.SECONDS);
