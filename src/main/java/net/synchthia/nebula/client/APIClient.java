@@ -82,6 +82,18 @@ public class APIClient {
         return future;
     }
 
+    public CompletableFuture<IPLookupResponse> getIPLookup(String ipAddress) {
+        IPLookupRequest request = IPLookupRequest.newBuilder()
+                .setIpAddress(ipAddress)
+                .build();
+
+        CompletableFuture<IPLookupResponse> future = new CompletableFuture<>();
+
+        // WTF
+        stub.iPLookup(request, new CompletableFutureObserver<>(future));
+        return future;
+    }
+
     @RequiredArgsConstructor
     private static class CompletableFutureObserver<V> implements StreamObserver<V> {
         private final CompletableFuture<V> future;

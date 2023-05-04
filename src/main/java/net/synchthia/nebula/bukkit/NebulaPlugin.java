@@ -6,6 +6,7 @@ import lombok.Getter;
 import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.command.LobbyCommand;
 import net.synchthia.nebula.bukkit.command.ServerCommand;
+import net.synchthia.nebula.bukkit.player.PlayerAPI;
 import net.synchthia.nebula.bukkit.player.PlayerListener;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
 import net.synchthia.nebula.bukkit.sign.ServerSignListener;
@@ -30,6 +31,8 @@ public class NebulaPlugin extends JavaPlugin {
     public APIClient apiClient;
     @Getter
     private ServerAPI serverAPI;
+    @Getter
+    private PlayerAPI playerAPI;
 
     @Getter
     private ServerSignManager serverSignManager;
