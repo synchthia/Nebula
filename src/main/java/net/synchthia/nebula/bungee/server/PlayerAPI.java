@@ -1,8 +1,8 @@
-package net.synchthia.nebula.bukkit.player;
+package net.synchthia.nebula.bungee.server;
 
 import io.grpc.Status;
 import net.synchthia.nebula.api.NebulaProtos;
-import net.synchthia.nebula.bukkit.NebulaPlugin;
+import net.synchthia.nebula.bungee.NebulaPlugin;
 
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;

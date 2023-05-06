@@ -6,10 +6,8 @@ import lombok.Getter;
 import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.command.LobbyCommand;
 import net.synchthia.nebula.bukkit.command.ServerCommand;
-import net.synchthia.nebula.bukkit.player.PlayerAPI;
 import net.synchthia.nebula.bukkit.player.PlayerListener;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
-import net.synchthia.nebula.bukkit.sign.ServerSignListener;
 import net.synchthia.nebula.bukkit.sign.ServerSignManager;
 import net.synchthia.nebula.client.APIClient;
 import org.bukkit.Bukkit;
@@ -31,8 +29,6 @@ public class NebulaPlugin extends JavaPlugin {
     public APIClient apiClient;
     @Getter
     private ServerAPI serverAPI;
-    @Getter
-    private PlayerAPI playerAPI;
 
     @Getter
     private ServerSignManager serverSignManager;
@@ -43,9 +39,6 @@ public class NebulaPlugin extends JavaPlugin {
 
     @Getter
     private final static String serverName = System.getenv("SERVER_NAME") != null ? System.getenv("SERVER_NAME") : "Unknown";
-
-    @Getter
-    private final static Boolean isIPFilterEnable = System.getenv("ENABLE_IP_FILTER").equals("true");
     // ==================================
 
     @Override
@@ -124,7 +117,6 @@ public class NebulaPlugin extends JavaPlugin {
 
         // Activate API
         serverAPI = new ServerAPI(this);
-        playerAPI = new PlayerAPI(this);
 
         try {
             NebulaProtos.GetServerEntryResponse res = apiClient.getServerEntry().get(5, TimeUnit.SECONDS);

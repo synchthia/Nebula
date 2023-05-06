@@ -6,6 +6,7 @@ import net.md_5.bungee.api.plugin.Plugin;
 import net.synchthia.nebula.bungee.command.QuitCommand;
 import net.synchthia.nebula.bungee.event.PingListener;
 import net.synchthia.nebula.bungee.event.PlayerListener;
+import net.synchthia.nebula.bungee.server.PlayerAPI;
 import net.synchthia.nebula.bungee.server.ProxyAPI;
 import net.synchthia.nebula.bungee.server.ServerAPI;
 import net.synchthia.nebula.bungee.stream.RedisClient;
@@ -30,6 +31,13 @@ public class NebulaPlugin extends Plugin {
     public ServerAPI serverAPI;
     @Getter
     public ProxyAPI proxyAPI;
+    @Getter
+    public PlayerAPI playerAPI;
+
+    // Server Settings ==================
+    @Getter
+    private final static Boolean isIPFilterEnable = System.getenv("ENABLE_IP_FILTER") != null && System.getenv("ENABLE_IP_FILTER").equals("true");
+    // ==================================
 
     @Override
     public void onEnable() {
@@ -47,10 +55,16 @@ public class NebulaPlugin extends Plugin {
 
             // Register Listener
             ProxyServer.getInstance().getPluginManager().registerListener(this, new PingListener());
-            ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerListener());
+            ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerListener(plugin));
 
             // Register Command
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new QuitCommand());
+
+            if (isIPFilterEnable) {
+                getLogger().log(Level.INFO, "IPFilter Enabled");
+            } else {
+                getLogger().log(Level.INFO, "IPFilter Disabled");
+            }
 
             getLogger().log(Level.INFO, "Enabled Nebula");
         } catch (Exception e) {
@@ -92,6 +106,7 @@ public class NebulaPlugin extends Plugin {
         // Activate API
         serverAPI = new ServerAPI(this);
         proxyAPI = new ProxyAPI(this);
+        playerAPI = new PlayerAPI(this);
 
         // Get Bungee Information
         try {

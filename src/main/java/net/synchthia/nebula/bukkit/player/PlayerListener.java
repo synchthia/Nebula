@@ -23,24 +23,6 @@ public class PlayerListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onPreLogin(AsyncPlayerPreLoginEvent event) {
-        if (!NebulaPlugin.getIsIPFilterEnable()) {
-            return;
-        }
-
-        try {
-            NebulaProtos.IPLookupResponse response = plugin.getPlayerAPI().lookupIP(event.getAddress().getHostAddress()).get(5, TimeUnit.SECONDS);
-            NebulaProtos.IPLookupResult result = response.getResult();
-            if (result.getIsProxy() || result.getIsCrawler()) {
-                event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, StringUtil.coloring("&cSorry, but you don't have permission connecting to this server. &7(Denied)"));
-            }
-        } catch (InterruptedException | ExecutionException | TimeoutException ex) {
-            plugin.getLogger().log(Level.SEVERE, "Exception threw execution onPreLogin", ex);
-            event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, StringUtil.coloring("&cInternal Server Error (Player Check Failed)"));
-        }
-    }
-
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
     public void onLogin(PlayerLoginEvent event) {
         NebulaProtos.ServerEntry serverEntry = ServerAPI.getServerEntry().get(NebulaPlugin.getServerId());
