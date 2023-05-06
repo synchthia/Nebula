@@ -1,13 +1,13 @@
 package net.synchthia.nebula.client;
 
 import com.google.protobuf.util.JsonFormat;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import net.synchthia.nebula.api.NebulaGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.internal.DnsNameResolverProvider;
 import io.grpc.netty.NettyChannelBuilder;
 import io.grpc.stub.StreamObserver;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import net.synchthia.nebula.api.NebulaGrpc;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -79,6 +79,16 @@ public class APIClient {
 
         CompletableFuture<GetBungeeEntryResponse> future = new CompletableFuture<>();
         stub.getBungeeEntry(request, new CompletableFutureObserver<>(future));
+        return future;
+    }
+
+    public CompletableFuture<SendBungeeCommandResponse> sendBungeeCommand(String command) {
+        SendBungeeCommandRequest request = SendBungeeCommandRequest.newBuilder()
+                .setCommand(command)
+                .build();
+
+        CompletableFuture<SendBungeeCommandResponse> future = new CompletableFuture<>();
+        stub.sendBungeeCommand(request, new CompletableFutureObserver<>(future));
         return future;
     }
 

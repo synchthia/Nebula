@@ -3,6 +3,7 @@ package net.synchthia.nebula.bungee;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.synchthia.nebula.bungee.command.PDispatchCommand;
 import net.synchthia.nebula.bungee.command.QuitCommand;
 import net.synchthia.nebula.bungee.event.PingListener;
 import net.synchthia.nebula.bungee.event.PlayerListener;
@@ -59,6 +60,7 @@ public class NebulaPlugin extends Plugin {
 
             // Register Command
             ProxyServer.getInstance().getPluginManager().registerCommand(this, new QuitCommand());
+            ProxyServer.getInstance().getPluginManager().registerCommand(this, new PDispatchCommand());
 
             if (isIPFilterEnable) {
                 getLogger().log(Level.INFO, "IPFilter Enabled");

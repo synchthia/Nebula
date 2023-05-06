@@ -1,11 +1,11 @@
 package net.synchthia.nebula.bungee.stream;
 
 import net.synchthia.nebula.api.NebulaProtos;
+import net.synchthia.nebula.bungee.NebulaCommandSender;
 import net.synchthia.nebula.bungee.NebulaPlugin;
 import net.synchthia.nebula.client.APIClient;
 import redis.clients.jedis.JedisPubSub;
 
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 /**
@@ -20,6 +20,10 @@ public class BungeeSubs extends JedisPubSub {
         switch (stream.getType()) {
             case SYNC:
                 plugin.proxyAPI.setBungeeEntry(stream.getEntry());
+                break;
+            case COMMAND:
+                plugin.getLogger().log(Level.INFO, "Proxy dispatch received: /" + stream.getCommand());
+                plugin.getProxy().getPluginManager().dispatchCommand(NebulaCommandSender.getInstance(), stream.getCommand());
                 break;
         }
     }
