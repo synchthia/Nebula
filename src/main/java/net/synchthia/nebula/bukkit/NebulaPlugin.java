@@ -82,10 +82,12 @@ public class NebulaPlugin extends JavaPlugin {
             serverSignManager.onDisable();
         }
 
+        this.getServer().getMessenger().unregisterOutgoingPluginChannel(this);
+
         getLogger().log(Level.INFO, "Disabled " + this.getName());
     }
 
-    private void registerRedis() throws InterruptedException {
+    private void registerRedis() {
         String hostname = "localhost";
         Integer port = 6379;
 
@@ -100,8 +102,8 @@ public class NebulaPlugin extends JavaPlugin {
             }
         }
 
-        getLogger().log(Level.INFO, "Redis Address: " + redisAddress);
-        redisClient = new RedisClient(NebulaPlugin.getServerName(), hostname, port);
+        getLogger().log(Level.INFO, "Redis Address: " + hostname + ":" + port);
+        redisClient = new RedisClient(NebulaPlugin.getServerId(), hostname, port);
     }
 
 
