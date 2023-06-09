@@ -2,49 +2,72 @@ package net.synchthia.nebula.bukkit.command;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
+import lombok.RequiredArgsConstructor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.NebulaPlugin;
-import net.synchthia.nebula.bukkit.server.ServerAPI;
+import net.synchthia.nebula.bukkit.messages.Message;
+import net.synchthia.nebula.bukkit.messages.ServerMessage;
 import net.synchthia.nebula.bukkit.server.ServerAction;
-import net.synchthia.nebula.bukkit.util.StringUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import java.util.Comparator;
+import java.util.stream.Stream;
 
 /**
  * @author Laica-Lunasys
  */
+@RequiredArgsConstructor
 public class ServerCommand extends BaseCommand {
+    private final NebulaPlugin plugin;
 
     @CommandAlias("server|sv")
     @CommandCompletion("@servers")
     @Description("Switch server")
-    public void onServer(CommandSender sender, @Optional String server) {
+    public void onServer(Player player, @Optional String server) {
         if (server == null) {
-            sender.sendMessage(StringUtil.coloring("&b&lYou are currently on &9&l" + NebulaPlugin.getServerName()));
+            player.sendMessage(Message.create("<aqua><b>You are currently on</b></aqua> <blue><b><server_name></b></blue>", Placeholder.unparsed("server_name", NebulaPlugin.getServerName())));
             return;
         }
 
-        ServerAction.connect(Bukkit.getPlayer(sender.getName()), server);
+        ServerAction.connect(plugin, player, server);
     }
 
     @CommandAlias("servers|glist|listserver|listservers")
     @CommandPermission("nebula.command.servers")
     @Description("Show all servers")
     public void onServers(CommandSender sender) {
-        sender.sendMessage(StringUtil.coloring("&8&m[&b&lServers&8&m]-----------------------------------"));
-        ServerAPI.getServerEntry().forEach((k, v) -> {
-            String s1 = String.format("&6&l[%s]: ", v.getDisplayName());
-            String s2;
-            if (v.getStatus().getOnline()) {
-                if (v.getStatus().getPlayers().getMax() == 0) {
-                    s2 = "&7&lStarting";
+        sender.sendRichMessage("<dark_gray><b>[<aqua>Servers</aqua>]<strikethrough>-----------------------------------</strikethrough></b></dark_gray>");
+        Stream<NebulaProtos.ServerEntry> sorted = plugin.getServerAPI().getServers().stream().sorted(
+                Comparator.comparing(NebulaProtos.ServerEntry::getName)
+        ).sorted(
+                Comparator.comparing(NebulaProtos.ServerEntry::getFallback).reversed()
+        );
+
+        sorted.forEach((server) -> {
+            String serverFormat = "<hover:show_text:'<server_lore>'><click:run_command:'/nebula:server <server_id>'><gold><b>[<server_name>]: </b></gold></click></hover>";
+            String playerInfo;
+            if (server.getStatus().getOnline()) {
+                if (server.getStatus().getPlayers().getMax() == 0) {
+                    playerInfo = "<dark_gray><b>Starting...</b></dark_gray>";
                 } else {
-                    s2 = String.format("&7%d/%d", v.getStatus().getPlayers().getOnline(), v.getStatus().getPlayers().getMax());
+                    playerInfo = "<gray><server_online_players>/<server_max_players></gray>";
                 }
             } else {
-                s2 = "&c&lOffline";
+                playerInfo = "<red><b>Offline</b></red>";
             }
-            sender.sendMessage(StringUtil.coloring(s1 + s2));
+
+            Component message = Message.create(serverFormat + playerInfo,
+                    Placeholder.component("server_lore", ServerMessage.getServerEntryLore(sender, server)),
+                    TagResolver.resolver(ServerMessage.getServerEntryResolver(server))
+            );
+
+            sender.sendMessage(message);
         });
-        sender.sendMessage(StringUtil.coloring("&8&m----------------------------------------------"));
+
+        sender.sendRichMessage("<dark_gray><b><strikethrough>---------------------------------------------</strikethrough></b></dark_gray>");
     }
 }

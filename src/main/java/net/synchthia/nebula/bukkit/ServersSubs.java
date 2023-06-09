@@ -1,8 +1,8 @@
 package net.synchthia.nebula.bukkit;
 
+import lombok.RequiredArgsConstructor;
 import net.synchthia.nebula.api.NebulaProtos;
-import net.synchthia.nebula.bukkit.server.ServerAPI;
-import net.synchthia.nebula.bukkit.util.StringUtil;
+import net.synchthia.nebula.bukkit.messages.Message;
 import net.synchthia.nebula.client.APIClient;
 import redis.clients.jedis.JedisPubSub;
 
@@ -11,8 +11,9 @@ import java.util.logging.Level;
 /**
  * @author Laica-Lunasys
  */
+@RequiredArgsConstructor
 public class ServersSubs extends JedisPubSub {
-    private static final NebulaPlugin plugin = NebulaPlugin.getPlugin();
+    private final NebulaPlugin plugin;
 
     @Override
     public void onPMessage(String pattern, String channel, String message) {
@@ -22,11 +23,11 @@ public class ServersSubs extends JedisPubSub {
             case SYNC:
                 NebulaProtos.ServerEntry entry = serverStream.getEntry();
                 plugin.getServer().getScheduler().runTask(plugin, () -> {
-                    ServerAPI.putServer(entry);
+                    plugin.getServerAPI().putServer(entry);
                     if (entry.getName().equals(NebulaPlugin.getServerId()) && entry.getLockdown().getEnabled()) {
                         plugin.getServer().getOnlinePlayers().forEach(player -> {
                             if (!player.hasPermission("nebula.server." + entry.getName())) {
-                                player.kickPlayer(StringUtil.coloring(entry.getLockdown().getDescription()));
+                                player.kick(Message.create(entry.getLockdown().getDescription()));
                             }
                         });
                     }
@@ -35,7 +36,7 @@ public class ServersSubs extends JedisPubSub {
                 break;
             case REMOVE:
                 plugin.getServer().getScheduler().runTask(plugin, () -> {
-                    ServerAPI.removeServer(serverStream.getEntry().getName());
+                    plugin.getServerAPI().removeServer(serverStream.getEntry().getName());
                     plugin.getServerSignManager().updateSigns();
                 });
                 break;

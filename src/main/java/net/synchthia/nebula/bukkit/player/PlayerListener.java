@@ -2,18 +2,13 @@ package net.synchthia.nebula.bukkit.player;
 
 import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.NebulaPlugin;
-import net.synchthia.nebula.bukkit.server.ServerAPI;
-import net.synchthia.nebula.bukkit.util.StringUtil;
-import org.bukkit.ChatColor;
+import net.synchthia.nebula.bukkit.messages.Message;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.Optional;
 import java.util.logging.Level;
 
 public class PlayerListener implements Listener {
@@ -25,14 +20,14 @@ public class PlayerListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
     public void onLogin(PlayerLoginEvent event) {
-        NebulaProtos.ServerEntry serverEntry = ServerAPI.getServerEntry().get(NebulaPlugin.getServerId());
-        if (serverEntry == null) {
-            event.disallow(PlayerLoginEvent.Result.KICK_OTHER, StringUtil.coloring("&cInternal Server Error (Unknown Server ID)"));
+        Optional<NebulaProtos.ServerEntry> server = plugin.getServerAPI().getServer(NebulaPlugin.getServerId());
+        if (server.isEmpty()) {
+            event.disallow(PlayerLoginEvent.Result.KICK_OTHER, Message.create("<red>Internal Server Error</red> <gray>(Unknown Server ID)</gray>"));
             plugin.getLogger().log(Level.SEVERE, "Couldn't find server as SERVER_ID : " + NebulaPlugin.getServerId());
             return;
         }
 
-        NebulaProtos.Lockdown lockdown = serverEntry.getLockdown();
+        NebulaProtos.Lockdown lockdown = server.get().getLockdown();
         if (!lockdown.getEnabled()) {
             return;
         }
@@ -40,7 +35,7 @@ public class PlayerListener implements Listener {
         if (event.getPlayer().hasPermission("nebula.server." + NebulaPlugin.getServerId())) {
             event.allow();
         } else {
-            event.disallow(PlayerLoginEvent.Result.KICK_OTHER, StringUtil.coloring(lockdown.getDescription()));
+            event.disallow(PlayerLoginEvent.Result.KICK_WHITELIST, Message.create(lockdown.getDescription()));
         }
     }
 }

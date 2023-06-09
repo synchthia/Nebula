@@ -1,17 +1,18 @@
 package net.synchthia.nebula.bukkit.sign;
 
 import lombok.Getter;
-import lombok.NonNull;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.synchthia.nebula.api.NebulaProtos;
-import net.synchthia.nebula.bukkit.server.ServerAPI;
-import net.synchthia.nebula.bukkit.util.StringUtil;
+import net.synchthia.nebula.bukkit.NebulaPlugin;
+import net.synchthia.nebula.bukkit.messages.Message;
+import net.synchthia.nebula.bukkit.messages.ServerMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Sign;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -20,11 +21,10 @@ import java.util.logging.Level;
 
 @Getter
 public class ServerSignManager {
-
-    private final JavaPlugin plugin;
+    private final NebulaPlugin plugin;
     private final SignManager signManager = new SignManager();
 
-    public ServerSignManager(@NonNull JavaPlugin plugin) {
+    public ServerSignManager(NebulaPlugin plugin) {
         this.plugin = plugin;
         File signFile = new File(plugin.getDataFolder(), "signs.json");
 
@@ -39,7 +39,7 @@ public class ServerSignManager {
                 plugin.getLogger().log(Level.WARNING, "Failed to load sign data", e);
             }
         }
-        Bukkit.getPluginManager().registerEvents(new ServerSignListener(this), plugin);
+        Bukkit.getPluginManager().registerEvents(new ServerSignListener(this.plugin, this), plugin);
     }
 
     public void onDisable() {
@@ -52,52 +52,55 @@ public class ServerSignManager {
 
     public void updateSigns() {
         signManager.findAllSigns().forEach(sign -> {
-            HashMap<Integer, String> format = getFormat(sign.getKey());
+            Component[] format = getFormat(sign.getKey());
             Sign bukkitSign = sign.getSign();
-            bukkitSign.setLine(0, format.get(0));
-            bukkitSign.setLine(1, format.get(1));
-            bukkitSign.setLine(2, format.get(2));
-            bukkitSign.setLine(3, format.get(3));
+            for (int i = 0; i < format.length; i++) {
+                bukkitSign.line(i, format[i]);
+            }
+
             bukkitSign.update();
         });
     }
 
-
-    public HashMap<Integer, String> getFormat(String key) {
-        HashMap<Integer, String> format = new HashMap<>();
-        NebulaProtos.ServerEntry server = ServerAPI.getServerEntry().get(key);
-
+    public Component[] getFormat(String key) {
+        NebulaProtos.ServerEntry server = plugin.getServerAPI().getServer(key).orElse(null);
         if (server != null) {
+            List<TagResolver> resolvers = ServerMessage.getServerEntryResolver(server);
+
             if (server.getStatus().getOnline()) {
                 if (server.getStatus().getPlayers().getMax() == 0) {
-                    format.put(0, "");
-                    format.put(1, StringUtil.coloring("&1&l[" + server.getDisplayName() + "]"));
-                    format.put(2, StringUtil.coloring("&8&l● STARTING ●"));
-                    format.put(3, "");
+                    // Starting
+                    return new Component[]{
+                            Component.empty(),
+                            Message.create("<dark_blue><bold>[<server_name>]</bold></dark_blue>", TagResolver.resolver(resolvers)),
+                            Message.create("<dark_gray><bold>● STARTING ●</bold></dark_gray>", TagResolver.resolver(resolvers)),
+                            Component.empty(),
+                    };
                 } else {
-                    String motd = server.getStatus().getDescription();
-                    if (motd.length() >= 15) {
-                        motd = motd.substring(0, 14);
-                    }
-
-                    format.put(0, StringUtil.coloring("&1&l[" + server.getDisplayName() + "]"));
-                    format.put(1, StringUtil.coloring(motd));
-                    format.put(2, StringUtil.coloring("&8&l" + server.getStatus().getPlayers().getOnline() + "/" + server.getStatus().getPlayers().getMax()));
-                    format.put(3, StringUtil.coloring("&1&l● ONLINE ●"));
+                    // Online
+                    return new Component[]{
+                            Message.create("<dark_blue><bold>[<server_name>]</bold></dark_blue>", TagResolver.resolver(resolvers)),
+                            Message.create("<server_motd>", TagResolver.resolver(resolvers)),
+                            Message.create("<dark_gray><bold><server_online_players>/<server_max_players></bold></dark_gray>", TagResolver.resolver(resolvers)),
+                            Message.create("<dark_blue><bold>● ONLINE ●</bold></dark_blue>", TagResolver.resolver(resolvers))
+                    };
                 }
             } else {
-                format.put(0, "");
-                format.put(1, StringUtil.coloring("&1&l[" + server.getDisplayName() + "]"));
-                format.put(2, StringUtil.coloring("&4&l■ OFFLINE ■"));
-                format.put(3, "");
+                // Offline
+                return new Component[]{
+                        Component.empty(),
+                        Message.create("<dark_blue><bold>[<server_name>]</bold></dark_blue>", TagResolver.resolver(resolvers)),
+                        Message.create("<dark_red><bold>■ OFFLINE ■</bold></dark_red>", TagResolver.resolver(resolvers)),
+                        Component.empty(),
+                };
             }
-        } else {
-            format.put(0, "");
-            format.put(1, "");
-            format.put(2, "");
-            format.put(3, "");
         }
 
-        return format;
+        return new Component[]{
+                Component.empty(),
+                Component.empty(),
+                Component.empty(),
+                Component.empty(),
+        };
     }
 }

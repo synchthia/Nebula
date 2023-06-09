@@ -2,10 +2,13 @@ package net.synchthia.nebula.bukkit.sign;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.synchthia.nebula.api.NebulaProtos;
-import net.synchthia.nebula.bukkit.server.ServerAPI;
+import net.synchthia.nebula.bukkit.NebulaPlugin;
+import net.synchthia.nebula.bukkit.messages.Message;
 import net.synchthia.nebula.bukkit.server.ServerAction;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
@@ -16,39 +19,42 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.util.HashMap;
+import java.util.Optional;
 
 /**
  * @author misterT2525
  */
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class ServerSignListener implements Listener {
+    private static final String prefix = "[nebula]";
 
+    private final NebulaPlugin plugin;
     private final ServerSignManager manager;
-    private final String prefix = "[nebula]";
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onCreateSign(SignChangeEvent event) {
-        if (!event.getPlayer().hasPermission("nebula.sign.manage") || !event.getLine(0).equalsIgnoreCase(prefix)) {
+        if (!event.getPlayer().hasPermission("nebula.sign.manage")) {
             return;
         }
 
-        String key = event.getLine(1);
+        if (!PlainTextComponentSerializer.plainText().serializeOr(event.line(0), "").equalsIgnoreCase(prefix)) {
+            return;
+        }
+
+        String key = PlainTextComponentSerializer.plainText().serializeOr(event.line(1), "");
         if (key.length() == 0) {
             return;
         }
 
-        HashMap<Integer, String> format = manager.getFormat(key);
-
-        event.setLine(0, format.get(0));
-        event.setLine(1, format.get(1));
-        event.setLine(2, format.get(2));
-        event.setLine(3, format.get(3));
+        Component[] format = manager.getFormat(key);
+        for (int i = 0; i < format.length; i++) {
+            event.line(i, format[i]);
+        }
 
         SignData sign = new SignData(event.getBlock(), key);
         sign.updateLines(prefix, sign.getKey(), "?????", "?????");
         manager.getSignManager().add(sign);
-        event.getPlayer().sendMessage(ChatColor.GREEN + "Sign Added: " + sign.getKey());
+        event.getPlayer().sendMessage(Message.create("<green>Sign added: <server_name></green>", Placeholder.unparsed("server_name", sign.getKey())));
     }
 
     @EventHandler
@@ -62,13 +68,13 @@ public class ServerSignListener implements Listener {
         }
 
         manager.getSignManager().findSign(event.getBlock()).ifPresent(signData -> {
-            NebulaProtos.ServerEntry server = ServerAPI.getServerEntry().get(signData.getKey());
+            Optional<NebulaProtos.ServerEntry> server = plugin.getServerAPI().getServer(signData.getKey());
             manager.getSignManager().removeSign(event.getBlock());
 
-            if (server != null) {
-                event.getPlayer().sendMessage(ChatColor.RED + "Sign Removed: " + server.getDisplayName());
+            if (server.isPresent()) {
+                event.getPlayer().sendMessage(Message.create("<red>Sign removed: <server_name></red>", Placeholder.unparsed("server_name", server.get().getDisplayName())));
             } else {
-                event.getPlayer().sendMessage(ChatColor.RED + "Sign Removed: " + signData.getKey());
+                event.getPlayer().sendMessage(Message.create("<red>Sign removed: <server_name></red>", Placeholder.unparsed("server_name", signData.getKey())));
             }
         });
     }
@@ -87,9 +93,13 @@ public class ServerSignListener implements Listener {
             return;
         }
 
+        if (event.getClickedBlock() == null) {
+            return;
+        }
+
         manager.getSignManager().findSign(event.getClickedBlock()).ifPresent(sign -> {
             event.setCancelled(true);
-            ServerAction.connect(event.getPlayer(), sign.getKey());
+            ServerAction.connect(plugin, event.getPlayer(), sign.getKey());
         });
     }
 }

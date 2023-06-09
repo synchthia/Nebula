@@ -2,10 +2,14 @@ package net.synchthia.nebula.bukkit.sign;
 
 import lombok.Data;
 import lombok.NonNull;
+import net.kyori.adventure.text.Component;
+import net.synchthia.nebula.bukkit.messages.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+
+import java.util.List;
 
 /**
  * @author misterT2525
@@ -50,12 +54,12 @@ public class SignData {
         return block != null ? ((Sign) block.getState()) : null;
     }
 
-    public String[] getLines() {
+    public List<Component> getLines() {
         Sign sign = getSign();
         if (sign == null) {
             throw new IllegalStateException("not sign block");
         }
-        return sign.getLines();
+        return sign.lines();
     }
 
     public void updateLines(String... lines) {
@@ -68,11 +72,11 @@ public class SignData {
         }
 
         for (int i = 0; i < lines.length; i++) {
-            sign.setLine(i, lines[i]);
+            sign.line(i, Message.create(lines[i]));
         }
         if (lines.length < 4) {
             for (int i = lines.length; i < 4; i++) {
-                sign.setLine(i, "");
+                sign.line(i, Component.empty());
             }
         }
         sign.update();

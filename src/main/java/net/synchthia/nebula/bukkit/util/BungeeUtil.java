@@ -1,7 +1,6 @@
 package net.synchthia.nebula.bukkit.util;
 
 import net.synchthia.nebula.bukkit.NebulaPlugin;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.io.ByteArrayOutputStream;
@@ -19,7 +18,7 @@ public class BungeeUtil {
 
             player.sendPluginMessage(NebulaPlugin.getPlugin(), "BungeeCord", byteOut.toByteArray());
         } catch (IOException e) {
-            player.sendMessage(ChatColor.RED + "An Internal Occurred. Please see Console.");
+            player.sendRichMessage("<red>An Internal Occurred. Please see Console.</red>");
             e.printStackTrace();
         }
     }

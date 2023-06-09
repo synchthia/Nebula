@@ -16,7 +16,7 @@ public class SignManager {
 
     private static Gson GSON = new Gson();
 
-    private Map<Block, SignData> signs = new HashMap<>();
+    private final Map<Block, SignData> signs = new HashMap<>();
 
     public void load(File file) throws IOException {
         SignData[] datas;
@@ -29,7 +29,7 @@ public class SignManager {
         for (SignData sign : datas) {
             Block block = sign.getBlock();
             String key = sign.getKey();
-            if (block == null || key == null) {
+            if (block == null) {
                 continue;
             }
             signs.put(block, sign);
@@ -63,7 +63,7 @@ public class SignManager {
             return Optional.empty();
         }
         Block signBlock = sign.getBlock();
-        if (signBlock == null || !block.equals(signBlock)) {
+        if (!block.equals(signBlock)) {
             signs.remove(block);
             return Optional.empty();
         }
@@ -77,7 +77,7 @@ public class SignManager {
             Map.Entry<Block, SignData> entry = iterator.next();
             Block keyBlock = entry.getKey();
             Block signBlock = entry.getValue().getBlock();
-            if (signBlock == null || !keyBlock.equals(signBlock)) {
+            if (!keyBlock.equals(signBlock)) {
                 System.out.println("null or not sign!");
                 iterator.remove();
             }

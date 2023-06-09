@@ -1,7 +1,6 @@
 package net.synchthia.nebula.bukkit;
 
 import co.aikar.commands.BukkitCommandManager;
-import com.google.common.collect.Lists;
 import lombok.Getter;
 import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.command.LobbyCommand;
@@ -32,6 +31,9 @@ public class NebulaPlugin extends JavaPlugin {
 
     @Getter
     private ServerSignManager serverSignManager;
+
+    // Commands
+    private BukkitCommandManager cmdManager;
 
     // Server Settings ==================
     @Getter
@@ -64,7 +66,6 @@ public class NebulaPlugin extends JavaPlugin {
             getLogger().log(Level.INFO, "Enabled " + this.getName());
         } catch (Exception e) {
             getLogger().log(Level.SEVERE, "Exception threw while onEnable.", e);
-            setEnabled(false);
             plugin = null;
         }
     }
@@ -121,21 +122,20 @@ public class NebulaPlugin extends JavaPlugin {
         serverAPI = new ServerAPI(this);
 
         try {
-            NebulaProtos.GetServerEntryResponse res = apiClient.getServerEntry().get(5, TimeUnit.SECONDS);
-            res.getEntryList().forEach(ServerAPI::putServer);
+            this.getServerAPI().fetch().get(5, TimeUnit.SECONDS);
         } catch (Exception ex) {
             getLogger().log(Level.WARNING, "Failed getServerEntry", ex);
-
         }
     }
 
     private void registerCommands() {
-        BukkitCommandManager manager = new BukkitCommandManager(this);
+        this.cmdManager = new BukkitCommandManager(this);
 
-        manager.getCommandCompletions().registerCompletion("servers", c -> (
-                Lists.newArrayList(ServerAPI.getServerEntry().keySet())
-        ));
-        manager.registerCommand(new ServerCommand());
-        manager.registerCommand(new LobbyCommand());
+        cmdManager.getCommandCompletions().registerCompletion("servers", c ->
+                this.getServerAPI().getServers(c.getSender()).stream().map(NebulaProtos.ServerEntry::getName).toList()
+        );
+
+        cmdManager.registerCommand(new ServerCommand(this));
+        cmdManager.registerCommand(new LobbyCommand(this));
     }
 }

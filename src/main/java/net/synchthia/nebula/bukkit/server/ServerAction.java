@@ -1,33 +1,41 @@
 package net.synchthia.nebula.bukkit.server;
 
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.NebulaPlugin;
+import net.synchthia.nebula.bukkit.messages.Message;
+import net.synchthia.nebula.bukkit.messages.ServerMessage;
 import net.synchthia.nebula.bukkit.util.BungeeUtil;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Laica-Lunasys
  */
 public class ServerAction {
-    public static void connect(Player player, String serverName) {
-        NebulaProtos.ServerEntry server = ServerAPI.getServerEntry().get(serverName);
+    public static void connect(NebulaPlugin plugin, Player player, String serverId) {
+        Optional<NebulaProtos.ServerEntry> server = plugin.getServerAPI().getServer(serverId);
 
-        if (server == null) {
-            player.sendMessage(ChatColor.RED + serverName + " is not found!");
+        if (server.isEmpty()) {
+            player.sendMessage(Message.create("<red><server_name> is not found!</red>", Placeholder.unparsed("server_name", serverId)));
             return;
         }
 
-        if (server.getName().equals(NebulaPlugin.getServerId())) {
-            player.sendMessage(ChatColor.RED + "Already Connected to this Server!");
+        if (server.get().getName().equals(NebulaPlugin.getServerId())) {
+            player.sendMessage(Message.create("<red>Already connected to this server!</red>"));
             return;
         }
 
-        if (server.getStatus().getOnline()) {
-            player.sendMessage(ChatColor.GREEN + "Connecting to " + server.getDisplayName() + "...");
-            BungeeUtil.connect(player, serverName);
+        List<TagResolver> resolvers = ServerMessage.getServerEntryResolver(server.get());
+
+        if (server.get().getStatus().getOnline()) {
+            player.sendMessage(Message.create("<green>Connecting to <server_name>...</green>", TagResolver.resolver(resolvers)));
+            BungeeUtil.connect(player, serverId);
         } else {
-            player.sendMessage(ChatColor.RED + server.getDisplayName() + " is Offline!");
+            player.sendMessage(Message.create("<red><server_name> is offline!</red>", TagResolver.resolver(resolvers)));
         }
     }
 }

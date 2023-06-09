@@ -1,7 +1,6 @@
 package net.synchthia.nebula.bukkit;
 
 import lombok.SneakyThrows;
-import org.bukkit.Bukkit;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -13,9 +12,9 @@ import java.util.logging.Level;
 public class RedisClient {
     private JedisPool pool;
     private NebulaPlugin plugin = NebulaPlugin.getPlugin();
-    private String name;
-    private String hostname;
-    private Integer port;
+    private final String name;
+    private final String hostname;
+    private final Integer port;
 
     private ServersSubs serversSubs;
 
@@ -34,7 +33,7 @@ public class RedisClient {
             @SneakyThrows
             public void run() {
                 try {
-                    serversSubs = new ServersSubs();
+                    serversSubs = new ServersSubs(plugin);
 
                     plugin.getLogger().log(Level.INFO, "Connecting to Redis: " + hostname + ":" + port);
                     Jedis jedis = pool.getResource();
