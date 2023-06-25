@@ -47,6 +47,9 @@ public class ServerCommand extends BaseCommand {
                 Comparator.comparing(NebulaProtos.ServerEntry::getFallback).reversed()
         );
 
+        int total = plugin.getServerAPI().getServers().stream().filter(e -> e.getStatus().getOnline()).mapToInt(e -> e.getStatus().getPlayers().getOnline()).sum();
+        sender.sendMessage(Message.create("<yellow>Total players online: <players></yellow>", Placeholder.unparsed("players", String.valueOf(total))));
+
         sorted.forEach((server) -> {
             String serverFormat = "<hover:show_text:'<server_lore>'><click:run_command:'/nebula:server <server_id>'><gold><b>[<server_name>]: </b></gold></click></hover>";
             String playerInfo;
