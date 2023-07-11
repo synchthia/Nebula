@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.synchthia</groupId>
-    <artifactId>Nebula</artifactId>
+    <artifactId>nebula</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -45,8 +45,8 @@
         </repository>
 
         <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/synchthia/nebula-api</url>
+            <id>startail-public</id>
+            <url>https://maven.pkg.github.com/synchthia/pkg-startail-public</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
@@ -55,9 +55,9 @@
 
     <distributionManagement>
         <repository>
-            <id>github</id>
+            <id>startail-public</id>
             <name>GitHub synchthia Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/synchthia/nebula</url>
+            <url>https://maven.pkg.github.com/synchthia/pkg-startail-public</url>
         </repository>
     </distributionManagement>
 
