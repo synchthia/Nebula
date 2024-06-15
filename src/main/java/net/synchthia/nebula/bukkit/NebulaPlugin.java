@@ -8,7 +8,6 @@ import net.synchthia.nebula.bukkit.player.PlayerListener;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
 import net.synchthia.nebula.bukkit.sign.ServerSignManager;
 import net.synchthia.nebula.client.APIClient;
-import net.synchthia.nebula.velocity.CommandSuggestions;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -1,7 +1,6 @@
-package net.synchthia.nebula.velocity;
+package net.synchthia.nebula.bukkit;
 
 import net.synchthia.nebula.api.NebulaProtos;
-import net.synchthia.nebula.bukkit.NebulaPlugin;
 import org.bukkit.command.CommandSender;
 import org.incendo.cloud.annotations.processing.CommandContainer;
 import org.incendo.cloud.annotations.suggestion.Suggestions;
