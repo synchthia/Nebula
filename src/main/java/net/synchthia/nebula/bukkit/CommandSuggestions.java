@@ -17,10 +17,7 @@ public class CommandSuggestions {
     }
 
     @Suggestions("servers")
-    public Stream<String> servers(
-            final CommandContext<CommandSender> context,
-            final String input
-    ) {
+    public Stream<String> servers(final CommandContext<CommandSender> context, final String input) {
         return plugin.getServerAPI().getServers(context.sender()).stream().map(NebulaProtos.ServerEntry::getName);
     }
 }
