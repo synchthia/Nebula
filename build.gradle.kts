@@ -34,11 +34,6 @@ repositories {
     }
 
     maven {
-        name = "aikar"
-        url = uri("https://repo.aikar.co/content/groups/aikar/")
-    }
-
-    maven {
         name = "codemc"
         url = uri("https://repo.codemc.org/repository/maven-public/")
     }
