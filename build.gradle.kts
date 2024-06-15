@@ -119,16 +119,16 @@ tasks {
 
     processResources {
         expand(
-                mapOf(
-                        "pluginName" to "Nebula",
-                        "pluginVersion" to project.version,
-                        "description" to project.description,
-                        "authors" to "SYNCHTHIA",
-                        "website" to "https://synchthia.net",
-                        "bukkitApiVersion" to 1.20,
-                        "bukkitPluginMain" to "net.synchthia.nebula.bukkit.NebulaPlugin",
-                        "bungeePluginMain" to "net.synchthia.nebula.bungee.NebulaPlugin"
-                )
+            mapOf(
+                "pluginName" to "Nebula",
+                "pluginVersion" to project.version,
+                "description" to project.description,
+                "authors" to "SYNCHTHIA",
+                "website" to "https://synchthia.net",
+                "bukkitApiVersion" to 1.20,
+                "bukkitPluginMain" to "net.synchthia.nebula.bukkit.NebulaPlugin",
+                "bungeePluginMain" to "net.synchthia.nebula.bungee.NebulaPlugin"
+            )
         )
     }
 }
