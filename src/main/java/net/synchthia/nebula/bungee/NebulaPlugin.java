@@ -91,8 +91,7 @@ public class NebulaPlugin extends Plugin {
         }
 
         getLogger().log(Level.INFO, "Redis Address: " + hostname + ":" + port);
-        redisClient = new RedisClient("bungee-" + UUID.randomUUID().toString(), hostname, port);
-
+        redisClient = new RedisClient("bungee-" + UUID.randomUUID(), hostname, port);
     }
 
     private void registerAPI() {

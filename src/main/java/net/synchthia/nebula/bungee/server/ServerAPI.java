@@ -6,7 +6,10 @@ import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bungee.NebulaPlugin;
 
 import java.net.InetSocketAddress;
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
@@ -15,7 +18,7 @@ import java.util.stream.Collectors;
  * @author Laica-Lunasys
  */
 public class ServerAPI {
-    private static Map<String, NebulaProtos.ServerEntry> serverEntry = new HashMap<>();
+    private static final Map<String, NebulaProtos.ServerEntry> serverEntry = new HashMap<>();
     //private static HashSet<NebulaProtos.ServerEntry> serverEntry = new HashSet<>();
     private final NebulaPlugin plugin;
     //private static Map<String, NebulaProtos.ServerStatus> serverStatus = new HashMap<>();

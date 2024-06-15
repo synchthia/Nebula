@@ -145,6 +145,6 @@ public class PlayerListener implements Listener {
             }
         }
 
-        logger.info("[" + event.getPlayer().getName() + "] " + "Kicked from " + kickedFrom.getName() + ": " + reason.toPlainText());
+        logger.info("[" + event.getState().name() + " / " + event.getPlayer().getName() + "] " + "Kicked from " + kickedFrom.getName() + ": " + reason.toPlainText());
     }
 }

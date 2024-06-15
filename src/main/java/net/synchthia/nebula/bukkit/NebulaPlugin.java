@@ -1,16 +1,22 @@
 package net.synchthia.nebula.bukkit;
 
-import co.aikar.commands.BukkitCommandManager;
 import lombok.Getter;
-import net.synchthia.nebula.api.NebulaProtos;
+import net.synchthia.nebula.bukkit.command.ListServersCommand;
 import net.synchthia.nebula.bukkit.command.LobbyCommand;
 import net.synchthia.nebula.bukkit.command.ServerCommand;
 import net.synchthia.nebula.bukkit.player.PlayerListener;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
 import net.synchthia.nebula.bukkit.sign.ServerSignManager;
 import net.synchthia.nebula.client.APIClient;
+import net.synchthia.nebula.velocity.CommandSuggestions;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.incendo.cloud.annotations.AnnotationParser;
+import org.incendo.cloud.bukkit.CloudBukkitCapabilities;
+import org.incendo.cloud.exception.InvalidSyntaxException;
+import org.incendo.cloud.execution.ExecutionCoordinator;
+import org.incendo.cloud.paper.LegacyPaperCommandManager;
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -33,7 +39,9 @@ public class NebulaPlugin extends JavaPlugin {
     private ServerSignManager serverSignManager;
 
     // Commands
-    private BukkitCommandManager cmdManager;
+//    private BukkitCommandManager cmdManager;
+    private AnnotationParser<CommandSender> annotationParser;
+    private LegacyPaperCommandManager<CommandSender> commandManager;
 
     // Server Settings ==================
     @Getter
@@ -129,13 +137,23 @@ public class NebulaPlugin extends JavaPlugin {
     }
 
     private void registerCommands() {
-        this.cmdManager = new BukkitCommandManager(this);
+        this.commandManager = LegacyPaperCommandManager.createNative(plugin, ExecutionCoordinator.simpleCoordinator());
 
-        cmdManager.getCommandCompletions().registerCompletion("servers", c ->
-                this.getServerAPI().getServers(c.getSender()).stream().map(NebulaProtos.ServerEntry::getName).toList()
+        if (this.commandManager.hasCapability(CloudBukkitCapabilities.ASYNCHRONOUS_COMPLETION)) {
+            this.commandManager.registerAsynchronousCompletions();
+        }
+
+        this.commandManager.exceptionController().registerHandler(InvalidSyntaxException.class, e -> {
+            e.context().sender().sendRichMessage(String.format("<yellow>Usage:</yellow> <green>/%s</green>", e.exception().correctSyntax()));
+        });
+
+        this.annotationParser = new AnnotationParser<>(this.commandManager, CommandSender.class);
+
+        this.annotationParser.parse(
+                new CommandSuggestions(this),
+                new LobbyCommand(this),
+                new ServerCommand(this),
+                new ListServersCommand(this)
         );
-
-        cmdManager.registerCommand(new ServerCommand(this));
-        cmdManager.registerCommand(new LobbyCommand(this));
     }
 }

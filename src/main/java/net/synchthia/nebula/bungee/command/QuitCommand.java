@@ -20,12 +20,11 @@ public class QuitCommand extends Command {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (!(sender instanceof ProxiedPlayer)) {
+        if (!(sender instanceof ProxiedPlayer player)) {
             sender.sendMessage(new ComponentBuilder(ChatColor.RED + "Invalid Sender!").create());
             return;
         }
 
-        ProxiedPlayer player = (ProxiedPlayer) sender;
         NebulaProtos.ServerEntry lobbyEntry = NebulaPlugin.getPlugin().serverAPI.determinateLobby();
         ServerInfo lobby = ProxyServer.getInstance().getServerInfo(lobbyEntry.getName());
         if (lobby == null) {

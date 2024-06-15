@@ -2,7 +2,6 @@ package net.synchthia.nebula.client;
 
 import com.google.protobuf.util.JsonFormat;
 import io.grpc.ManagedChannel;
-import io.grpc.internal.DnsNameResolverProvider;
 import io.grpc.netty.NettyChannelBuilder;
 import io.grpc.stub.StreamObserver;
 import lombok.NonNull;
@@ -22,7 +21,7 @@ public class APIClient {
     private final NebulaGrpc.NebulaStub stub;
 
     public APIClient(@NonNull String target) {
-        channel = NettyChannelBuilder.forTarget(target).usePlaintext().nameResolverFactory(new DnsNameResolverProvider()).build();
+        channel = NettyChannelBuilder.forTarget(target).usePlaintext().build();
         stub = NebulaGrpc.newStub(channel);
     }
 

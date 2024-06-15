@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  */
 public class SignManager {
 
-    private static Gson GSON = new Gson();
+    private static final Gson GSON = new Gson();
 
     private final Map<Block, SignData> signs = new HashMap<>();
 

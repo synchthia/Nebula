@@ -12,11 +12,11 @@ import java.util.logging.Level;
  * @author Laica-Lunasys
  */
 public class RedisClient {
-    private JedisPool pool;
-    private NebulaPlugin plugin = NebulaPlugin.getPlugin();
-    private String name;
-    private String hostname;
-    private Integer port;
+    private final JedisPool pool;
+    private final NebulaPlugin plugin = NebulaPlugin.getPlugin();
+    private final String name;
+    private final String hostname;
+    private final Integer port;
 
     private ServersSubs serversSubs;
     private BungeeSubs bungeeSubs;
