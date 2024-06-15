@@ -39,7 +39,6 @@ public class NebulaPlugin extends JavaPlugin {
     private ServerSignManager serverSignManager;
 
     // Commands
-//    private BukkitCommandManager cmdManager;
     private AnnotationParser<CommandSender> annotationParser;
     private LegacyPaperCommandManager<CommandSender> commandManager;
 
