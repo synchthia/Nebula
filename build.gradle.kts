@@ -34,6 +34,11 @@ repositories {
     }
 
     maven {
+        name = "velocity-external"
+        url = uri("https://repo.william278.net/velocity/")
+    }
+
+    maven {
         name = "codemc"
         url = uri("https://repo.codemc.org/repository/maven-public/")
     }
@@ -59,6 +64,8 @@ dependencies {
 
     // Velocity
     compileOnly("com.velocitypowered:velocity-api:3.3.0-SNAPSHOT")
+    compileOnly("com.velocitypowered:velocity-proxy:3.3.0-SNAPSHOT")
+
     annotationProcessor("com.velocitypowered:velocity-api:3.3.0-SNAPSHOT")
 
     // Adventure

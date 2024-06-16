@@ -78,6 +78,10 @@ public class NebulaVelocityPlugin {
             this.server.getEventManager().register(this, new PingListener(this));
             this.server.getEventManager().register(this, new PlayerListener(this));
 
+            // Brand Sync
+            CustomBrand customBrand = new CustomBrand(this);
+            customBrand.run();
+
             // Disable built-in commands
             this.server.getCommandManager().unregister("server");
             // this.server.getCommandManager().unregister("glist");
