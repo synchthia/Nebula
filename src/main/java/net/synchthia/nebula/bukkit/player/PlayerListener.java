@@ -84,7 +84,7 @@ public class PlayerListener implements Listener {
         plugin.getPlayerAPI().requestPlayerQuit(NebulaProtos.PlayerProfile.newBuilder()
                 .setPlayerUUID(event.getPlayer().getUniqueId().toString())
                 .setPlayerName(event.getPlayer().getName())
-                .setCurrentServer("")
+                .setCurrentServer(NebulaPlugin.getServerId())
                 .setPlayerLatency(event.getPlayer().getPing())
                 .addAllProperties(properties)
                 .setHide(PlayerUtil.isPlayerVanished(event.getPlayer()))
