@@ -1,13 +1,21 @@
 package net.synchthia.nebula.bukkit;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import lombok.Getter;
+import net.synchthia.nebula.api.APIClient;
 import net.synchthia.nebula.bukkit.command.ListServersCommand;
 import net.synchthia.nebula.bukkit.command.LobbyCommand;
+import net.synchthia.nebula.bukkit.command.NebulaCommand;
 import net.synchthia.nebula.bukkit.command.ServerCommand;
+import net.synchthia.nebula.bukkit.player.PlayerAPI;
 import net.synchthia.nebula.bukkit.player.PlayerListener;
+import net.synchthia.nebula.bukkit.player.PlayerProfileScheduler;
 import net.synchthia.nebula.bukkit.server.ServerAPI;
 import net.synchthia.nebula.bukkit.sign.ServerSignManager;
-import net.synchthia.nebula.client.APIClient;
+import net.synchthia.nebula.bukkit.stream.RedisClient;
+import net.synchthia.nebula.bukkit.tablist.TabList;
+import net.synchthia.nebula.bukkit.tablist.TabListListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,15 +35,27 @@ public class NebulaPlugin extends JavaPlugin {
     @Getter
     private static NebulaPlugin plugin;
 
-    private static RedisClient redisClient;
+    @Getter
+    private RedisClient redisClient;
 
     @Getter
     public APIClient apiClient;
     @Getter
     private ServerAPI serverAPI;
+    @Getter
+    private PlayerAPI playerAPI;
 
     @Getter
     private ServerSignManager serverSignManager;
+
+    @Getter
+    private ProtocolManager protocolManager;
+
+    @Getter
+    private PlayerProfileScheduler playerProfileScheduler;
+
+    @Getter
+    private TabList tabList;
 
     // Commands
     private AnnotationParser<CommandSender> annotationParser;
@@ -54,6 +74,10 @@ public class NebulaPlugin extends JavaPlugin {
         try {
             plugin = this;
 
+            this.protocolManager = ProtocolLibrary.getProtocolManager();
+            this.tabList = new TabList(plugin);
+            this.tabList.registerListener();
+
             // Register Redis
             registerRedis();
 
@@ -65,9 +89,13 @@ public class NebulaPlugin extends JavaPlugin {
             serverSignManager = new ServerSignManager(this);
             serverSignManager.updateSigns();
 
+            playerProfileScheduler = new PlayerProfileScheduler(this);
+            playerProfileScheduler.run();
+
             this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
             Bukkit.getPluginManager().registerEvents(new PlayerListener(this), plugin);
+            Bukkit.getPluginManager().registerEvents(new TabListListener(this), plugin);
 
             getLogger().log(Level.INFO, "Enabled " + this.getName());
         } catch (Exception e) {
@@ -126,11 +154,18 @@ public class NebulaPlugin extends JavaPlugin {
 
         // Activate API
         serverAPI = new ServerAPI(this);
+        playerAPI = new PlayerAPI(this);
 
         try {
             this.getServerAPI().fetch().get(5, TimeUnit.SECONDS);
         } catch (Exception ex) {
             getLogger().log(Level.WARNING, "Failed getServerEntry", ex);
+        }
+
+        try {
+            this.getPlayerAPI().fetchAllPlayers().get(5, TimeUnit.SECONDS);
+        } catch (Exception ex) {
+            getLogger().log(Level.WARNING, "Failed fetchAllPlayers", ex);
         }
     }
 
@@ -149,6 +184,7 @@ public class NebulaPlugin extends JavaPlugin {
 
         this.annotationParser.parse(
                 new CommandSuggestions(this),
+                new NebulaCommand(this),
                 new LobbyCommand(this),
                 new ServerCommand(this),
                 new ListServersCommand(this)

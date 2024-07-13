@@ -1,13 +1,12 @@
-package net.synchthia.nebula.client;
+package net.synchthia.nebula.api;
 
 import com.google.protobuf.util.JsonFormat;
 import io.grpc.ManagedChannel;
 import io.grpc.netty.NettyChannelBuilder;
 import io.grpc.stub.StreamObserver;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import net.synchthia.nebula.api.NebulaGrpc;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -26,6 +25,17 @@ public class APIClient {
     }
 
     // Utility Method
+    public static PlayerPropertiesStream playerPropertiesStreamFromJson(String jsonText) {
+        try {
+            PlayerPropertiesStream.Builder builder = PlayerPropertiesStream.newBuilder();
+            JsonFormat.parser().ignoringUnknownFields().merge(jsonText, builder);
+
+            return builder.build();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public static ServerEntryStream serverEntryStreamFromJson(String jsonText) {
         try {
             ServerEntryStream.Builder builder = ServerEntryStream.newBuilder();
@@ -103,10 +113,46 @@ public class APIClient {
         return future;
     }
 
-    @RequiredArgsConstructor
-    private static class CompletableFutureObserver<V> implements StreamObserver<V> {
-        private final CompletableFuture<V> future;
+    public CompletableFuture<PlayerLoginResponse> playerLogin(PlayerProfile profile) {
+        PlayerLoginRequest request = PlayerLoginRequest.newBuilder()
+                .setProfile(profile)
+                .build();
 
+        CompletableFuture<PlayerLoginResponse> future = new CompletableFuture<>();
+        stub.playerLogin(request, new CompletableFutureObserver<>(future));
+        return future;
+    }
+
+    public CompletableFuture<PlayerQuitResponse> playerQuit(PlayerProfile profile) {
+        PlayerQuitRequest request = PlayerQuitRequest.newBuilder()
+                .setProfile(profile)
+                .build();
+
+        CompletableFuture<PlayerQuitResponse> future = new CompletableFuture<>();
+        stub.playerQuit(request, new CompletableFutureObserver<>(future));
+        return future;
+    }
+
+    public CompletableFuture<FetchAllPlayersResponse> fetchAllPlayers() {
+        FetchAllPlayersRequest request = FetchAllPlayersRequest.newBuilder()
+                .build();
+
+        CompletableFuture<FetchAllPlayersResponse> future = new CompletableFuture<>();
+        stub.fetchAllPlayers(request, new CompletableFutureObserver<>(future));
+        return future;
+    }
+
+    public CompletableFuture<UpdateAllPlayersResponse> updateAllPlayers(List<NebulaProtos.PlayerProfile> profiles) {
+        UpdateAllPlayersRequest request = UpdateAllPlayersRequest.newBuilder()
+                .addAllProfiles(profiles)
+                .build();
+
+        CompletableFuture<UpdateAllPlayersResponse> future = new CompletableFuture<>();
+        stub.updateAllPlayers(request, new CompletableFutureObserver<>(future));
+        return future;
+    }
+
+    private record CompletableFutureObserver<V>(CompletableFuture<V> future) implements StreamObserver<V> {
         @Override
         public void onNext(V v) {
             future.complete(v);

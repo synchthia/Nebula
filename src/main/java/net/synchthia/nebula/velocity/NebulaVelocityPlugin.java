@@ -7,7 +7,7 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import lombok.Getter;
-import net.synchthia.nebula.client.APIClient;
+import net.synchthia.nebula.api.APIClient;
 import net.synchthia.nebula.velocity.listener.PingListener;
 import net.synchthia.nebula.velocity.listener.PlayerListener;
 import net.synchthia.nebula.velocity.server.PlayerAPI;
@@ -57,9 +57,6 @@ public class NebulaVelocityPlugin {
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        // Do some operation demanding access to the Velocity API here.
-        // For instance, we could register an event:
-        // server.getEventManager().register(this, new PluginListener());
         logger.info("Initialization Proxy...");
         // Clear all servers
         server.getAllServers().forEach((s) -> {
@@ -87,7 +84,6 @@ public class NebulaVelocityPlugin {
             // this.server.getCommandManager().unregister("glist");
         } catch (Exception ex) {
             this.logger.error("Failed initialize nebula! server will be shutdown...", ex);
-//            ex.printStackTrace();
             server.shutdown();
             return;
         }

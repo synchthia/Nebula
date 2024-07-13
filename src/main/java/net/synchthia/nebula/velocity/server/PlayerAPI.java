@@ -13,7 +13,7 @@ public class PlayerAPI {
     private final NebulaVelocityPlugin plugin;
 
     public CompletableFuture<NebulaProtos.IPLookupResponse> lookupIP(String playerIP) {
-        return plugin.getApiClient().getIPLookup(playerIP).whenComplete(((ipLookupResponse, throwable) -> {
+        return plugin.getApiClient().getIPLookup(playerIP).whenComplete((ipLookupResponse, throwable) -> {
             if (throwable != null) {
                 if (Objects.equals(Status.fromThrowable(throwable).getDescription(), "context deadline exceeded")) {
                     plugin.getLogger().warn("Failed fetch Bungee Entry, retrying...");
@@ -22,6 +22,6 @@ public class PlayerAPI {
                     plugin.getLogger().warn("Failed lookup ip" + playerIP);
                 }
             }
-        }));
+        });
     }
 }

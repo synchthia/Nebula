@@ -1,9 +1,10 @@
-package net.synchthia.nebula.bukkit;
+package net.synchthia.nebula.bukkit.stream;
 
 import lombok.RequiredArgsConstructor;
+import net.synchthia.nebula.api.APIClient;
 import net.synchthia.nebula.api.NebulaProtos;
+import net.synchthia.nebula.bukkit.NebulaPlugin;
 import net.synchthia.nebula.bukkit.messages.Message;
-import net.synchthia.nebula.client.APIClient;
 import redis.clients.jedis.JedisPubSub;
 
 import java.util.logging.Level;

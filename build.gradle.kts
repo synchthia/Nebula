@@ -1,7 +1,10 @@
 plugins {
     id("java")
     id("maven-publish")
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+
+    // use for Java 21 (see: https://github.com/johnrengelman/shadow/pull/876)
+    // id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("io.github.goooler.shadow") version "8.1.8"
     id("io.papermc.paperweight.userdev") version "1.7.1" // Check for new versions at https://plugins.gradle.org/plugin/io.papermc.paperweight.userdev
     id("xyz.jpenilla.run-paper") version "2.3.0" // Adds runServer and runMojangMappedServer tasks for testing
 }
@@ -9,6 +12,7 @@ plugins {
 group = "net.synchthia"
 version = "1.21-SNAPSHOT"
 description = "Nebula"
+paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
@@ -44,6 +48,11 @@ repositories {
     }
 
     maven {
+        name = "dmulloy2"
+        url = uri("https://repo.dmulloy2.net/repository/public/")
+    }
+
+    maven {
         name = "startail-public"
         url = uri("https://maven.pkg.github.com/synchthia/pkg-startail-public")
         credentials {
@@ -57,7 +66,7 @@ dependencies {
     implementation("net.synchthia:nebula-api:1.1-SNAPSHOT")
 
     // Paper
-    paperweight.paperDevBundle("1.20.6-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21-R0.1-SNAPSHOT")
 
     // BungeeCord
     compileOnly("net.md-5:bungeecord-api:1.20-R0.1-SNAPSHOT")
@@ -77,6 +86,9 @@ dependencies {
     implementation("org.incendo:cloud-paper:2.0.0-beta.8")
     implementation("org.incendo:cloud-minecraft-extras:2.0.0-beta.8")
 
+    // ProtocolLib
+    compileOnly("com.comphenix.protocol:ProtocolLib:5.0.0")
+
     // Protocol Buffers
     implementation("com.google.protobuf:protobuf-java:3.21.9")
     implementation("com.google.protobuf:protobuf-java-util:3.21.9")
@@ -91,7 +103,7 @@ dependencies {
     implementation("redis.clients:jedis:5.1.3")
 
     // gson
-    compileOnly("com.google.code.gson:gson:2.8.9")
+    compileOnly("com.google.code.gson:gson:2.11.0")
 
     // lombok
     compileOnly("org.projectlombok:lombok:1.18.32")
@@ -103,10 +115,11 @@ tasks {
         // Set the release flag. This configures what version bytecode the compiler will emit, as well as what JDK APIs are usable.
         // See https://openjdk.java.net/jeps/247 for more information.
         options.encoding = Charsets.UTF_8.name()
-        options.release.set(17)
+        options.release.set(21)
     }
 
     shadowJar {
+        archiveFileName.set("${project.name}.jar")
         mergeServiceFiles()
         fun reloc(pkg: String) = relocate(pkg, "net.synchthia.nebula.libs.$pkg")
 
@@ -116,12 +129,8 @@ tasks {
         reloc("org.apache.commons.pool2")
     }
 
-    reobfJar {
-        outputJar.set(layout.buildDirectory.file("libs/${project.name}.jar"))
-    }
-
     assemble {
-        dependsOn(reobfJar)
+        dependsOn(shadowJar)
     }
 
     processResources {
@@ -132,7 +141,7 @@ tasks {
                 "description" to project.description,
                 "authors" to "SYNCHTHIA",
                 "website" to "https://synchthia.net",
-                "bukkitApiVersion" to 1.20,
+                "bukkitApiVersion" to "1.20",
                 "bukkitPluginMain" to "net.synchthia.nebula.bukkit.NebulaPlugin",
                 "bungeePluginMain" to "net.synchthia.nebula.bungee.NebulaPlugin"
             )
@@ -143,7 +152,7 @@ tasks {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            artifact(tasks.reobfJar)
+            artifact(tasks.shadowJar)
         }
     }
 }

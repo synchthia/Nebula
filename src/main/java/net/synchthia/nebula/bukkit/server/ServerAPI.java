@@ -1,5 +1,6 @@
 package net.synchthia.nebula.bukkit.server;
 
+import lombok.Getter;
 import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.NebulaPlugin;
 import org.bukkit.command.CommandSender;
@@ -16,6 +17,7 @@ import java.util.logging.Level;
  */
 public class ServerAPI {
     private final NebulaPlugin plugin;
+    @Getter
     private final List<NebulaProtos.ServerEntry> servers = new ArrayList<>();
 
     public ServerAPI(NebulaPlugin plugin) {
@@ -55,10 +57,6 @@ public class ServerAPI {
 
     public Optional<NebulaProtos.ServerEntry> getServer(String serverId) {
         return this.servers.stream().filter(server -> server.getName().equals(serverId)).findFirst();
-    }
-
-    public List<NebulaProtos.ServerEntry> getServers() {
-        return this.servers;
     }
 
     public List<NebulaProtos.ServerEntry> getServers(CommandSender sender) {

@@ -1,7 +1,7 @@
 package net.synchthia.nebula.velocity.stream;
 
+import net.synchthia.nebula.api.APIClient;
 import net.synchthia.nebula.api.NebulaProtos;
-import net.synchthia.nebula.client.APIClient;
 import net.synchthia.nebula.velocity.NebulaVelocityPlugin;
 import redis.clients.jedis.JedisPubSub;
 

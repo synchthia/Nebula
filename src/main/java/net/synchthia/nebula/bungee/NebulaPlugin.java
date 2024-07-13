@@ -3,6 +3,7 @@ package net.synchthia.nebula.bungee;
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.synchthia.nebula.api.APIClient;
 import net.synchthia.nebula.bungee.command.PDispatchCommand;
 import net.synchthia.nebula.bungee.command.QuitCommand;
 import net.synchthia.nebula.bungee.event.PingListener;
@@ -11,7 +12,6 @@ import net.synchthia.nebula.bungee.server.PlayerAPI;
 import net.synchthia.nebula.bungee.server.ProxyAPI;
 import net.synchthia.nebula.bungee.server.ServerAPI;
 import net.synchthia.nebula.bungee.stream.RedisClient;
-import net.synchthia.nebula.client.APIClient;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
