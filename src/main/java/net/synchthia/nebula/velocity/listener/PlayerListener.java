@@ -82,20 +82,20 @@ public class PlayerListener {
         NebulaProtos.ServerEntry kickedFromEntry = plugin.getServerAPI().getServer(kickedFrom.getName());
         Component disconnectPrefix = MiniMessage.miniMessage().deserialize("<white>-<blue><bold> INFORMATION <white>-\n\n");
         Component kickedPrefix = MiniMessage.miniMessage().deserialize("<red><bold>" + kickedFrom.getName() + " <gray>≫<reset> ");
+        plugin.getLogger().info(String.format("[%s / %s] Kicked from %s: %s", event.getResult(), event.getPlayer().getUsername(), event.getServer().getServerInfo().getName(), event.getServerKickReason().orElse(Component.empty())));
 
         if (kickedFromEntry != null) {
             if (kickedFromEntry.getFallback()) {
                 event.getPlayer().disconnect(disconnectPrefix.append(event.getServerKickReason().orElse(Component.empty())));
-                return;
+            } else {
+                event.setResult(KickedFromServerEvent.Notify.create(kickedPrefix.append(event.getServerKickReason().orElse(Component.empty()))));
             }
-        }
-
-        Optional<NebulaProtos.ServerEntry> lobbyEntry = plugin.getServerAPI().determinateLobby();
-        if (lobbyEntry.isPresent()) {
-            Optional<RegisteredServer> lobby = plugin.getServer().getServer(lobbyEntry.get().getName());
-            plugin.getLogger().info(String.format("[%s / %s] Kicked from %s: %s", event.getResult(), event.getPlayer().getUsername(), event.getServer().getServerInfo().getName(), event.getServerKickReason().orElse(Component.empty())));
-
-            lobby.ifPresent(registeredServer -> event.setResult(KickedFromServerEvent.RedirectPlayer.create(registeredServer, kickedPrefix.append(event.getServerKickReason().orElse(Component.empty())))));
+        } else {
+            Optional<NebulaProtos.ServerEntry> lobbyEntry = plugin.getServerAPI().determinateLobby();
+            if (lobbyEntry.isPresent()) {
+                Optional<RegisteredServer> lobby = plugin.getServer().getServer(lobbyEntry.get().getName());
+                lobby.ifPresent(registeredServer -> event.setResult(KickedFromServerEvent.RedirectPlayer.create(registeredServer, kickedPrefix.append(event.getServerKickReason().orElse(Component.empty())))));
+            }
         }
     }
 }
