@@ -57,8 +57,6 @@ public class PlayerSubs extends JedisPubSub {
                 plugin.getTabList().updatePlayer(entries);
             }
         }
-
-        plugin.getLogger().log(Level.INFO, message);
     }
 
     @Override

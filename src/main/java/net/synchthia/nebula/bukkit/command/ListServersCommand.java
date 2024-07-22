@@ -6,6 +6,7 @@ import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.NebulaPlugin;
+import net.synchthia.nebula.bukkit.i18n.I18n;
 import net.synchthia.nebula.bukkit.messages.Message;
 import net.synchthia.nebula.bukkit.messages.ServerMessage;
 import org.bukkit.command.CommandSender;
@@ -27,7 +28,6 @@ public class ListServersCommand {
     @CommandDescription("Show all servers")
     @Permission("nebula.command.servers")
     public void onServers(final CommandSender sender) {
-        sender.sendRichMessage("<dark_gray><b>[<aqua>Servers</aqua>]<strikethrough>-----------------------------------</strikethrough></b></dark_gray>");
         Stream<NebulaProtos.ServerEntry> sorted = plugin.getServerAPI().getServers().stream().sorted(
                 Comparator.comparing(NebulaProtos.ServerEntry::getName)
         ).sorted(
@@ -35,7 +35,7 @@ public class ListServersCommand {
         );
 
         int total = plugin.getServerAPI().getServers().stream().filter(e -> e.getStatus().getOnline()).mapToInt(e -> e.getStatus().getPlayers().getOnline()).sum();
-        sender.sendMessage(Message.create("<yellow>Total players online: <players></yellow>", Placeholder.unparsed("players", String.valueOf(total))));
+        I18n.sendMessage(sender, "servers.header", Placeholder.unparsed("_players_", String.valueOf(total)));
 
         sorted.forEach((server) -> {
             String serverFormat = "<hover:show_text:'<server_lore>'><click:run_command:'/nebula:server <server_id>'><gold><b>[<server_name>]: </b></gold></click></hover>";

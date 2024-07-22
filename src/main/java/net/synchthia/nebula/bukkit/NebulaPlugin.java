@@ -4,10 +4,15 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import lombok.Getter;
 import net.synchthia.nebula.api.APIClient;
+import net.synchthia.nebula.api.NebulaProtos;
+import net.synchthia.nebula.api.player.PlayerProfile;
+import net.synchthia.nebula.api.player.PlayerProperty;
 import net.synchthia.nebula.bukkit.command.ListServersCommand;
 import net.synchthia.nebula.bukkit.command.LobbyCommand;
 import net.synchthia.nebula.bukkit.command.NebulaCommand;
 import net.synchthia.nebula.bukkit.command.ServerCommand;
+import net.synchthia.nebula.bukkit.i18n.I18n;
+import net.synchthia.nebula.bukkit.i18n.I18nManager;
 import net.synchthia.nebula.bukkit.player.PlayerAPI;
 import net.synchthia.nebula.bukkit.player.PlayerListener;
 import net.synchthia.nebula.bukkit.player.PlayerProfileScheduler;
@@ -15,6 +20,7 @@ import net.synchthia.nebula.bukkit.server.ServerAPI;
 import net.synchthia.nebula.bukkit.sign.ServerSignManager;
 import net.synchthia.nebula.bukkit.stream.RedisClient;
 import net.synchthia.nebula.bukkit.tablist.TabList;
+import net.synchthia.nebula.bukkit.tablist.TabListEntry;
 import net.synchthia.nebula.bukkit.tablist.TabListListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -22,9 +28,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.incendo.cloud.annotations.AnnotationParser;
 import org.incendo.cloud.bukkit.CloudBukkitCapabilities;
 import org.incendo.cloud.exception.InvalidSyntaxException;
+import org.incendo.cloud.exception.NoPermissionException;
 import org.incendo.cloud.execution.ExecutionCoordinator;
 import org.incendo.cloud.paper.LegacyPaperCommandManager;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
@@ -73,6 +83,8 @@ public class NebulaPlugin extends JavaPlugin {
     public void onEnable() {
         try {
             plugin = this;
+
+            I18n.setI18nManager(new I18nManager(this));
 
             this.protocolManager = ProtocolLibrary.getProtocolManager();
             this.tabList = new TabList(plugin);
@@ -164,6 +176,18 @@ public class NebulaPlugin extends JavaPlugin {
 
         try {
             this.getPlayerAPI().fetchAllPlayers().get(5, TimeUnit.SECONDS);
+            Map<UUID, TabListEntry> entries = new HashMap<>();
+            for (PlayerProfile profile : this.getPlayerAPI().getPlayers().values()) {
+                entries.put(profile.getUuid(), new TabListEntry(
+                        profile.getUuid(),
+                        profile.getName(),
+                        profile.getLatency(),
+                        profile.getProperties(),
+                        profile.isHide()
+                ));
+            }
+
+            this.getTabList().updatePlayer(entries);
         } catch (Exception ex) {
             getLogger().log(Level.WARNING, "Failed fetchAllPlayers", ex);
         }
@@ -179,6 +203,10 @@ public class NebulaPlugin extends JavaPlugin {
         this.commandManager.exceptionController().registerHandler(InvalidSyntaxException.class, e -> {
             e.context().sender().sendRichMessage(String.format("<yellow>Usage:</yellow> <green>/%s</green>", e.exception().correctSyntax()));
         });
+
+        this.commandManager.exceptionController().registerHandler(NoPermissionException.class, e ->
+                I18n.sendMessage(e.context().sender(), "general.error.permission_denied")
+        );
 
         this.annotationParser = new AnnotationParser<>(this.commandManager, CommandSender.class);
 

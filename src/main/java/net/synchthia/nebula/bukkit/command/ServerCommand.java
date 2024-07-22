@@ -3,6 +3,7 @@ package net.synchthia.nebula.bukkit.command;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.synchthia.nebula.bukkit.NebulaPlugin;
+import net.synchthia.nebula.bukkit.i18n.I18n;
 import net.synchthia.nebula.bukkit.messages.Message;
 import net.synchthia.nebula.bukkit.server.ServerAction;
 import org.bukkit.entity.Player;
@@ -23,7 +24,7 @@ public class ServerCommand {
     @Permission("nebula.command.server")
     public void onLobby(final Player player, @Argument(value = "server", suggestions = "servers") String targetServer) {
         if (targetServer == null) {
-            player.sendMessage(Message.create("<aqua><b>You are currently on</b></aqua> <blue><b><server_name></b></blue>", Placeholder.unparsed("server_name", NebulaPlugin.getServerName())));
+            I18n.sendMessage(player, "server.info.current", Placeholder.unparsed("server_name", NebulaPlugin.getServerName()));
             return;
         }
 

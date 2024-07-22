@@ -3,6 +3,7 @@ package net.synchthia.nebula.bukkit.command;
 import lombok.RequiredArgsConstructor;
 import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.NebulaPlugin;
+import net.synchthia.nebula.bukkit.i18n.I18n;
 import net.synchthia.nebula.bukkit.server.ServerAction;
 import org.bukkit.entity.Player;
 import org.incendo.cloud.annotations.Command;
@@ -22,7 +23,7 @@ public class LobbyCommand {
     public void onLobby(final Player player) {
         NebulaProtos.ServerEntry lobby = plugin.getServerAPI().determinateLobby();
         if (lobby == null) {
-            player.sendRichMessage("<red>All Fallback Server is down! Type /quit for Disconnect.</red>");
+            I18n.sendMessage(player, "server.error.lobby_down");
         } else {
             ServerAction.connect(plugin, player, lobby.getName());
         }

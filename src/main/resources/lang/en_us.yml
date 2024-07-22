@@ -1,0 +1,26 @@
+general:
+  error:
+    internal_error: "<red>An internal error has occurred. Please contact the staff.</red>"
+    permission_denied: "<red>You don''t have permission to do this.</red>"
+
+server:
+  error:
+    lobby_down: "<red>All Fallback Server is down! Type /quit for Disconnect.</red>"
+    not_found: "<red><server_name> is not found!</red>"
+    already_connected: "<red>Already connected to this server!</red>"
+    offline: "<red><server_name> is offline!</red>"
+
+  info:
+    current: "<aqua><b>You are currently on</b></aqua> <blue><b><server_name></b></blue>"
+    connecting: "<green>Connecting to <server_name>...</green>"
+
+servers:
+  header: |
+    <dark_gray><b>[<aqua>Servers</aqua>]<strikethrough>-----------------------------------</strikethrough></b></dark_gray>
+    <yellow>Total players online: <_players_></yellow>
+
+  footer: "<dark_gray><b><strikethrough>---------------------------------------------</strikethrough></b></dark_gray>"
+
+sign:
+  created: "<green>Sign created: <server_name></green>"
+  removed: "<red>Sign removed: <server_name></red>"

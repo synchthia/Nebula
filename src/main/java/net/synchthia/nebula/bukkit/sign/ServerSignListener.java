@@ -7,6 +7,7 @@ import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.bukkit.NebulaPlugin;
+import net.synchthia.nebula.bukkit.i18n.I18n;
 import net.synchthia.nebula.bukkit.messages.Message;
 import net.synchthia.nebula.bukkit.server.ServerAction;
 import org.bukkit.GameMode;
@@ -54,7 +55,7 @@ public class ServerSignListener implements Listener {
         SignData sign = new SignData(event.getBlock(), key);
         sign.updateLines(prefix, sign.getKey(), "?????", "?????");
         manager.getSignManager().add(sign);
-        event.getPlayer().sendMessage(Message.create("<green>Sign added: <server_name></green>", Placeholder.unparsed("server_name", sign.getKey())));
+        I18n.sendMessage(event.getPlayer(), "sign.created", Placeholder.unparsed("server_name", sign.getKey()));
     }
 
     @EventHandler
@@ -72,9 +73,9 @@ public class ServerSignListener implements Listener {
             manager.getSignManager().removeSign(event.getBlock());
 
             if (server.isPresent()) {
-                event.getPlayer().sendMessage(Message.create("<red>Sign removed: <server_name></red>", Placeholder.unparsed("server_name", server.get().getDisplayName())));
+                I18n.sendMessage(event.getPlayer(), "sign.removed", Placeholder.unparsed("server_name", server.get().getDisplayName()));
             } else {
-                event.getPlayer().sendMessage(Message.create("<red>Sign removed: <server_name></red>", Placeholder.unparsed("server_name", signData.getKey())));
+                I18n.sendMessage(event.getPlayer(), "sign.removed", Placeholder.unparsed("server_name", signData.getKey()));
             }
         });
     }

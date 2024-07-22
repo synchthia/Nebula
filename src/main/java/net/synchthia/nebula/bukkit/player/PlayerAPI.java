@@ -1,6 +1,7 @@
 package net.synchthia.nebula.bukkit.player;
 
 import com.destroystokyo.paper.profile.ProfileProperty;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.synchthia.nebula.api.NebulaProtos;
 import net.synchthia.nebula.api.player.PlayerProfile;
@@ -15,6 +16,7 @@ import java.util.logging.Level;
 @RequiredArgsConstructor
 public class PlayerAPI {
     private final NebulaPlugin plugin;
+    @Getter
     private final Map<UUID, PlayerProfile> players = new HashMap<>();
 
     public CompletableFuture<NebulaProtos.FetchAllPlayersResponse> fetchAllPlayers() {

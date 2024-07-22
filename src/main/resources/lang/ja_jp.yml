@@ -1,0 +1,26 @@
+general:
+  error:
+    internal_error: "<red>エラーが発生しました。スタッフにお問い合わせください。</red>"
+    permission_denied: "<red>権限がありません。</red>"
+
+server:
+  error:
+    lobby_down: "<red>全てのロビーがダウンしています！サーバーから切断してください。</red>"
+    not_found: "<red><server_name>は見つかりません。</red>"
+    already_connected: "<red>このサーバーに既に接続しています！</red>"
+    offline: "<red><server_name>はオフラインです！</red>"
+
+  info:
+    current: "<aqua><b>現在のサーバー:</b></aqua> <blue><b><server_name></b></blue>"
+    connecting: "<green><server_name>に接続しています...</green>"
+
+servers:
+  header: |
+    <dark_gray><b>[<aqua>サーバー</aqua>]<strikethrough>-----------------------------------</strikethrough></b></dark_gray>
+    <yellow>合計プレイヤー数: <_players_></yellow>
+
+  footer: "<dark_gray><b><strikethrough>---------------------------------------------</strikethrough></b></dark_gray>"
+
+sign:
+  created: "<green>看板を作成しました: <server_name></green>"
+  removed: "<red>看板を削除しました: <server_name></red>"
