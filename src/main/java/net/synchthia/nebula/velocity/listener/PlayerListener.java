@@ -1,6 +1,7 @@
 package net.synchthia.nebula.velocity.listener;
 
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.connection.PreLoginEvent;
 import com.velocitypowered.api.event.player.KickedFromServerEvent;
 import com.velocitypowered.api.event.player.PlayerChooseInitialServerEvent;
@@ -15,6 +16,7 @@ import net.synchthia.nebula.velocity.NebulaVelocityPlugin;
 
 import java.net.InetSocketAddress;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -116,5 +118,18 @@ public class PlayerListener {
         }
 
         plugin.getLogger().info(String.format("[%s / %s] Kicked from %s: %s", event.getResult(), event.getPlayer().getUsername(), event.getServer().getServerInfo().getName(), MiniMessage.miniMessage().serialize(event.getServerKickReason().orElse(Component.empty()))));
+    }
+
+    @Subscribe
+    public void onServerDisconnected(DisconnectEvent event) {
+        Set<NebulaProtos.PlayerProperty> properties = plugin.getPlayerAPI().profileToProperties(event.getPlayer().getGameProfile());
+
+        Optional<ServerConnection> previousServer = event.getPlayer().getCurrentServer();
+        previousServer.ifPresent(registeredServer -> plugin.getPlayerAPI().requestPlayerQuit(NebulaProtos.PlayerProfile.newBuilder()
+                .setPlayerUUID(event.getPlayer().getUniqueId().toString())
+                .setPlayerName(event.getPlayer().getUsername())
+                .setPlayerLatency(event.getPlayer().getPing())
+                .addAllProperties(properties)
+                .build()));
     }
 }

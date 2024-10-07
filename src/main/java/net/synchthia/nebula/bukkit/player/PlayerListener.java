@@ -10,7 +10,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -59,29 +58,6 @@ public class PlayerListener implements Listener {
         }
 
         plugin.getPlayerAPI().requestPlayerLogin(NebulaProtos.PlayerProfile.newBuilder()
-                .setPlayerUUID(event.getPlayer().getUniqueId().toString())
-                .setPlayerName(event.getPlayer().getName())
-                .setCurrentServer(NebulaPlugin.getServerId())
-                .setPlayerLatency(event.getPlayer().getPing())
-                .addAllProperties(properties)
-                .setHide(PlayerUtil.isPlayerVanished(event.getPlayer()))
-                .build());
-    }
-
-    @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event) {
-        PlayerProfile gameProfile = event.getPlayer().getPlayerProfile();
-
-        Set<NebulaProtos.PlayerProperty> properties = new HashSet<>();
-        for (ProfileProperty property : gameProfile.getProperties()) {
-            properties.add(NebulaProtos.PlayerProperty.newBuilder()
-                    .setName(property.getName())
-                    .setValue(property.getValue())
-                    .setSignature(property.getSignature() != null ? property.getSignature() : "")
-                    .build());
-        }
-
-        plugin.getPlayerAPI().requestPlayerQuit(NebulaProtos.PlayerProfile.newBuilder()
                 .setPlayerUUID(event.getPlayer().getUniqueId().toString())
                 .setPlayerName(event.getPlayer().getName())
                 .setCurrentServer(NebulaPlugin.getServerId())
