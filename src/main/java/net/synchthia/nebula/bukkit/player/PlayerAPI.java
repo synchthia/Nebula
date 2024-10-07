@@ -57,6 +57,14 @@ public class PlayerAPI {
         });
     }
 
+    public CompletableFuture<NebulaProtos.PlayerLoginResponse> requestPlayerLogin(NebulaProtos.PlayerProfile profile) {
+        return plugin.getApiClient().playerLogin(profile).whenComplete((response, throwable) -> {
+            if (throwable != null) {
+                plugin.getLogger().log(Level.WARNING, "Failed process player Login: Exception threw", throwable);
+            }
+        });
+    }
+
     public PlayerProfile playerToProfile(Player player) {
         List<PlayerProperty> properties = new ArrayList<>();
         for (ProfileProperty property : player.getPlayerProfile().getProperties()) {
@@ -71,21 +79,5 @@ public class PlayerAPI {
                 properties,
                 PlayerUtil.isPlayerVanished(player)
         );
-    }
-
-    public CompletableFuture<NebulaProtos.PlayerLoginResponse> requestPlayerLogin(NebulaProtos.PlayerProfile profile) {
-        return plugin.getApiClient().playerLogin(profile).whenComplete((response, throwable) -> {
-            if (throwable != null) {
-                plugin.getLogger().log(Level.WARNING, "Failed process player Login: Exception threw", throwable);
-            }
-        });
-    }
-
-    public CompletableFuture<NebulaProtos.PlayerQuitResponse> requestPlayerQuit(NebulaProtos.PlayerProfile profile) {
-        return plugin.getApiClient().playerQuit(profile).whenComplete((response, throwable) -> {
-            if (throwable != null) {
-                plugin.getLogger().log(Level.WARNING, "Failed process player Quit: Exception threw", throwable);
-            }
-        });
     }
 }
