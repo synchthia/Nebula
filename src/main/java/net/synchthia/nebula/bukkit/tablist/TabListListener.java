@@ -13,9 +13,7 @@ public class TabListListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
-            plugin.getTabList().syncTabList(event.getPlayer());
-        }, 10L);
+        plugin.getTabList().syncTabList(event.getPlayer());
     }
 
     @EventHandler

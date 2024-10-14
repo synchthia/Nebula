@@ -77,11 +77,12 @@ public class TabList {
     }
 
     public void addPlayer(TabListEntry entry) {
-        tabListEntries.remove(entry.getUuid());
         tabListEntries.put(entry.getUuid(), entry);
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (!player.getUniqueId().equals(entry.getUuid()) && entry.isHide()) {
-                sendRemovePacket(player, entry.getUuid());
+                if (sentPlayers.getOrDefault(player, Set.of()).contains(entry.getUuid())) {
+                    sendRemovePacket(player, entry.getUuid());
+                }
             } else {
                 sendAddPacket(player, entry);
             }
@@ -106,9 +107,7 @@ public class TabList {
     public void syncTabList(Player player) {
         sendRemoveAllPacket(player);
         for (TabListEntry entry : tabListEntries.values()) {
-            if (!player.getUniqueId().equals(entry.getUuid()) && entry.isHide()) {
-                sendRemovePacket(player, entry.getUuid());
-            } else {
+            if (player.getUniqueId().equals(entry.getUuid()) || !entry.isHide()) {
                 sendAddPacket(player, entry);
             }
         }
@@ -120,6 +119,10 @@ public class TabList {
     }
 
     public void sendRemovePacket(Player player, UUID uuid) {
+        if (player.getUniqueId().equals(uuid)) {
+            return;
+        }
+
         final Set<UUID> sentPlayers = this.sentPlayers.get(player);
         if (sentPlayers != null && sentPlayers.remove(uuid)) {
             final PacketContainer container = plugin.getProtocolManager().createPacket(PacketType.Play.Server.PLAYER_INFO_REMOVE);
@@ -131,27 +134,32 @@ public class TabList {
 
     // 空のタブリストを送信する
     private void sendRemoveAllPacket(Player player) {
+        final Set<UUID> sentPlayers = this.sentPlayers.get(player);
+        if (sentPlayers == null || sentPlayers.isEmpty()) {
+            return;
+        }
+
         final PacketContainer container = plugin.getProtocolManager().createPacket(PacketType.Play.Server.PLAYER_INFO_REMOVE);
-        container.getUUIDLists().write(0, tabListEntries.keySet().stream().toList());
+        container.getUUIDLists().write(0, sentPlayers.stream().filter(uuid -> !player.getUniqueId().equals(uuid)).toList());
 
         plugin.getProtocolManager().sendServerPacket(player, container, false);
-        if (sentPlayers.get(player) != null) {
-            sentPlayers.get(player).clear();
-        }
+        sentPlayers.clear();
+        sentPlayers.add(player.getUniqueId());
     }
 
     private void sendAddPacket(Player player, TabListEntry entry) {
         final PacketContainer playerInfoPacket = plugin.getProtocolManager().createPacket(PacketType.Play.Server.PLAYER_INFO);
         final EnumSet<EnumWrappers.PlayerInfoAction> actions = EnumSet.of(
-                EnumWrappers.PlayerInfoAction.ADD_PLAYER,
                 EnumWrappers.PlayerInfoAction.UPDATE_GAME_MODE,
                 EnumWrappers.PlayerInfoAction.UPDATE_LISTED,
                 EnumWrappers.PlayerInfoAction.UPDATE_LATENCY,
                 EnumWrappers.PlayerInfoAction.UPDATE_DISPLAY_NAME
         );
 
-        this.sentPlayers.computeIfAbsent(player, k -> new HashSet<>());
-        this.sentPlayers.get(player).add(entry.getUuid());
+        final Set<UUID> sentPlayers = this.sentPlayers.computeIfAbsent(player, k -> new HashSet<>());
+        if (sentPlayers.add(entry.getUuid())) {
+            actions.add(EnumWrappers.PlayerInfoAction.ADD_PLAYER);
+        }
 
         final WrappedRemoteChatSessionData chatSession = this.publicKeys.remove(player, entry.getUuid());
         if (chatSession != null) {
