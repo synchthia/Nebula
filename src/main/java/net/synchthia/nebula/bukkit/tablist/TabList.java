@@ -37,6 +37,12 @@ public class TabList {
             public void onPacketSending(PacketEvent event) {
                 final PacketContainer packet = event.getPacket();
                 final Set<EnumWrappers.PlayerInfoAction> actions = packet.getPlayerInfoActions().read(0);
+
+                final boolean updateGameMode = actions.contains(EnumWrappers.PlayerInfoAction.UPDATE_GAME_MODE);
+                if (updateGameMode && actions.size() == 1) {
+                    return;
+                }
+
                 final boolean addPlayer = actions.contains(EnumWrappers.PlayerInfoAction.ADD_PLAYER);
                 final boolean initializeChat = actions.contains(EnumWrappers.PlayerInfoAction.INITIALIZE_CHAT);
                 if (initializeChat) {
@@ -160,11 +166,12 @@ public class TabList {
             wrappedGameProfile.getProperties().put(p.getName(), v);
         }
 
+        final Player entryPlayer = Bukkit.getPlayer(entry.getUuid());
         playerInfoPacket.getPlayerInfoDataLists().write(1, List.of(new PlayerInfoData(
                 entry.getUuid(),
                 0,
                 true,
-                EnumWrappers.NativeGameMode.CREATIVE,
+                EnumWrappers.NativeGameMode.fromBukkit(entryPlayer != null ? entryPlayer.getGameMode() : Bukkit.getDefaultGameMode()),
                 wrappedGameProfile,
                 WrappedChatComponent.fromText(entry.getName()),
                 chatSession)
