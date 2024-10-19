@@ -15,6 +15,7 @@ public class TabListEntry {
     private UUID uuid;
     private String name;
     private long latency;
+    private String currentServer;
     private List<PlayerProperty> properties;
     private boolean hide;
 }

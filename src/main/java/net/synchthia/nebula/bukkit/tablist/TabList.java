@@ -10,8 +10,11 @@ import com.comphenix.protocol.wrappers.*;
 import com.google.common.collect.Table;
 import com.google.common.collect.Tables;
 import lombok.RequiredArgsConstructor;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import net.kyori.adventure.text.serializer.json.JSONComponentSerializer;
 import net.synchthia.nebula.api.player.PlayerProperty;
 import net.synchthia.nebula.bukkit.NebulaPlugin;
+import net.synchthia.nebula.bukkit.messages.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -175,13 +178,17 @@ public class TabList {
         }
 
         final Player entryPlayer = Bukkit.getPlayer(entry.getUuid());
+        WrappedChatComponent tabListMessage = WrappedChatComponent.fromJson(JSONComponentSerializer.json().serialize(Message.create("<gray>[<server_name>]</gray><white><player_name></white>",
+                Placeholder.unparsed("server_name", entry.getCurrentServer()),
+                Placeholder.unparsed("player_name", entry.getName())
+        )));
         playerInfoPacket.getPlayerInfoDataLists().write(1, List.of(new PlayerInfoData(
                 entry.getUuid(),
                 0,
                 true,
                 EnumWrappers.NativeGameMode.fromBukkit(entryPlayer != null ? entryPlayer.getGameMode() : Bukkit.getDefaultGameMode()),
                 wrappedGameProfile,
-                WrappedChatComponent.fromText(entry.getName()),
+                tabListMessage,
                 chatSession)
         ));
 

@@ -182,6 +182,7 @@ public class NebulaPlugin extends JavaPlugin {
                         profile.getUuid(),
                         profile.getName(),
                         profile.getLatency(),
+                        profile.getCurrentServer(),
                         profile.getProperties(),
                         profile.isHide()
                 ));

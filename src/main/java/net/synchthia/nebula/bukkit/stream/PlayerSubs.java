@@ -29,6 +29,7 @@ public class PlayerSubs extends JedisPubSub {
                         UUID.fromString(profile.getPlayerUUID()),
                         profile.getPlayerName(),
                         profile.getPlayerLatency(),
+                        profile.getCurrentServer(),
                         PlayerProperty.fromProtobuf(profile.getPropertiesList()),
                         profile.getHide()
                 ));
@@ -49,6 +50,7 @@ public class PlayerSubs extends JedisPubSub {
                             UUID.fromString(profile.getPlayerUUID()),
                             profile.getPlayerName(),
                             profile.getPlayerLatency(),
+                            profile.getCurrentServer(),
                             PlayerProperty.fromProtobuf(profile.getPropertiesList()),
                             profile.getHide()
                     ));
